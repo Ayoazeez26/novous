@@ -12,6 +12,11 @@ export default <Partial<Config>>{
         "blue-4": "#0073FF",
         "blue-5": "#003069",
         "blue-6": "#3E5065",
+        "blue-7": "#011742",
+        "blue-8": "#01318E",
+        "blue-9": "#D6E9FF",
+        "blue-10": "#011C51",
+        "blue-11": "#F3F8FD",
         yellow: "#FADB36",
         primary: "#03989E",
         white: "#FAFFFF",
@@ -30,6 +35,8 @@ export default <Partial<Config>>{
         "green-10": "#629442",
         "orange-10": "#CE9A22",
         "grey-9": "#CCCECE",
+        "grey-10": "#1A1A1A",
+        "grey-11": "#999999",
       },
       backgroundImage: {
         "hero-bg":
