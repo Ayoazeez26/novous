@@ -21,13 +21,14 @@
           </button>
         </div>
         
-        <ul v-if="!open" class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10">
+        <ul v-if="!open" class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-5">
           <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
           <li @click="careServicesToggled"><p class="hover:text-blue-4 cursor-pointer" :class="route.name === 'strategy' || route.name === 'services' ? 'text-blue-4' : ''">Strategy and Management Consulting<Icon class="ml-1" name="ic:round-keyboard-arrow-down" size="24px" color="#001D40" /></p></li>
           <li @click="aboutUsToggled"><p class="hover:text-blue-4 cursor-pointer" :class="route.name === 'about' ? 'text-blue-4' : ''">About Us<Icon class="ml-1" name="ic:round-keyboard-arrow-down" size="24px" color="#001D40" /></p></li>
           <li @click="trainingToggled"><p class="hover:text-blue-4 cursor-pointer" :class="route.name === 'training' ? 'text-blue-4' : ''">Training & Events <Icon class="ml-1" name="ic:round-keyboard-arrow-down" size="24px" color="#001D40" /></p></li>
           <li @click="open = !open"><nuxt-link to="/ebooks" :class="route.name === 'ebooks' ? 'text-blue-4' : ''">Resources</nuxt-link></li>
           <li @click="open = !open"><nuxt-link to="/blog" :class="route.name === 'blog' ? 'text-blue-4' : ''">News</nuxt-link></li>
+          <li @click="open = !open"><nuxt-link to="/store" :class="route.name === 'store' ? 'text-blue-4' : ''">Online Store</nuxt-link></li>
           <div class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6">
             <button class="bg-blue-4 border-2 border-blue-4 font-medium px-4 py-3 rounded text-white">Request Service</button>        
           </div>
@@ -40,6 +41,7 @@
           <li class="py-4" @click="open = !open"><nuxt-link to="/training" class="hover:text-blue-4 py-4 my-2 cursor-pointer">Training & Events </nuxt-link></li>
           <li class="py-4" @click="open = !open"><nuxt-link to="/ebooks" class="py-4 my-2">Resources</nuxt-link></li>
           <li class="py-4" @click="open = !open"><nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link></li>
+          <li class="py-4" @click="open = !open"><nuxt-link to="/store" class="py-4 my-2">Online Store</nuxt-link></li>
           <div class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6">
             <button class="bg-blue-4 border-2 border-blue-4 font-medium px-4 py-3 rounded text-white">Request Service</button>        
           </div>

@@ -1,16 +1,12 @@
 <template>
-  <AppHeader />
+  <AppHeaderLight />
   <div>
     <CareServicesDropdown v-if="dataStore.careServices" />
     <AboutUsDropdown v-if="dataStore.about" />
     <TrainingDropdown v-if="dataStore.training" />
-    <StoreHero />
+    <StoreProduct />
+    <StoreSimilar />
     <StoreFeatures />
-    <StoreMission />
-    <StoreEnroll />
-    <StoreTeam />
-    <StoreQandA />
-    <HomeEnroll />
   </div>
   <!-- <div class="absolute bg-black/75 w-screen h-screen"></div> -->
 </template>

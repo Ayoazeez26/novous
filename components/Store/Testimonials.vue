@@ -54,12 +54,12 @@ const resetBtnValues = () => {
     <div class="flex lg:items-center justify-between w-full">
       <div class="">
         <p class="font-semibold text-primary md:text-lg uppercase">
-          our clients’ testimonials
+          Dont ttake our word for it
         </p>
         <h2
           class="font-semibold uppercase leading-snug text-2xl md:text-3xl text-black mb-3 w-full max-w-[497px]"
         >
-          real stories, real results.
+          Hear what our Clients have to say
         </h2>
       </div>
       <div class="hidden md:flex">

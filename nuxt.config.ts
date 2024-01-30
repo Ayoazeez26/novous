@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     "nuxt-swiper",
     "@pinia/nuxt",
     "nuxt-gtag",
+    "@pinia-plugin-persistedstate/nuxt",
   ],
 
   gtag: {
@@ -46,6 +47,11 @@ export default defineNuxtConfig({
           additionalData: '@use "@/assets/_colors.scss" as *;',
         },
       },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.BASE_URL,
     },
   },
 });
