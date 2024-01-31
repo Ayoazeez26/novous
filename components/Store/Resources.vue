@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useDataStore } from '~/stores/data';
+import { useDataStore } from "~/stores/data";
 
 const dataStore = useDataStore();
 const router = useRouter();
-const category = ref("Book");
+const category = ref("Books");
 const services = ref([
   {
     image: "dom-care",
@@ -14,22 +14,19 @@ const services = ref([
   },
   {
     image: "tupe",
-    title:
-      "MASTERING TUPE TRANSFERS IN SOCIAL CARE SERVICES",
+    title: "MASTERING TUPE TRANSFERS IN SOCIAL CARE SERVICES",
     price: "£0.99",
     slashedPrice: "£3.15",
   },
   {
     image: "social-care",
-    title:
-      "A Social Care Provider's Guide to the 2023 State of Care Report ",
+    title: "A Social Care Provider's Guide to the 2023 State of Care Report ",
     price: "£0.99",
     slashedPrice: "£3.15",
   },
   {
-    image: "workbook",
-    title:
-      "CQC Registered Manager's Interview Workbook",
+    image: "workBooks",
+    title: "CQC Registered Manager's Interview WorkBooks",
     price: "£0.99",
     slashedPrice: "£3.15",
   },
@@ -65,16 +62,6 @@ const posts = ref([
     author: "Mrs Obi",
   },
 ]);
-const hotResource = ref({
-  image: "bridging-hot",
-  coupon: "95% off",
-  title:
-    "BRIDGING THE GAP: THE VITAL ROLE OF MSMEs IN REDUCING HEALTH INEQUALITIES",
-  price: "£0.99",
-  slashedPrice: "£3.15",
-  description:
-    "Games built using the Xbox Series X|S development kit showcase unparalleled load times, visuals.",
-});
 
 const getProducts = async () => {
   await dataStore.getAllProducts(
@@ -85,7 +72,15 @@ getProducts();
 
 const saveFirstProductToStore = () => {
   dataStore.singleProduct = dataStore.allProducts[0];
+  dataStore.category = category.value;
+  router.push("/store/id");
+};
+
+const saveProductToStore = (product) => {
+  
+  dataStore.singleProduct = product;
   router.push('/store/id');
+  window.scrollTo(0, 0);
 }
 </script>
 <template>
@@ -116,15 +111,15 @@ const saveFirstProductToStore = () => {
             All resources
           </button>
           <button
-            @click="category = 'Book'"
+            @click="category = 'Books'"
             class=""
             :class="
-              category === 'Book'
+              category === 'Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
                 : 'border-whiter text-grey-12'
             "
           >
-            Books
+            Bookss
           </button>
           <button
             @click="category = 'Guides'"
@@ -161,87 +156,92 @@ const saveFirstProductToStore = () => {
           </button>
         </div>
       </div>
-      <div v-show="category === 'Book'" class="flex mt-14 w-full">
-        <div v-if="dataStore.allProducts.length" class="flex">
-          <div
-            class="border border-grey-15 flex flex-col relative p-[38px] pb-[85px] bg-whiter w-[519px]"
-          >
-            <!-- <div
-              class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-            >
-              95% off
-            </div>
-            <div
-              class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
-            >
-              HOT
-            </div> -->
-            <img
-              :src="dataStore.allProducts[0].productImages[0].Location"
-              alt="A picture of a book titled bridging the gap"
-            />
-            <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
-              {{ dataStore.allProducts[0].productName }}
-            </h3>
-            <div class="flex my-6 gap-[6px]">
-              <!-- <p class="line-through text-grey-13 text-[25px]">
-                {{ hotResource.slashedPrice }}
-              </p> -->
-              <p class="font-bold text-blue-13 text-[25px]">
-                £{{ dataStore.allProducts[0].price }}
-              </p>
-            </div>
-            <p class="leading-[31.626px] text-grey-14">
-              {{ dataStore.allProducts[0].description }}
-            </p>
-            <div class="mt-12 max-w-fit">
-              <button
-                class="bg-blue-4 flex h-[76px] items-center px-10"
-                @click="saveFirstProductToStore"
+      <div v-show="category === 'Books'" class="flex mt-14 w-full">
+        <template v-if="dataStore.allProducts.length">
+          <div class="flex">
+            <div class="flex">
+              <div
+                class="border border-grey-15 flex flex-col relative p-[38px] pb-[85px] bg-whiter w-[519px]"
               >
-                <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
-                <span class="text-white">SHOP NOW</span>
-              </button>
+                <!-- <div
+                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
+                >
+                  95% off
+                </div>
+                <div
+                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
+                >
+                  HOT
+                </div> -->
+                <img
+                  :src="dataStore.allProducts[0].productImages[0].Location"
+                  alt="A picture of a Books titled bridging the gap"
+                />
+                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
+                  {{ dataStore.allProducts[0].productName }}
+                </h3>
+                <div class="flex my-6 gap-[6px]">
+                  <!-- <p class="line-through text-grey-13 text-[25px]">
+                    {{ hotResource.slashedPrice }}
+                  </p> -->
+                  <p class="font-bold text-blue-13 text-[25px]">
+                    £{{ dataStore.allProducts[0].price }}
+                  </p>
+                </div>
+                <p
+                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
+                >
+                  {{ dataStore.allProducts[0].description }}
+                </p>
+                <div class="mt-12 max-w-fit">
+                  <button
+                    class="bg-blue-4 flex h-[76px] items-center px-10"
+                    @click="saveFirstProductToStore"
+                  >
+                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
+                    <span class="text-white">SHOP NOW</span>
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="flex justify-center w-full">
-          <div
-            class="bg-whiter flex flex-col lg:flex-row md:items-stretch justify-center flex-wrap"
-          >
-            <div
-              v-for="(service, idx) in services"
-              :key="idx"
-              class="flex flex-col w-full p-[25px] border border-grey-15 lg:w-[392px]"
-            >
-              <img class="w-full" :src="`/img/${service.image}.png`" />
-              <div class=" flex items-start">
-                <div class="flex w-full">
-                  <div class="flex flex-col">
-                    <h3
-                      class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
-                    >
-                      {{ service.title }}
-                    </h3>
-                    <div class="flex mt-[12px] gap-[6px]">
-                      <p class="line-through text-grey-13 text-[22px]">
-                        {{ service.slashedPrice }}
-                      </p>
-                      <p
-                        class="font-bold line-through text-blue-13 text-[22px]"
-                      >
-                        {{ service.price }}
-                      </p>
+            <div class="flex justify-center items-start w-full">
+              <div
+                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+              >
+                <div
+                  v-for="(publication, idx) in dataStore.allProducts.length - 1"
+                  :key="idx"
+                  @click="saveProductToStore(dataStore.allProducts[idx+1])"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="w-full"
+                    :src="dataStore.allProducts[idx+1].productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ dataStore.allProducts[idx+1].productName }}
+                        </h3>
+                        <div class="flex mt-[12px] gap-[6px]">
+                          <p class="font-bold text-blue-13 text-[22px]">
+                            £{{ dataStore.allProducts[idx+1].price }}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
         <!-- <div class="flex mt-[71px] justify-center">
         <nuxt-link
-          to="/ebooks"
+          to="/eBookss"
           class="text-blue-4 blue-btn rounded py-4 px-8 w-[329px] text-center bg-whiter border border-black/20"
         >
           See all
@@ -283,7 +283,7 @@ const saveFirstProductToStore = () => {
         </div>
         <div class="flex mt-10 justify-center">
           <nuxt-link
-            to="/ebooks"
+            to="/eBookss"
             class="text-blue-4 blue-btn rounded py-4 px-8"
           >
             See More
@@ -300,8 +300,8 @@ const saveFirstProductToStore = () => {
         <div class="flex flex-col lg:flex-row gap-10 mt-10">
           <nuxt-link to="/blog/id" class="w-full max-w-[612px]">
             <img
-              src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/book-mockup-1.png"
-              alt="book mockup"
+              src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-1.png"
+              alt="Books mockup"
             />
             <div class="bg-blue-2 px-6 py-12">
               <div class="flex flex-col md:flex-row md:items-center gap-6">
@@ -338,13 +338,13 @@ const saveFirstProductToStore = () => {
             >
               <img
                 class="w-[164px] hidden md:block"
-                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/book-mockup-mob.png"
-                alt="small book mockup"
+                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-mob.png"
+                alt="small Books mockup"
               />
               <img
                 class="w-[164px] md:hidden"
-                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/book-mockup-mob-2.png"
-                alt="small book mockup"
+                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-mob-2.png"
+                alt="small Books mockup"
               />
               <div class="flex flex-col gap-y-2 px-6 max-w-[424px]">
                 <h3
@@ -365,7 +365,7 @@ const saveFirstProductToStore = () => {
         </div>
         <div class="flex mt-10 justify-center">
           <nuxt-link
-            to="/ebooks"
+            to="/eBookss"
             class="text-blue-4 blue-btn rounded py-4 px-8"
           >
             View More

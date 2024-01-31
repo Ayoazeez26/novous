@@ -16,13 +16,13 @@ export const useDataStore = defineStore(
     const currentPage = ref(1);
     const totalPages = ref(1);
     const singleProduct = ref(null);
+    const category = ref('Books');
 
     const getAllProducts = (data: string) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
         $api.data.getAllProducts(data).then((res) => {
           dialog.isLoading = false;
-          console.log("product response is =>", res);
           allProducts.value = res.foundProducts;
           totalCount.value = res.count;
           currentPage.value = res.currentPage;
@@ -40,6 +40,7 @@ export const useDataStore = defineStore(
       getAllProducts,
       allProducts,
       singleProduct,
+      category
     };
   },
   {

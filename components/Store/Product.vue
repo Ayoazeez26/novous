@@ -3,17 +3,6 @@ import { useDataStore } from '~/stores/data';
 
 const dataStore = useDataStore();
 
-console.log(dataStore.singleProduct);
-const singleProduct = ref({
-  image: "bridging-hot",
-  coupon: "95% off",
-  title:
-    "BRIDGING THE GAP: THE VITAL ROLE OF MSMEs IN REDUCING HEALTH INEQUALITIES",
-  price: "£0.99",
-  slashedPrice: "£3.15",
-  description:
-    "Games built using the Xbox Series X|S development kit showcase unparalleled load times, visuals.",
-});
 let count = ref(1);
 
 const reduceCount = () => {
@@ -23,16 +12,18 @@ const reduceCount = () => {
 const increaseCount = () => {
   count.value++;
 }
+
+window.scrollTo(0, 0);
 </script>
 <template>
   <div class="py-20 md:py-28 w-full">
     <div
       class="w-full max-w-[1317px] flex h-full pt-[140px] gap-14 px-4 md:px-6 xl:px-0 mx-auto"
     >
-      <div class="images w-[616px]">
+      <div class="images w-[616px] overflow-hidden">
         <img
           class="w-full"
-          src="/img/bridging-product.png"
+          :src="dataStore.singleProduct.productImages[0].Location"
           alt="bridging the gap"
         />
       </div>
@@ -77,13 +68,14 @@ const increaseCount = () => {
         <div class="my-[11px] w-full h-px bg-grey-15"></div>
         <div class="flex justify-between gap-4 items-center">
           <div class="my-8 max-w-full">
-            <nuxt-link
+            <a
+              href="https://wa.me/447903094884"
+              target="_blank"
               class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
-              to="/store/id"
             >
               <p class="text-blue-4 text-sm">Shop Now</p>
               <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
-            </nuxt-link>
+            </a>
           </div>
           <div class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between">
             <Icon @click="reduceCount" class="cursor-pointer" name="bi:dash-lg" />
