@@ -1,28 +1,23 @@
 import FetchFactory from '../factory';
 
 import {
-  RequestTenderInput,
-  contactUsInput,
-  BookmarkTender,
+  HandoutInput,
 } from '~/types';
 
 class DataModule extends FetchFactory {
-  private RESOURCE = '';
+  private RESOURCE = "";
 
   async getAllProducts(data: string): Promise {
-    return await this.call(
-      'GET',
-      `${this.RESOURCE}/product/search${data}`
-    );
+    return await this.call("GET", `${this.RESOURCE}/product/search${data}`);
   }
 
   async viewSingleProduct(id: string): Promise {
-    return await this.call(
-      'GET',
-      `${this.RESOURCE}/product/search/${id}`
-    );
+    return await this.call("GET", `${this.RESOURCE}/product/search/${id}`);
   }
 
+  async downloadHandout(productDetails: HandoutInput): Promise {
+    return await this.call("PATCH", `${this.RESOURCE}/product/download-count/${productDetails}`);
+  }
 }
 
 export default DataModule;

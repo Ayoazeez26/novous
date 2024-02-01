@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { useDialogStore } from "~/stores/dialog";
+import { useDataStore } from "~/stores/data";
+
+const dataStore = useDataStore();
+const dialogStore = useDialogStore();
+const category = ref("Handouts");
 const blogs = ref([
   {
     name: "Best Practices For Providing Domicillary Care",
@@ -29,11 +35,51 @@ const message = ref("Hello, I would like to request for the free pdf copy");
 const messageUrl = () => {
   return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27;`;
 };
+
+const getProducts = async () => {
+  await dataStore.getAllProducts(
+    `?limit=10&page=1&category[0]=${category.value}`
+  );
+};
+getProducts();
+
+const showModal = (handout) => {
+  dataStore.singleProduct = handout;
+  dialogStore.showModal = true;
+}
 </script>
 <template>
   <div
     class="mx-auto w-full px-4 md:px-6 xl:px-0 mt-14 md:mt-16 mb-16 max-w-[1240px]"
   >
+    <div class="flex xl:justify-center mb-16 items-start w-full">
+      <div
+        class="bg-whiter flex flex-col gap-6 lg:flex-row md:items-stretch flex-wrap"
+      >
+        <div
+          v-for="(publication, idx) in dataStore.allProducts"
+          :key="idx"
+          @click="showModal(publication)"
+          class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+        >
+          <img class="w-full" :src="publication.productImages[0].Location" />
+          <div class="flex items-start">
+            <div class="flex w-full">
+              <div class="flex flex-col">
+                <h3 class="mt-[12.65px] text-lg font-medium leading-[31.626px]">
+                  {{ publication.productName }}
+                </h3>
+                <!-- <div class="flex mt-[12px] gap-[6px]">
+                  <p class="font-bold text-blue-13 text-[22px]">
+                    £{{ publication.price }}
+                  </p>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <h2
       class="font-bold px-8 lg:px-0 leading-[36px] md:leading-[48px] lg:leading-[54px] mb-5 tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] w-full"
     >
@@ -80,61 +126,14 @@ const messageUrl = () => {
       ></iframe>
     </div>
     <p class="leading-[28px] text-lg mt-4 mb-8">
-      <a :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`" class="underline" target="_blank">Click here</a> to
-      get a free version of the pdf
-    </p>
-
-    <div class="flex justify-start mt-6">
-      <div
-        class="flex flex-col md:flex-row justify-start items-stretch flex-wrap gap-10 lg:gap-2"
+      <a
+        :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`"
+        class="underline"
+        target="_blank"
+        >Click here</a
       >
-        <div
-          v-for="(blog, idx) in blogs"
-          :key="idx"
-          class="flex flex-col w-full md:w-[408px]"
-        >
-          <img
-            class="w-full"
-            :src="`https://s3.eu-west-2.amazonaws.com/ocmc-img.com/${blog.image}.png`"
-          />
-          <div
-            class="flex items-start h-full px-6 py-8 border bg-blue-2 text-white border-blue-2"
-          >
-            <div class="flex flex-col justify-between h-full w-full">
-              <h3
-                class="cut-text text-whiter font-semibold text-xl tracking-[-0.2px] text-ellipsis overflow-hidden block uppercase"
-              >
-                {{ blog.name }}
-              </h3>
-              <!-- <p
-                class="cut-text text-lg leading-[28px] font-medium max-h-14 mt-4 text-ellipsis overflow-hidden block"
-              >
-                {{ blog.title }}
-              </p> -->
-              <div class="mt-10 flex self-end w-full">
-                <template v-if="blog.link">
-                  <a
-                    :href="blog.link"
-                    target="_blank"
-                    class="bg-blue-4/30 text-center text-white rounded p-4 w-full"
-                  >
-                    Get Now!!
-                  </a>
-                </template>
-                <template v-else>
-                  <nuxt-link
-                    to="/"
-                    class="bg-blue-4/30 text-center text-white rounded p-4 w-full"
-                  >
-                    Coming Soon!
-                  </nuxt-link>
-                </template>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      to get a free version of the pdf
+    </p>
   </div>
 </template>
 

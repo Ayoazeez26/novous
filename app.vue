@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDialogStore } from '~/stores/dialog';
+import { useDialogStore } from "~/stores/dialog";
 
 // const seoData = reactive({
 //   title: 'O.C. Management Consulting',
@@ -15,10 +15,19 @@ import { useDialogStore } from '~/stores/dialog';
 //   ogImage: seoData.img
 // })
 const dialogStore = useDialogStore();
+const clickedOutside = () => {
+  console.log('clicked outside');
+  
+  dialogStore.showModal = false;
+};
 </script>
 <template>
   <div class="body">
     <main>
+      <Modal
+        v-if="dialogStore.showModal"
+        class="loader"
+      />
       <Loading v-if="dialogStore.isLoading" class="loader" />
       <NuxtPage />
     </main>
