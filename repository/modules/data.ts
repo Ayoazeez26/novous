@@ -16,7 +16,11 @@ class DataModule extends FetchFactory {
   }
 
   async downloadHandout(productDetails: HandoutInput): Promise {
-    return await this.call("PATCH", `${this.RESOURCE}/product/download-count/${productDetails}`);
+    return await this.call(
+      "PATCH",
+      `${this.RESOURCE}/product/download-count`,
+      productDetails
+    );
   }
 }
 

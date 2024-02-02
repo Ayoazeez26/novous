@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { successToast } from "~/plugins/vue3-toastify";
 import { useDialogStore } from "./dialog";
+import { HandoutInput } from "types";
 
 export const useDataStore = defineStore(
   "data",
@@ -32,6 +33,16 @@ export const useDataStore = defineStore(
       });
     };
 
+    const downloadHandout = (data: HandoutInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.downloadHandout(data).then((res) => {
+          dialog.isLoading = false;
+          resolve(res);
+        });
+      });
+    };
+
     return {
       about,
       careServices,
@@ -40,7 +51,8 @@ export const useDataStore = defineStore(
       getAllProducts,
       allProducts,
       singleProduct,
-      category
+      category,
+      downloadHandout
     };
   },
   {
