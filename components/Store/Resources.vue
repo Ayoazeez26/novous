@@ -6,10 +6,13 @@ const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const router = useRouter();
 const category = ref("Books");
-const selectedWeek = ref("Select week");
 const selectedPaymentPlan = ref("Choose Payment Plan");
 const showPaymentDropdown = ref(false);
 const showSelectWeekDropdown = ref(false);
+
+const phoneNumber = ref("7903094884");
+const message = ref("Hello, I would like to request for the free pdf copy");
+
 const services = ref([
   {
     image: "dom-care",
@@ -70,9 +73,13 @@ const posts = ref([
 ]);
 
 watch(category, (value) => {
-  if (value === "Books" || value === "Handouts") {
+  if (value !== "All") {
     getProducts(value);
   }
+});
+
+onMounted(() => {
+  dataStore.selectedWeek = 'Select Week';
 });
 
 const getProducts = async (value) => {
@@ -90,12 +97,23 @@ const saveProductToStore = (product) => {
   dataStore.singleProduct = product;
   router.push("/store/id");
   window.scrollTo(0, 0);
+  dataStore.selectedWeek = 'Week 1 Shared Decision Making';
 };
 
 const showModal = (handout) => {
   dataStore.singleProduct = handout;
   dialogStore.showModal = true;
 };
+
+const selectWeek = () => {
+  dataStore.selectedWeek = "Week 1 Shared Decision Making";
+  showSelectWeekDropdown.value = false;
+};
+
+const changePaymentPlan = () => {
+  selectedPaymentPlan.value = 'Free Plan';
+  showPaymentDropdown.value = false;
+}
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -158,10 +176,10 @@ const showModal = (handout) => {
             Handouts
           </button>
           <button
-            @click="category = 'Meeting Enhancers'"
+            @click="category = 'Enhancers'"
             class=""
             :class="
-              category === 'Meeting Enhancers'
+              category === 'Enhancers'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
                 : 'border-whiter text-grey-12'
             "
@@ -298,35 +316,62 @@ const showModal = (handout) => {
         </nuxt-link>
       </div> -->
       </div>
-      <div v-show="category === 'Meeting Enhancers'" class="flex mt-14 w-full">
+      <div v-show="category === 'Enhancers'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
           <div class="flex flex-wrap md:flex-nowrap">
             <div class="flex justify-center items-start w-full">
-              <div
-                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-              >
+              <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
-                  v-for="(publication, idx) in dataStore.allProducts.length"
-                  :key="idx"
-                  @click="saveProductToStore(dataStore.allProducts[idx])"
                   class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
                 >
                   <img
                     class="w-full"
-                    :src="dataStore.allProducts[idx].productImages[0].Location"
+                    :src="dataStore.allProducts[2].productImages[0].Location"
                   />
-                  <div class="flex items-start">
-                    <div class="flex w-full">
-                      <div class="flex flex-col">
+                  <div class="flex items-start h-full">
+                    <div class="flex w-full h-full">
+                      <div class="flex flex-col h-full justify-between w-full">
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[idx].productName }}
+                          {{ dataStore.allProducts[2].productName }}
                         </h3>
-                        <div class="flex mt-[12px] gap-[6px]">
-                          <p class="font-bold text-blue-13 text-[22px]">
-                            £{{ dataStore.allProducts[idx].price }}
-                          </p>
+                        <div class="h-16 flex items-center justify-center">
+                          <a
+                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`"
+                            target="_blank"
+                            download
+                            class="bg-blue-17 h-16 flex items-center justify-center text-sm text-whiter w-full"
+                            >Coming Soon</a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="w-full"
+                    :src="dataStore.allProducts[1].productImages[0].Location"
+                  />
+                  <div class="flex items-start h-full">
+                    <div class="flex w-full h-full">
+                      <div class="flex flex-col h-full justify-between w-full">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ dataStore.allProducts[1].productName }}
+                        </h3>
+                        <div class="h-16 flex items-center justify-center">
+                          <a
+                            href="https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Meeting+Minutes+and+Agenda+Template+-+MEQC.docx"
+                            target="_blank"
+                            download
+                            class="bg-blue-17 h-16 flex items-center justify-center text-sm text-whiter w-full"
+                            >Get 12 Months meeting Agenda Template</a
+                          >
                         </div>
                       </div>
                     </div>
@@ -341,45 +386,97 @@ const showModal = (handout) => {
                   />
                   <div class="flex items-start">
                     <div class="flex w-full">
-                      <div class="flex flex-col">
+                      <div class="flex flex-col w-full">
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
                           {{ dataStore.allProducts[0].productName }}
                         </h3>
-                        <div class="bg-blue-16 flex flex-col items-start mt-[12px] rounded-md px-[26px] py-4 h-[230px] overflow-y-auto">
-                          <div @click="showSelectWeekDropdown=!showSelectWeekDropdown" class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center w-full">
-                            <Icon name="material-symbols:calendar-month-sharp" />
-                            <h5 class="ml-[8.84px]">{{ selectedWeek }}</h5>
-                            <Icon class="absolute top-2.5 right-2" name="mdi:chevron-down" size="24" />
+                        <div
+                          class="bg-blue-16 flex flex-col items-start mt-[12px] rounded-md px-[26px] py-4 h-[230px] overflow-y-hidden"
+                        >
+                          <div
+                            @click="
+                              showSelectWeekDropdown = !showSelectWeekDropdown
+                            "
+                            class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center w-full"
+                          >
+                            <Icon
+                              name="material-symbols:calendar-month-sharp"
+                            />
+                            <h5 class="ml-[8.84px]">{{ dataStore.selectedWeek }}</h5>
+                            <Icon
+                              class="absolute top-2.5 right-2"
+                              name="mdi:chevron-down"
+                              size="24"
+                            />
                           </div>
-                          <div v-if="showSelectWeekDropdown" class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full">
-                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
+                          <div
+                            v-if="showSelectWeekDropdown"
+                            class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
+                          >
+                            <div
+                              @click="selectWeek"
+                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                            >
                               <p>Week 1 Shared Decision Making</p>
                             </div>
-                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                            <div
+                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
+                            >
                               <p>Week 2 Shared Decision Making</p>
                             </div>
-                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                            <div
+                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
+                            >
                               <p>Week 3 Shared Decision Making</p>
                             </div>
-                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                            <div
+                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
+                            >
                               <p>Week 4 Shared Decision Making</p>
                             </div>
                           </div>
-                          <div @click="showPaymentDropdown=!showPaymentDropdown" class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center mt-[18px] w-full">
+                          <div
+                            @click="showPaymentDropdown = !showPaymentDropdown"
+                            class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center mt-[18px] w-full"
+                          >
                             <Icon name="fluent:payment-32-filled" />
-                            <h5 class="ml-[8.84px]">{{ selectedPaymentPlan }}</h5>
-                            <Icon class="absolute top-2.5 right-2" name="mdi:chevron-down" size="24" />
+                            <h5 class="ml-[8.84px]">
+                              {{ selectedPaymentPlan }}
+                            </h5>
+                            <Icon
+                              class="absolute top-2.5 right-2"
+                              name="mdi:chevron-down"
+                              size="24"
+                            />
                           </div>
-                          <div v-if="showPaymentDropdown" class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full">
-                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
+                          <div
+                            v-if="showPaymentDropdown"
+                            class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
+                          >
+                            <div
+                              @click="changePaymentPlan"
+                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                            >
                               <p>Free Plan</p>
                             </div>
-                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
-                              <p><span class="line-through">£39.96</span><span class="text-blue-4 ml-2">£0</span></p>
+                            <div
+                              @click="changePaymentPlan"
+                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                            >
+                              <p>
+                                <span class="line-through">£39.96</span
+                                ><span class="text-blue-4 ml-2">£0</span>
+                              </p>
                             </div>
                           </div>
+                          <button
+                            @click="saveProductToStore(dataStore.allProducts[0])"
+                            class="bg-blue-17 h-16 text-whiter mt-[18px] w-full"
+                          >
+                            Get My Enhancer
+                          </button>
                         </div>
                       </div>
                     </div>
