@@ -8,6 +8,8 @@ export default <Partial<Config>>{
         black: "#000A0A",
         "black-2": "#191C1F",
         "black-3": "#1F1F1F",
+        "black-4": "#1C212B",
+        "black-5": "#1A1F28",
         blue: "#00092C",
         "blue-2": "#001D40",
         "blue-3": "#0E193A",
@@ -54,6 +56,8 @@ export default <Partial<Config>>{
         "grey-16": "#7A7E81",
         "grey-17": "#475156",
         "grey-18": "#DFDBDB",
+        "grey-19": "#F0F0F0",
+        "grey-20": "#FAFAFA",
       },
       backgroundImage: {
         "hero-bg":
@@ -75,7 +79,7 @@ export default <Partial<Config>>{
         "blog-bg":
           "url('https://s3.eu-west-2.amazonaws.com/ocmc-img.com/blog-bg.png')",
         "ebooks-bg":
-          "url('https://s3.eu-west-2.amazonaws.com/ocmc-img.com/ebooks-bg.png')",
+          "url('https://s3.eu-west-2.amazonaws.com/ocmc-img.com/resources-bg.png')",
         "bridging-bg": "url('/img/bridging-bg.png')",
       },
     },

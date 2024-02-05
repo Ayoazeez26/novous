@@ -36,23 +36,23 @@ const messageUrl = () => {
   return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27;`;
 };
 
-const getProducts = async () => {
-  await dataStore.getAllProducts(
-    `?limit=10&page=1&category[0]=${category.value}`
-  );
-};
-getProducts();
+// const getProducts = async () => {
+//   await dataStore.getAllProducts(
+//     `?limit=10&page=1&category[0]=${category.value}`
+//   );
+// };
+// getProducts();
 
-const showModal = (handout) => {
-  dataStore.singleProduct = handout;
-  dialogStore.showModal = true;
-}
+// const showModal = (handout) => {
+//   dataStore.singleProduct = handout;
+//   dialogStore.showModal = true;
+// }
 </script>
 <template>
   <div
     class="mx-auto w-full px-4 md:px-6 xl:px-0 mt-14 md:mt-16 mb-16 max-w-[1240px]"
   >
-    <div class="flex xl:justify-center mb-16 items-start w-full">
+    <!-- <div class="flex xl:justify-center mb-16 items-start w-full">
       <div
         class="bg-whiter flex flex-col gap-6 lg:flex-row md:items-stretch flex-wrap"
       >
@@ -69,17 +69,12 @@ const showModal = (handout) => {
                 <h3 class="mt-[12.65px] text-lg font-medium leading-[31.626px]">
                   {{ publication.productName }}
                 </h3>
-                <!-- <div class="flex mt-[12px] gap-[6px]">
-                  <p class="font-bold text-blue-13 text-[22px]">
-                    £{{ publication.price }}
-                  </p>
-                </div> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <h2
       class="font-bold px-8 lg:px-0 leading-[36px] md:leading-[48px] lg:leading-[54px] mb-5 tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] w-full"
     >

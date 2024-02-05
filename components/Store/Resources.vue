@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { useDialogStore } from "~/stores/dialog";
 import { useDataStore } from "~/stores/data";
 
 const dataStore = useDataStore();
+const dialogStore = useDialogStore();
 const router = useRouter();
 const category = ref("Books");
+const selectedWeek = ref("Select week");
+const selectedPaymentPlan = ref("Choose Payment Plan");
+const showPaymentDropdown = ref(false);
+const showSelectWeekDropdown = ref(false);
 const services = ref([
   {
     image: "dom-care",
@@ -63,12 +69,16 @@ const posts = ref([
   },
 ]);
 
-const getProducts = async () => {
-  await dataStore.getAllProducts(
-    `?limit=10&page=1&category[0]=${category.value}`
-  );
+watch(category, (value) => {
+  if (value === "Books" || value === "Handouts") {
+    getProducts(value);
+  }
+});
+
+const getProducts = async (value) => {
+  await dataStore.getAllProducts(`?limit=10&page=1&category[0]=${value}`);
 };
-getProducts();
+getProducts(category.value);
 
 const saveFirstProductToStore = () => {
   dataStore.singleProduct = dataStore.allProducts[0];
@@ -77,11 +87,15 @@ const saveFirstProductToStore = () => {
 };
 
 const saveProductToStore = (product) => {
-  
   dataStore.singleProduct = product;
-  router.push('/store/id');
+  router.push("/store/id");
   window.scrollTo(0, 0);
-}
+};
+
+const showModal = (handout) => {
+  dataStore.singleProduct = handout;
+  dialogStore.showModal = true;
+};
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -119,9 +133,9 @@ const saveProductToStore = (product) => {
                 : 'border-whiter text-grey-12'
             "
           >
-            Bookss
+            Books
           </button>
-          <button
+          <!-- <button
             @click="category = 'Guides'"
             class=""
             :class="
@@ -131,7 +145,7 @@ const saveProductToStore = (product) => {
             "
           >
             Guides
-          </button>
+          </button> -->
           <button
             @click="category = 'Handouts'"
             class=""
@@ -144,24 +158,24 @@ const saveProductToStore = (product) => {
             Handouts
           </button>
           <button
-            @click="category = 'Checklists and Journals'"
+            @click="category = 'Meeting Enhancers'"
             class=""
             :class="
-              category === 'Checklists and Journals'
+              category === 'Meeting Enhancers'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
                 : 'border-whiter text-grey-12'
             "
           >
-            Checklists and Journals
+            Meeting Enhancers
           </button>
         </div>
       </div>
       <div v-show="category === 'Books'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
-          <div class="flex">
+          <div class="flex flex-wrap md:flex-nowrap">
             <div class="flex">
               <div
-                class="border border-grey-15 flex flex-col relative p-[38px] pb-[85px] bg-whiter w-[519px]"
+                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
               >
                 <!-- <div
                   class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
@@ -211,12 +225,14 @@ const saveProductToStore = (product) => {
                 <div
                   v-for="(publication, idx) in dataStore.allProducts.length - 1"
                   :key="idx"
-                  @click="saveProductToStore(dataStore.allProducts[idx+1])"
+                  @click="saveProductToStore(dataStore.allProducts[idx + 1])"
                   class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
                 >
                   <img
                     class="w-full"
-                    :src="dataStore.allProducts[idx+1].productImages[0].Location"
+                    :src="
+                      dataStore.allProducts[idx + 1].productImages[0].Location
+                    "
                   />
                   <div class="flex items-start">
                     <div class="flex w-full">
@@ -224,12 +240,146 @@ const saveProductToStore = (product) => {
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[idx+1].productName }}
+                          {{ dataStore.allProducts[idx + 1].productName }}
                         </h3>
                         <div class="flex mt-[12px] gap-[6px]">
                           <p class="font-bold text-blue-13 text-[22px]">
-                            £{{ dataStore.allProducts[idx+1].price }}
+                            £{{ dataStore.allProducts[idx + 1].price }}
                           </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+      <div v-show="category === 'Handouts'" class="flex mt-14 w-full">
+        <template v-if="dataStore.allProducts.length">
+          <div class="flex">
+            <div class="flex justify-center items-start w-full">
+              <div
+                class="bg-whiter gap-4 flex flex-col lg:flex-row md:items-start flex-wrap"
+              >
+                <div
+                  v-for="(publication, idx) in dataStore.allProducts"
+                  :key="idx"
+                  @click="showModal(publication)"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="w-full"
+                    :src="dataStore.allProducts[idx].productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ dataStore.allProducts[idx].productName }}
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <!-- <div class="flex mt-[71px] justify-center">
+        <nuxt-link
+          to="/resourcess"
+          class="text-blue-4 blue-btn rounded py-4 px-8 w-[329px] text-center bg-whiter border border-black/20"
+        >
+          See all
+        </nuxt-link>
+      </div> -->
+      </div>
+      <div v-show="category === 'Meeting Enhancers'" class="flex mt-14 w-full">
+        <template v-if="dataStore.allProducts.length">
+          <div class="flex flex-wrap md:flex-nowrap">
+            <div class="flex justify-center items-start w-full">
+              <div
+                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+              >
+                <div
+                  v-for="(publication, idx) in dataStore.allProducts.length"
+                  :key="idx"
+                  @click="saveProductToStore(dataStore.allProducts[idx])"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="w-full"
+                    :src="dataStore.allProducts[idx].productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ dataStore.allProducts[idx].productName }}
+                        </h3>
+                        <div class="flex mt-[12px] gap-[6px]">
+                          <p class="font-bold text-blue-13 text-[22px]">
+                            £{{ dataStore.allProducts[idx].price }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="w-full"
+                    :src="dataStore.allProducts[0].productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ dataStore.allProducts[0].productName }}
+                        </h3>
+                        <div class="bg-blue-16 flex flex-col items-start mt-[12px] rounded-md px-[26px] py-4 h-[230px] overflow-y-auto">
+                          <div @click="showSelectWeekDropdown=!showSelectWeekDropdown" class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center w-full">
+                            <Icon name="material-symbols:calendar-month-sharp" />
+                            <h5 class="ml-[8.84px]">{{ selectedWeek }}</h5>
+                            <Icon class="absolute top-2.5 right-2" name="mdi:chevron-down" size="24" />
+                          </div>
+                          <div v-if="showSelectWeekDropdown" class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full">
+                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
+                              <p>Week 1 Shared Decision Making</p>
+                            </div>
+                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                              <p>Week 2 Shared Decision Making</p>
+                            </div>
+                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                              <p>Week 3 Shared Decision Making</p>
+                            </div>
+                            <div class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10">
+                              <p>Week 4 Shared Decision Making</p>
+                            </div>
+                          </div>
+                          <div @click="showPaymentDropdown=!showPaymentDropdown" class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center mt-[18px] w-full">
+                            <Icon name="fluent:payment-32-filled" />
+                            <h5 class="ml-[8.84px]">{{ selectedPaymentPlan }}</h5>
+                            <Icon class="absolute top-2.5 right-2" name="mdi:chevron-down" size="24" />
+                          </div>
+                          <div v-if="showPaymentDropdown" class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full">
+                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
+                              <p>Free Plan</p>
+                            </div>
+                            <div class="border border-grey-19 flex items-center px-4 w-full h-10">
+                              <p><span class="line-through">£39.96</span><span class="text-blue-4 ml-2">£0</span></p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -241,142 +391,12 @@ const saveProductToStore = (product) => {
         </template>
         <!-- <div class="flex mt-[71px] justify-center">
         <nuxt-link
-          to="/eBookss"
+          to="/resourcess"
           class="text-blue-4 blue-btn rounded py-4 px-8 w-[329px] text-center bg-whiter border border-black/20"
         >
           See all
         </nuxt-link>
       </div> -->
-      </div>
-      <div v-show="category === 'Videos'" class="w-full">
-        <div class="flex justify-center mt-10">
-          <div
-            class="flex flex-col lg:flex-row justify-center flex-wrap gap-10 lg:gap-6"
-          >
-            <div
-              v-for="(video, idx) in videos"
-              :key="idx"
-              class="flex flex-col w-full lg:w-[397px]"
-            >
-              <img
-                class="w-full"
-                :src="`https://s3.eu-west-2.amazonaws.com/ocmc-img.com/${video.img}.png`"
-              />
-              <div
-                class="flex items-center px-4 py-8 border bg-blue-2 text-white border-blue-2"
-              >
-                <div class="flex items-center w-full gap-x-4">
-                  <img
-                    class="h-10 w-10"
-                    src="/img/play.png"
-                    alt="play picture"
-                  />
-                  <p
-                    class="cut-text text-lg leading-[28px] font-medium max-h-14 text-ellipsis overflow-hidden block"
-                  >
-                    {{ video.title }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="flex mt-10 justify-center">
-          <nuxt-link
-            to="/eBookss"
-            class="text-blue-4 blue-btn rounded py-4 px-8"
-          >
-            See More
-            <Icon
-              class="hovered ml-3"
-              name="mdi:arrow-right"
-              size="18px"
-              color="#0073FF"
-            />
-          </nuxt-link>
-        </div>
-      </div>
-      <div v-show="category === 'Blog'" class="">
-        <div class="flex flex-col lg:flex-row gap-10 mt-10">
-          <nuxt-link to="/blog/id" class="w-full max-w-[612px]">
-            <img
-              src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-1.png"
-              alt="Books mockup"
-            />
-            <div class="bg-blue-2 px-6 py-12">
-              <div class="flex flex-col md:flex-row md:items-center gap-6">
-                <div class="flex md:justify-center max-w-fit relative">
-                  <img
-                    class="absolute -right-2 -top-2"
-                    src="/svg/dark-logo-splash.svg"
-                    alt="splash logo"
-                  />
-                  <nuxt-link
-                    to="/services"
-                    class="bg-blue-4 text-white uppercase rounded py-2 px-4"
-                  >
-                    Trending
-                  </nuxt-link>
-                </div>
-                <div class="flex gap-6 items-center">
-                  <p class="text-whiter">April 23, 2023</p>
-                  <div class="w-2 h-9 bg-blue-4" />
-                  <p class="text-whiter">By Mrs Obi</p>
-                </div>
-              </div>
-              <h2 class="font-bold text-whiter text-2xl max-w-[483px] mt-6">
-                SUPPORTED LIVING: MORE THAN PROVIDING A HOUSE AND A SERVICE
-              </h2>
-            </div>
-          </nuxt-link>
-          <div class="flex flex-col gap-6">
-            <nuxt-link
-              v-for="(post, index) in posts"
-              :key="index"
-              class="flex items-center"
-              to="/blog/id"
-            >
-              <img
-                class="w-[164px] hidden md:block"
-                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-mob.png"
-                alt="small Books mockup"
-              />
-              <img
-                class="w-[164px] md:hidden"
-                src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/Books-mockup-mob-2.png"
-                alt="small Books mockup"
-              />
-              <div class="flex flex-col gap-y-2 px-6 max-w-[424px]">
-                <h3
-                  class="cut-text text-lg font-bold uppercase max-h-14 text-ellipsis overflow-hidden block"
-                >
-                  {{ post.title }}
-                </h3>
-                <div
-                  class="flex flex-col md:flex-row md:items-center gap-2 md:gap-6"
-                >
-                  <p>{{ post.date }}</p>
-                  <div class="w-7/12 md:w-1 h-1 md:h-7 bg-blue-4" />
-                  <p>By {{ post.author }}</p>
-                </div>
-              </div>
-            </nuxt-link>
-          </div>
-        </div>
-        <div class="flex mt-10 justify-center">
-          <nuxt-link
-            to="/eBookss"
-            class="text-blue-4 blue-btn rounded py-4 px-8"
-          >
-            View More
-            <Icon
-              class="ml-3 hovered"
-              name="mdi:arrow-right"
-              size="18px"
-              color="#0073FF"
-            />
-          </nuxt-link>
-        </div>
       </div>
     </div>
   </div>

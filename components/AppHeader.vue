@@ -86,7 +86,7 @@
           </li>
           <li @click="open = !open">
             <nuxt-link
-              to="/ebooks"
+              to="/resources"
               :class="route.name === 'ebooks' ? 'text-blue-4' : ''"
               >Resources</nuxt-link
             >
@@ -149,7 +149,7 @@
             </nuxt-link>
           </li>
           <li class="py-4" @click="open = !open">
-            <nuxt-link to="/ebooks" class="py-4 my-2">Resources</nuxt-link>
+            <nuxt-link to="/resources" class="py-4 my-2">Resources</nuxt-link>
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link>

@@ -131,14 +131,14 @@ const posts = ref([
                   </template>
                   <template v-else>
                     <nuxt-link
-                      to="/ebooks"
+                      to="/resources"
                       class="bg-blue-4 text-center text-white rounded p-4 w-full"
                     >
                       Learn More
                     </nuxt-link>
                   </template>
                   <!-- <nuxt-link
-                    to="/ebooks"
+                    to="/resources"
                     class="bg-blue-4 text-center text-white rounded p-4 w-full"
                   >
                     Learn More
@@ -150,7 +150,10 @@ const posts = ref([
         </div>
       </div>
       <div class="flex mt-10 justify-center">
-        <nuxt-link to="/ebooks" class="text-blue-4 blue-btn rounded py-4 px-8">
+        <nuxt-link
+          to="/resources"
+          class="text-blue-4 blue-btn rounded py-4 px-8"
+        >
           See More
           <Icon
             class="hovered ml-3"
@@ -179,11 +182,7 @@ const posts = ref([
               class="flex items-center px-4 py-8 border bg-blue-2 text-white border-blue-2"
             >
               <div class="flex items-center w-full gap-x-4">
-                <img
-                  class="h-10 w-10"
-                  src="/img/play.png"
-                  alt="play picture"
-                />
+                <img class="h-10 w-10" src="/img/play.png" alt="play picture" />
                 <p
                   class="cut-text text-lg leading-[28px] font-medium max-h-14 text-ellipsis overflow-hidden block"
                 >
@@ -195,7 +194,10 @@ const posts = ref([
         </div>
       </div>
       <div class="flex mt-10 justify-center">
-        <nuxt-link to="/ebooks" class="text-blue-4 blue-btn rounded py-4 px-8">
+        <nuxt-link
+          to="/resources"
+          class="text-blue-4 blue-btn rounded py-4 px-8"
+        >
           See More
           <Icon
             class="hovered ml-3"
@@ -274,7 +276,10 @@ const posts = ref([
         </div>
       </div>
       <div class="flex mt-10 justify-center">
-        <nuxt-link to="/ebooks" class="text-blue-4 blue-btn rounded py-4 px-8">
+        <nuxt-link
+          to="/resources"
+          class="text-blue-4 blue-btn rounded py-4 px-8"
+        >
           View More
           <Icon
             class="ml-3 hovered"
