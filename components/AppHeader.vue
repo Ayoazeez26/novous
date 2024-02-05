@@ -37,7 +37,7 @@
         </div>
         <ul
           v-if="!open"
-          class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-10"
+          class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-5"
         >
           <!-- <li @click="open = !open"><nuxt-link to="/">Home</nuxt-link></li> -->
           <li @click="careServicesToggled">
@@ -86,7 +86,7 @@
           </li>
           <li @click="open = !open">
             <nuxt-link
-              to="/ebooks"
+              to="/resources"
               :class="route.name === 'ebooks' ? 'text-blue-4' : ''"
               >Resources</nuxt-link
             >
@@ -96,6 +96,13 @@
               to="/blog"
               :class="route.name === 'blog' ? 'text-blue-4' : ''"
               >News</nuxt-link
+            >
+          </li>
+          <li @click="open = !open">
+            <nuxt-link
+              to="/store"
+              :class="route.name === 'store' ? 'text-blue-4' : ''"
+              >Online Store</nuxt-link
             >
           </li>
           <div
@@ -142,10 +149,13 @@
             </nuxt-link>
           </li>
           <li class="py-4" @click="open = !open">
-            <nuxt-link to="/ebooks" class="py-4 my-2">Resources</nuxt-link>
+            <nuxt-link to="/resources" class="py-4 my-2">Resources</nuxt-link>
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link>
+          </li>
+          <li class="py-4" @click="open = !open">
+            <nuxt-link to="/store" class="py-4 my-2">Online Store</nuxt-link>
           </li>
           <div
             class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6"

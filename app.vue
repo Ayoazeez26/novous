@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDialogStore } from "~/stores/dialog";
+
 // const seoData = reactive({
 //   title: 'O.C. Management Consulting',
 //   description: 'Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.',
@@ -12,10 +14,21 @@
 //   ogDescription: seoData.description,
 //   ogImage: seoData.img
 // })
+const dialogStore = useDialogStore();
+const clickedOutside = () => {
+  console.log('clicked outside');
+  
+  dialogStore.showModal = false;
+};
 </script>
 <template>
   <div class="body">
     <main>
+      <Modal
+        v-if="dialogStore.showModal"
+        class="loader"
+      />
+      <Loading v-if="dialogStore.isLoading" class="loader" />
       <NuxtPage />
     </main>
     <AppFooter />
