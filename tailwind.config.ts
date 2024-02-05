@@ -26,6 +26,7 @@ export default <Partial<Config>>{
         "blue-14": "#1D5BBE",
         "blue-15": "#E9F3FF",
         "blue-16": "#EBF3FF",
+        "blue-17": "#0C62C9",
         yellow: "#FADB36",
         "yellow-2": "#EFD33D",
         primary: "#03989E",
