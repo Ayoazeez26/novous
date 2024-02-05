@@ -3,7 +3,7 @@ name: Prod Build Pipeline
 on:
   push:
     branches:
-      - dev
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
