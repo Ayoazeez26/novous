@@ -642,6 +642,7 @@ const changePaymentPlan = () => {
                   </div>
                 </div>
                 <div
+                  @click="saveProductToStore(dataStore.allProducts[1])"
                   class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
                 >
                   <img
@@ -713,22 +714,22 @@ const changePaymentPlan = () => {
                               @click="selectWeek"
                               class="border border-grey-19 flex items-center px-4 w-full h-10"
                             >
-                              <p>Week 1 Shared Decision Making</p>
+                              <p>Week 1: Shared Decision Making</p>
                             </div>
                             <div
                               class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
                             >
-                              <p>Week 2 Shared Decision Making</p>
+                              <p>Week 2: Shared Decision Making</p>
                             </div>
                             <div
                               class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
                             >
-                              <p>Week 3 Shared Decision Making</p>
+                              <p>Week 3: Shared Decision Making</p>
                             </div>
                             <div
                               class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
                             >
-                              <p>Week 4 Shared Decision Making</p>
+                              <p>Week 4: Shared Decision Making</p>
                             </div>
                           </div>
                           <div

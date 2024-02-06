@@ -7,13 +7,20 @@ console.log(dataStore.singleProduct);
 
 let count = ref(1);
 const phoneNumber = ref("7903094884");
-const message = ref(
-  "Hi, I would like to preorder a copy of The CQC Prepbook."
-);
+const message = ref("Hi, I would like to preorder a copy of The CQC Prepbook.");
 
 const routeToWhatsapp = () => {
-  return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber.value}&text=Hi, I would like to purchase a copy of "${dataStore.singleProduct.productName}" by OC Management Consultants%27`
-}
+  return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber.value}&text=Hi, I would like to purchase a copy of "${dataStore.singleProduct.productName}" by OC Management Consultants%27`;
+};
+
+onMounted(() => {
+  if (
+    dataStore.singleProduct.productName === "February Meeting Enhancer" ||
+    dataStore.singleProduct.productName === "Febuary Meeting Enhancer"
+  ) {
+    dataStore.singleProduct.productName = "";
+  }
+});
 
 const reduceCount = () => {
   if (count.value > 1) count.value--;
@@ -46,7 +53,7 @@ window.scrollTo(0, 0);
               alt="bridging the gap"
             />
           </div>
-          <div
+          <!-- <div
             v-if="
               dataStore.singleProduct.thumbNails &&
               dataStore.singleProduct.thumbNails.length
@@ -60,7 +67,7 @@ window.scrollTo(0, 0);
               :src="thumbNail.Location"
               :alt="thumbNail.Location"
             />
-          </div>
+          </div> -->
         </div>
         <div class="flex flex-col w-full max-w-[648px]">
           <div class="flex gap-1 items-center mb-7">
@@ -128,7 +135,7 @@ window.scrollTo(0, 0);
             >
               <div class="my-8 max-w-full">
                 <a
-                  href="https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/feb-enhancers.zip"
+                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to get your Free February Meeting Enhancers`"
                   target="_blank"
                   class="bg-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                   download
@@ -138,8 +145,49 @@ window.scrollTo(0, 0);
                 </a>
               </div>
             </template>
+            <template v-else-if="dataStore.singleProduct.productName === '12-Months Meeting Agenda and Minutes Template (CQC Compliant)'">
+              <div class="my-8 max-w-full">
+                <a
+                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to get your free 12 Month Meeting Agenda`"
+                  target="_blank"
+                  class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
+                >
+                  <p class="text-blue-4 text-sm">Shop Now</p>
+                  <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
+                </a>
+              </div>
+              <div
+                class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between"
+              >
+                <Icon
+                  @click="reduceCount"
+                  class="cursor-pointer"
+                  name="bi:dash-lg"
+                />
+                <span>{{ count < 10 ? `0${count}` : count }}</span>
+                <Icon
+                  @click="increaseCount"
+                  class="cursor-pointer"
+                  name="mdi:plus"
+                />
+              </div>
+            </template>
             <template v-else>
               <div class="my-8 max-w-full">
+                <!-- <a
+                  v-if="
+                    dataStore.singleProduct.productName ===
+                      'February Meeting Enhancer' ||
+                    dataStore.singleProduct.productName ===
+                      'Febuary Meeting Enhancer'
+                  "
+                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, Hi, I would like to get your Free February Meeting Enhancers`"
+                  target="_blank"
+                  class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
+                >
+                  <p class="text-blue-4 text-sm">Shop Now</p>
+                  <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
+                </a> -->
                 <a
                   :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to purchase a copy of ${dataStore.singleProduct.productName} by OC Management Consultants%27`"
                   target="_blank"
