@@ -91,13 +91,13 @@
               >Resources</nuxt-link
             >
           </li>
-          <li @click="open = !open">
+          <!-- <li @click="open = !open">
             <nuxt-link
               to="/blog"
               :class="route.name === 'blog' ? 'text-blue-4' : ''"
               >News</nuxt-link
             >
-          </li>
+          </li> -->
           <li @click="open = !open">
             <nuxt-link
               to="/store"
@@ -151,9 +151,9 @@
           <li class="py-4" @click="open = !open">
             <nuxt-link to="/resources" class="py-4 my-2">Resources</nuxt-link>
           </li>
-          <li class="py-4" @click="open = !open">
+          <!-- <li class="py-4" @click="open = !open">
             <nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link>
-          </li>
+          </li> -->
           <li class="py-4" @click="open = !open">
             <nuxt-link to="/store" class="py-4 my-2">Online Store</nuxt-link>
           </li>

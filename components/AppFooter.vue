@@ -47,7 +47,7 @@
             <nuxt-link class="mb-4" to="/about">About Us</nuxt-link>
             <nuxt-link class="mb-4" to="/services">Services</nuxt-link>
             <nuxt-link class="mb-4" to="/training">Training</nuxt-link>
-            <nuxt-link class="mb-4" to="/blog">News</nuxt-link>
+            <!-- <nuxt-link class="mb-4" to="/blog">News</nuxt-link> -->
             <nuxt-link class="mb-4" to="/strategy"
               >Strategy and Management Consulting</nuxt-link
             >
