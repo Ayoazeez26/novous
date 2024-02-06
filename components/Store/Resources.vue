@@ -274,8 +274,7 @@ const changePaymentPlan = () => {
                 <div
                   v-for="(publication, idx) in featuredProducts"
                   :key="idx"
-                  @click="saveProductToStore(publication)"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+                  class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
                 >
                   <img
                     class="absolute top-8 left-4 h-10"

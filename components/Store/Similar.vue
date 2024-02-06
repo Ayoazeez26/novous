@@ -9,7 +9,7 @@ const router = useRouter();
 
 const getProducts = async () => {
   await dataStore.getAllProducts(
-    `?limit=10&page=1&category[0]=${dataStore.category}`
+    `?limit=10&page=1&category[0]=Books`
   );
 };
 getProducts();
