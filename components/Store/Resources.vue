@@ -13,7 +13,24 @@ const featuredProducts = ref([]);
 const singleProduct = ref({});
 
 const phoneNumber = ref("7903094884");
-const message = ref("Hello, I would like to request for the free pdf copy");
+const workMessage = ref(
+  "Hi, I would like to preorder a copy of The CQC Prepbook."
+);
+const bridgeMessage = ref(
+  'Hi, I would like to purchase a copy of "Bridging the Gap: The Vital Role of MSMEs in Reducing Health Inequalities" by OC Management Consultants'
+);
+const domMessage = ref(
+  'Hi, I would like to purchase a copy of "Best Practices in Providing Domiciliary Care in Supported Living Schemes" by OC Management Consultants'
+);
+const tupeMessage = ref(
+  'Hi, I would like to purchase a copy of "Mastering TUPE Transfers in Social Care Service" by OC Management Consultants'
+);
+const prepMessage = ref(
+  "Hi, I would like to preorder a copy of The CQC Workbook"
+);
+const prepWorkMessage = ref(
+  "Hi, I would like to preorder one copy of The CQC Prepbook and one copy of the Workbook"
+);
 
 const services = ref([
   {
@@ -229,13 +246,13 @@ const changePaymentPlan = () => {
                   HOT
                 </div> -->
                 <img
-                    class="absolute top-24 left-4 h-10"
-                    :src="singleProduct[0].banners[0].Location"
-                  />
+                  class="absolute top-24 left-4 h-10"
+                  :src="singleProduct[0].banners[0].Location"
+                />
                 <img
-                    class="absolute top-8 left-4 h-10"
-                    :src="singleProduct[0].banners[1].Location"
-                  />
+                  class="absolute top-8 left-4 h-10"
+                  :src="singleProduct[0].banners[1].Location"
+                />
                 <img
                   :src="singleProduct[0].productImages[0].Location"
                   alt="A picture of a Books titled bridging the gap"
@@ -274,6 +291,7 @@ const changePaymentPlan = () => {
                 <div
                   v-for="(publication, idx) in featuredProducts"
                   :key="idx"
+                  @click="saveProductToStore(publication)"
                   class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
                 >
                   <img
@@ -443,7 +461,7 @@ const changePaymentPlan = () => {
                         class="h-16 flex items-center mt-[78px] justify-center"
                       >
                         <a
-                          href="#"
+                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepWorkMessage}%27`"
                           class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
                           >Pre-order Prepbook & Workbook</a
                         >
@@ -490,7 +508,7 @@ const changePaymentPlan = () => {
                         class="h-16 flex items-center mt-[78px] justify-center"
                       >
                         <a
-                          href="#"
+                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
                           class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
                           >Pre-order Prepbook</a
                         >
@@ -535,7 +553,7 @@ const changePaymentPlan = () => {
                         class="h-16 flex items-center mt-[78px] justify-center"
                       >
                         <a
-                          href="#"
+                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
                           class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
                           >Pre-order Prepbook & Workbook</a
                         >
