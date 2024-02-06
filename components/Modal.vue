@@ -134,7 +134,7 @@ const downloadHandout = async () => {
       />
       <div class="flex flex-col text-center">
         <div class="flex justify-between items-stretch text-whiter">
-          <img class="w-[503px]" src="/img/bridging.png" alt="bridging image" />
+          <img class="w-[503px]" src="/img/modal-bg.png" alt="bridging image" />
           <div
             class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-[582px]"
           >

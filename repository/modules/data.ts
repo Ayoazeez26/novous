@@ -22,6 +22,10 @@ class DataModule extends FetchFactory {
       productDetails
     );
   }
+
+  async getFeaturedProducts(): Promise {
+    return await this.call("GET", `${this.RESOURCE}/product/featured-publications`);
+  }
 }
 
 export default DataModule;

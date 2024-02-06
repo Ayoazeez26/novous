@@ -5,10 +5,12 @@ import { useDataStore } from "~/stores/data";
 const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const router = useRouter();
-const category = ref("Books");
+const category = ref("All");
 const selectedPaymentPlan = ref("Choose Payment Plan");
 const showPaymentDropdown = ref(false);
 const showSelectWeekDropdown = ref(false);
+const featuredProducts = ref([]);
+const singleProduct = ref({});
 
 const phoneNumber = ref("7903094884");
 const message = ref("Hello, I would like to request for the free pdf copy");
@@ -73,19 +75,29 @@ const posts = ref([
 ]);
 
 watch(category, (value) => {
-  if (value !== "All") {
+  if (value !== "All" && value !== "Prep Books") {
     getProducts(value);
+  } else if (value === "All") {
+    getFeaturedProducts();
   }
 });
 
+const getFeaturedProducts = async () => {
+  featuredProducts.value = await dataStore.getFeaturedProducts();
+  console.log(featuredProducts.value);
+  singleProduct.value = featuredProducts.value.splice(0, 1);
+  console.log(singleProduct.value);
+  console.log(featuredProducts.value);
+};
+
 onMounted(() => {
-  dataStore.selectedWeek = 'Select Week';
+  dataStore.selectedWeek = "Select Week";
 });
 
 const getProducts = async (value) => {
   await dataStore.getAllProducts(`?limit=10&page=1&category[0]=${value}`);
 };
-getProducts(category.value);
+getFeaturedProducts();
 
 const saveFirstProductToStore = () => {
   dataStore.singleProduct = dataStore.allProducts[0];
@@ -97,7 +109,7 @@ const saveProductToStore = (product) => {
   dataStore.singleProduct = product;
   router.push("/store/id");
   window.scrollTo(0, 0);
-  dataStore.selectedWeek = 'Week 1 Shared Decision Making';
+  dataStore.selectedWeek = "Week 1 Shared Decision Making";
 };
 
 const showModal = (handout) => {
@@ -111,9 +123,9 @@ const selectWeek = () => {
 };
 
 const changePaymentPlan = () => {
-  selectedPaymentPlan.value = 'Free Plan';
+  selectedPaymentPlan.value = "Free Plan";
   showPaymentDropdown.value = false;
-}
+};
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -143,15 +155,15 @@ const changePaymentPlan = () => {
             All resources
           </button>
           <button
-            @click="category = 'Books'"
+            @click="category = 'Prep Books'"
             class=""
             :class="
-              category === 'Books'
+              category === 'Prep Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
                 : 'border-whiter text-grey-12'
             "
           >
-            Books
+            Prep Books
           </button>
           <!-- <button
             @click="category = 'Guides'"
@@ -176,6 +188,17 @@ const changePaymentPlan = () => {
             Handouts
           </button>
           <button
+            @click="category = 'Books'"
+            class=""
+            :class="
+              category === 'Books'
+                ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
+                : 'border-whiter text-grey-12'
+            "
+          >
+            Books
+          </button>
+          <button
             @click="category = 'Enhancers'"
             class=""
             :class="
@@ -187,6 +210,105 @@ const changePaymentPlan = () => {
             Meeting Enhancers
           </button>
         </div>
+      </div>
+      <div v-show="category === 'All'" class="flex mt-14 w-full">
+        <template v-if="featuredProducts.length">
+          <div class="flex flex-wrap md:flex-nowrap">
+            <div v-if="Object.entries(singleProduct).length !== 0" class="flex">
+              <div
+                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
+              >
+                <!-- <div
+                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
+                >
+                  95% off
+                </div>
+                <div
+                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
+                >
+                  HOT
+                </div> -->
+                <img
+                    class="absolute top-24 left-4 h-10"
+                    :src="singleProduct[0].banners[0].Location"
+                  />
+                <img
+                    class="absolute top-8 left-4 h-10"
+                    :src="singleProduct[0].banners[1].Location"
+                  />
+                <img
+                  :src="singleProduct[0].productImages[0].Location"
+                  alt="A picture of a Books titled bridging the gap"
+                />
+                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
+                  {{ singleProduct[0].productName }}
+                </h3>
+                <div class="flex my-6 gap-[6px]">
+                  <p class="line-through text-grey-13 text-[25px]">
+                    £{{ singleProduct[0].price }}
+                  </p>
+                  <p class="font-bold text-blue-13 text-[25px]">
+                    £{{ singleProduct[0].currentPrice }}
+                  </p>
+                </div>
+                <p
+                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
+                >
+                  {{ singleProduct[0].description }}
+                </p>
+                <div class="mt-12 max-w-fit">
+                  <button
+                    class="bg-blue-4 flex h-[76px] items-center px-10"
+                    @click="saveFirstProductToStore"
+                  >
+                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
+                    <span class="text-white">SHOP NOW</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center items-start w-full">
+              <div
+                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+              >
+                <div
+                  v-for="(publication, idx) in featuredProducts"
+                  :key="idx"
+                  @click="saveProductToStore(publication)"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+                >
+                  <img
+                    class="absolute top-8 left-4 h-10"
+                    :src="publication.banners[0].Location"
+                  />
+                  <img
+                    class="w-full"
+                    :src="publication.productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ publication.productName }}
+                        </h3>
+                        <div class="flex mt-[12px] gap-[6px]">
+                          <p class="line-through text-grey-13 text-[22px]">
+                            £{{ publication.price }}
+                          </p>
+                          <p class="font-bold text-blue-13 text-[22px]">
+                            £{{ publication.currentPrice }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
       <div v-show="category === 'Books'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
@@ -274,6 +396,159 @@ const changePaymentPlan = () => {
           </div>
         </template>
       </div>
+      <div v-show="category === 'Prep Books'" class="flex mt-14 w-full">
+        <template v-if="dataStore.allProducts.length">
+          <!-- <div
+            class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
+          >
+            95% off
+          </div>
+          <div
+            class="absolute top-20 left-10 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+          >
+            Coming soon
+          </div> -->
+          <div class="flex justify-center items-start w-full">
+            <div
+              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            >
+              <div
+                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+              >
+                <div
+                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+                >
+                  Coming soon
+                </div>
+                <img
+                  class="w-full"
+                  src="
+                    /img/manager.png
+                  "
+                />
+                <div class="flex items-start">
+                  <div class="flex w-full">
+                    <div class="flex flex-col">
+                      <h3
+                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                      >
+                        CQC Registered Managers interview Prepbook & Workbook
+                      </h3>
+                      <div class="flex mt-[12px] gap-[6px]">
+                        <p class="text-grey-13 line-through text-[22px]">
+                          £250
+                        </p>
+                        <p class="font-bold text-blue-13 text-[22px]">£150</p>
+                      </div>
+                      <div
+                        class="h-16 flex items-center mt-[78px] justify-center"
+                      >
+                        <a
+                          href="#"
+                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                          >Pre-order Prepbook & Workbook</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            >
+              <div
+                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+              >
+                <div
+                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+                >
+                  Coming soon
+                </div>
+                <img
+                  class="w-full"
+                  src="
+                    /img/interview.png
+                  "
+                />
+                <div class="flex items-start">
+                  <div class="flex w-full">
+                    <div class="flex flex-col">
+                      <h3
+                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                      >
+                        CQC Registered Managers interview Prepbook
+                      </h3>
+                      <div class="flex mt-[12px] gap-[6px]">
+                        <p class="text-grey-13 line-through text-[22px]">
+                          £150
+                        </p>
+                        <p class="font-semibold text-blue-13 text-[22px]">
+                          £75
+                        </p>
+                      </div>
+                      <div
+                        class="h-16 flex items-center mt-[78px] justify-center"
+                      >
+                        <a
+                          href="#"
+                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                          >Pre-order Prepbook</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            >
+              <div
+                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+              >
+                <div
+                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+                >
+                  Coming soon
+                </div>
+                <img
+                  class="w-full"
+                  src="
+                    /img/registered.png
+                  "
+                />
+                <div class="flex items-start">
+                  <div class="flex w-full">
+                    <div class="flex flex-col">
+                      <h3
+                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                      >
+                        CQC Registered Managers interview Workbook
+                      </h3>
+                      <div class="flex mt-[12px] gap-[6px]">
+                        <p class="text-grey-13 line-through text-[22px]">
+                          £150
+                        </p>
+                        <p class="font-bold text-blue-13 text-[22px]">£75</p>
+                      </div>
+                      <div
+                        class="h-16 flex items-center mt-[78px] justify-center"
+                      >
+                        <a
+                          href="#"
+                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                          >Pre-order Prepbook & Workbook</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
       <div v-show="category === 'Handouts'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
           <div class="flex">
@@ -295,7 +570,7 @@ const changePaymentPlan = () => {
                     <div class="flex w-full">
                       <div class="flex flex-col">
                         <h3
-                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                          class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
                         >
                           {{ dataStore.allProducts[idx].productName }}
                         </h3>
@@ -404,7 +679,9 @@ const changePaymentPlan = () => {
                             <Icon
                               name="material-symbols:calendar-month-sharp"
                             />
-                            <h5 class="ml-[8.84px]">{{ dataStore.selectedWeek }}</h5>
+                            <h5 class="ml-[8.84px]">
+                              {{ dataStore.selectedWeek }}
+                            </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
                               name="mdi:chevron-down"
@@ -472,7 +749,9 @@ const changePaymentPlan = () => {
                             </div>
                           </div>
                           <button
-                            @click="saveProductToStore(dataStore.allProducts[0])"
+                            @click="
+                              saveProductToStore(dataStore.allProducts[0])
+                            "
                             class="bg-blue-17 h-16 text-whiter mt-[18px] w-full"
                           >
                             Get My Enhancer
@@ -504,5 +783,9 @@ const changePaymentPlan = () => {
   -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+}
+.light-blue-bg {
+  border-radius: 2.209px;
+  background: rgba(12, 98, 201, 0.12);
 }
 </style>
