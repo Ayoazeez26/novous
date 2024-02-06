@@ -6,6 +6,14 @@ const router = useRouter();
 console.log(dataStore.singleProduct);
 
 let count = ref(1);
+const phoneNumber = ref("7903094884");
+const message = ref(
+  "Hi, I would like to preorder a copy of The CQC Prepbook."
+);
+
+const routeToWhatsapp = () => {
+  return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber.value}&text=Hi, I would like to purchase a copy of "${dataStore.singleProduct.productName}" by OC Management Consultants%27`
+}
 
 const reduceCount = () => {
   if (count.value > 1) count.value--;
@@ -133,7 +141,7 @@ window.scrollTo(0, 0);
             <template v-else>
               <div class="my-8 max-w-full">
                 <a
-                  href="https://wa.me/447903094884"
+                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to purchase a copy of ${dataStore.singleProduct.productName} by OC Management Consultants%27`"
                   target="_blank"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                 >
