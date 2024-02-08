@@ -35,7 +35,7 @@ const saveFirstProductToStore = (product) => {
           Similar Publications
         </h3>
       </div>
-      <p class="mt-4">Porem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+      <p class="mt-4">You can also check out our other products.</p>
       <div v-if="dataStore.allProducts.length" class="flex justify-start mt-[51px] w-full">
         <div
           class="flex flex-col gap-5 lg:flex-row md:items-stretch xl:justify-center flex-wrap"
