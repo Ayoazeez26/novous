@@ -57,6 +57,15 @@ export default defineNuxtPlugin((nuxtApp) => {
       //   opt = { Authorization: '' };
       // }
     },
+    onRequestError(error) {
+      dialog.isLoading = false;
+      console.log(error);
+      errorToast(
+        error.response && error.response._data
+          ? error.response._data.message
+          : "Something went wrong, try again!"
+      );
+    },
     onResponseError(error) {
       // const authStore = useAuthStore();
       const { $api } = useNuxtApp();

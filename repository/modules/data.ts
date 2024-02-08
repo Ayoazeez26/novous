@@ -12,7 +12,7 @@ class DataModule extends FetchFactory {
   }
 
   async viewSingleProduct(id: string): Promise {
-    return await this.call("GET", `${this.RESOURCE}/product/search/${id}`);
+    return await this.call("GET", `${this.RESOURCE}/product/view/${id}`);
   }
 
   async downloadHandout(productDetails: HandoutInput): Promise {

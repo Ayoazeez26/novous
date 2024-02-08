@@ -28,6 +28,14 @@ const clickedOutside = () => {
         v-if="dialogStore.showModal"
         class="loader"
       />
+      <EmailModal
+        v-if="dialogStore.showEmailModal"
+        class="loader"
+      />
+      <MonthlyEnhancerModal
+        v-if="dialogStore.showMonthlyEnhancerModal"
+        class="loader"
+      />
       <Loading v-if="dialogStore.isLoading" class="loader" />
       <NuxtPage />
     </main>

@@ -101,10 +101,7 @@ watch(category, (value) => {
 
 const getFeaturedProducts = async () => {
   featuredProducts.value = await dataStore.getFeaturedProducts();
-  console.log(featuredProducts.value);
   singleProduct.value = featuredProducts.value.splice(0, 1);
-  console.log(singleProduct.value);
-  console.log(featuredProducts.value);
 };
 
 onMounted(() => {
@@ -123,10 +120,23 @@ const saveFirstProductToStore = () => {
 };
 
 const saveProductToStore = (product) => {
-  dataStore.singleProduct = product;
-  router.push("/store/id");
-  window.scrollTo(0, 0);
-  dataStore.selectedWeek = "Week 1 Shared Decision Making";
+  if (product.productName === dataStore.allProducts[0].productName) {
+    if (
+      dataStore.selectedWeek !== "Select Week" &&
+      selectedPaymentPlan.value !== "Choose Payment Plan"
+    ) {
+      dataStore.singleProduct = product;
+      router.push("/store/id");
+      window.scrollTo(0, 0);
+      dataStore.selectedWeek = "Week 1 Shared Decision Making";
+    }
+  } else {
+    dataStore.singleProduct = product;
+    router.push(`/store/${product.id}`);
+    // router.push("/store/id");
+    window.scrollTo(0, 0);
+    dataStore.selectedWeek = "Week 1 Shared Decision Making";
+  }
 };
 
 const showModal = (handout) => {
@@ -139,8 +149,8 @@ const selectWeek = () => {
   showSelectWeekDropdown.value = false;
 };
 
-const changePaymentPlan = () => {
-  selectedPaymentPlan.value = "Free Plan";
+const changePaymentPlan = (plan: string) => {
+  selectedPaymentPlan.value = plan;
   showPaymentDropdown.value = false;
 };
 </script>
@@ -162,7 +172,7 @@ const changePaymentPlan = () => {
         >
           <button
             @click="category = 'All'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'All'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -173,7 +183,7 @@ const changePaymentPlan = () => {
           </button>
           <button
             @click="category = 'Prep Books'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Prep Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -184,7 +194,7 @@ const changePaymentPlan = () => {
           </button>
           <!-- <button
             @click="category = 'Guides'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Guides'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -195,7 +205,7 @@ const changePaymentPlan = () => {
           </button> -->
           <button
             @click="category = 'Handouts'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Handouts'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -206,7 +216,7 @@ const changePaymentPlan = () => {
           </button>
           <button
             @click="category = 'Books'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -217,7 +227,7 @@ const changePaymentPlan = () => {
           </button>
           <button
             @click="category = 'Enhancers'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Enhancers'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -568,7 +578,10 @@ const changePaymentPlan = () => {
           </div>
         </template>
       </div>
-      <div v-show="category === 'Handouts'" class="flex mt-14 w-full">
+      <div
+        v-show="category === 'Handouts'"
+        class="flex lg:justify-center mt-14 w-full"
+      >
         <template v-if="dataStore.allProducts.length">
           <div class="flex">
             <div class="flex justify-center items-start w-full">
@@ -610,9 +623,12 @@ const changePaymentPlan = () => {
         </nuxt-link>
       </div> -->
       </div>
-      <div v-show="category === 'Enhancers'" class="flex mt-14 w-full">
+      <div
+        v-show="category === 'Enhancers'"
+        class="flex lg:justify-center mt-14 w-full"
+      >
         <template v-if="dataStore.allProducts.length">
-          <div class="flex flex-wrap md:flex-nowrap">
+          <div class="flex flex-wrap md:flex-nowrap lg:justify-center">
             <div class="flex justify-center items-start w-full">
               <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
@@ -660,13 +676,11 @@ const changePaymentPlan = () => {
                           {{ dataStore.allProducts[1].productName }}
                         </h3>
                         <div class="h-16 flex items-center justify-center">
-                          <a
-                            href="https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Meeting+Minutes+and+Agenda+Template+-+MEQC.docx"
-                            target="_blank"
-                            download
+                          <button
                             class="bg-blue-17 h-16 flex items-center justify-center text-sm text-whiter w-full"
-                            >Get 12 Months meeting Agenda Template</a
                           >
+                            Get 12 Months meeting Agenda Template
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -753,13 +767,13 @@ const changePaymentPlan = () => {
                             class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
                           >
                             <div
-                              @click="changePaymentPlan"
+                              @click="changePaymentPlan('Free Plan')"
                               class="border border-grey-19 flex items-center px-4 w-full h-10"
                             >
                               <p>Free Plan</p>
                             </div>
                             <div
-                              @click="changePaymentPlan"
+                              @click="changePaymentPlan('£0')"
                               class="border border-grey-19 flex items-center px-4 w-full h-10"
                             >
                               <p>
