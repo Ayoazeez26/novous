@@ -109,7 +109,7 @@ const downloadHandout = async () => {
       link.href = selectedProduct.value[0].productLink;
       const fileName = selectedProduct.value[0].productName;
       link.setAttribute("download", fileName);
-      link.setAttribute("target", "_blank");
+      // link.setAttribute("target", "_blank");
       document.body.appendChild(link);
       link.click();
       link.remove();

@@ -92,7 +92,7 @@ const downloadHandout = async () => {
       link.href = href;
       const fileName = dataStore.singleProduct.productName;
       link.setAttribute("download", fileName);
-      link.setAttribute("target", "_blank");
+      // link.setAttribute("target", "_blank");
       document.body.appendChild(link);
       link.click();
       link.remove();
