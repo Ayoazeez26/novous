@@ -54,6 +54,16 @@ export const useDataStore = defineStore(
       });
     };
 
+    const getSingleProduct = (id:string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.viewSingleProduct(id).then((res) => {
+          dialog.isLoading = false;
+          resolve(res);
+        });
+      });
+    };
+
     return {
       about,
       careServices,
@@ -65,7 +75,8 @@ export const useDataStore = defineStore(
       category,
       downloadHandout,
       selectedWeek,
-      getFeaturedProducts
+      getFeaturedProducts,
+      getSingleProduct
     };
   },
   {

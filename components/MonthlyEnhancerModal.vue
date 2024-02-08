@@ -5,7 +5,7 @@ import { useDataStore } from "~/stores/data";
 const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
-  dialogStore.showModal = false;
+  dialogStore.showMonthlyEnhancerModal = false;
   dataStore.singleProduct = null;
 };
 const productCategories = ref([
@@ -65,24 +65,8 @@ const errorMsg = ref({
 let selectedProduct = ref([]);
 
 onMounted(() => {
-  if (dataStore.singleProduct && dataStore.singleProduct.productName) {
-    selectedProduct.value = productCategories.value.filter(
-      (product) => dataStore.singleProduct.productName === product.productName
-    );
-    if (selectedProduct.value.length) {
-      payload.value.product = selectedProduct.value[0].productId;
-      if (selectedProduct.value[0].productId === "65baf50183f8f3ab2b61689d") {
-        payload.value.preference = "Carers";
-        preferences.value[1].checked = true;
-      } else if (selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898") {
-        payload.value.preference = "Managers";
-        preferences.value[2].checked = true;
-      } else {
-        payload.value.preference = "Directors";
-        preferences.value[0].checked = true;
-      }
-    }
-  }
+  payload.value.preference = dataStore.singleProduct.category;
+  payload.value.product = dataStore.singleProduct.id;
 }),
 watch(email, (value) => {
   validateEmail(value);
@@ -98,14 +82,15 @@ const validateEmail = (email) => {
 };
 
 const downloadHandout = async () => {
+  const href = "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/February+Meeting+Enhancers+Week+1.zip"
   if (payload.value.email !== "" && errorMsg.value.email === "") {
     console.log(payload.value);
     const dataResponse = await dataStore.downloadHandout(payload.value);
     if (dataResponse === 'success') {
       console.log(dataResponse);
       const link = document.createElement("a");
-      link.href = selectedProduct.value[0].productLink;
-      const fileName = selectedProduct.value[0].productName;
+      link.href = href;
+      const fileName = dataStore.singleProduct.productName;
       link.setAttribute("download", fileName);
       link.setAttribute("target", "_blank");
       document.body.appendChild(link);
@@ -126,15 +111,15 @@ const downloadHandout = async () => {
       class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative w-5/6 max-w-[1087px]"
     >
       <Icon
-        @click="dialogStore.showModal = false"
-        class="absolute right-4 top-4"
+        @click="dialogStore.showMonthlyEnhancerModal = false"
+        class="absolute cursor-pointer right-4 top-4"
         name="mdi:close"
         color="#FFFFFF"
         size="24"
       />
       <div class="flex flex-col text-center">
         <div class="flex justify-between items-stretch text-whiter">
-          <img class="w-[503px]" src="/img/enhancer.jpg" alt="bridging image" />
+          <img class="w-[503px]" src="/img/monthly-enhancers.png" alt="monthly-enhancers image" />
           <div
             class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-[582px]"
           >
@@ -143,60 +128,14 @@ const downloadHandout = async () => {
               our free meeting enhancer
             </p>
             <h3
-              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase max-w-[371px]"
+              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter max-w-[308px]"
             >
-              Achieve concrete goals in your meetings with
+              Get Your February Meeting Enhancers Here!
             </h3>
-            <div class="bg-blue-16 mt-7 rounded w-full">
-              <div class="border border-grey-18 py-5 rounded mb-7 w-full">
-                <p class="text-black-2 text-lg font-medium">
-                  Choose your preference
-                </p>
-              </div>
-              <div
-                class="type flex text-black-2 gap-2 justify-between px-4 mb-[34px]"
-              >
-                <div
-                  v-for="(preference, index) in preferences"
-                  class="bg-white px-3 flex items-start relative py-3 rounded"
-                >
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      :id="preference.value"
-                      :value="preference.value"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">{{ preference.name }}</span>
-                  </label>
-                </div>
-                <!-- <div class="bg-white px-3 relative py-3 rounded">
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      id="Carers"
-                      value="Carers"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">Support Worker/Carer</span>
-                  </label>
-                </div>
-                <div class="bg-white px-3 relative py-3 rounded">
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      id="Managers"
-                      value="Managers"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">Care Manager</span>
-                  </label>
-                </div> -->
-              </div>
-              <div class="flex w-full mt-3 px-3">
+            <div class="mt-11">Please enter your details here to Proceed</div>
+            <div class="bg-blue-16 mt-2 rounded w-full">
+              
+              <div class="flex w-full pt-[30px] pb-6 px-4">
                 <div class="flex flex-col relative w-full">
                   <!-- <label for="email" class="mb-2"></label> -->
                   <Icon
@@ -226,7 +165,7 @@ const downloadHandout = async () => {
                 </div>
               </div>
             </div>
-            <div class="type type-subscribe mt-[33px] self-start">
+            <div class="type type-subscribe mt-14 self-start">
               <div class="flex items-start relative rounded">
                 <label class="pl-0">
                   <input
