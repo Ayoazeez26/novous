@@ -48,8 +48,8 @@ const preferences = ref([
     value: "Managers",
     name: "Care Manager",
     checked: false,
-  }
-])
+  },
+]);
 
 const email = ref("");
 const payload = ref({
@@ -74,7 +74,9 @@ onMounted(() => {
       if (selectedProduct.value[0].productId === "65baf50183f8f3ab2b61689d") {
         payload.value.preference = "Carers";
         preferences.value[1].checked = true;
-      } else if (selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898") {
+      } else if (
+        selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898"
+      ) {
         payload.value.preference = "Managers";
         preferences.value[2].checked = true;
       } else {
@@ -84,9 +86,9 @@ onMounted(() => {
     }
   }
 }),
-watch(email, (value) => {
-  validateEmail(value);
-});
+  watch(email, (value) => {
+    validateEmail(value);
+  });
 
 const validateEmail = (email) => {
   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
@@ -101,7 +103,7 @@ const downloadHandout = async () => {
   if (payload.value.email !== "" && errorMsg.value.email === "") {
     console.log(payload.value);
     const dataResponse = await dataStore.downloadHandout(payload.value);
-    if (dataResponse === 'success') {
+    if (dataResponse === "success") {
       console.log(dataResponse);
       const link = document.createElement("a");
       link.href = selectedProduct.value[0].productLink;
@@ -123,7 +125,7 @@ const downloadHandout = async () => {
   <div class="parent flex justify-center items-center">
     <div
       v-click-outside="clickedOutside"
-      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative w-5/6 max-w-[1087px]"
+      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden md:h-auto h-4/5"
     >
       <Icon
         @click="dialogStore.showModal = false"
@@ -133,17 +135,23 @@ const downloadHandout = async () => {
         size="24"
       />
       <div class="flex flex-col text-center">
-        <div class="flex justify-between items-stretch text-whiter">
-          <img class="w-[503px]" src="/img/enhancer.jpg" alt="bridging image" />
+        <div
+          class="flex md:flex-row flex-col justify-between items-stretch text-whiter"
+        >
+          <img
+            class="md:w-[503px] md:block hidden"
+            src="/img/enhancer.jpg"
+            alt="bridging image"
+          />
           <div
-            class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-[582px]"
+            class="flex flex-col items-center mt-[43px] pb-[49px] px-4 md:w-[582px]"
           >
             <img src="/img/logo.png" alt="logo" />
             <p class="uppercase mt-6 mb-2.5 text-sm">
               our free meeting enhancer
             </p>
             <h3
-              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase max-w-[371px]"
+              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase md:max-w-[371px]"
             >
               Achieve concrete goals in your meetings with
             </h3>
@@ -154,7 +162,7 @@ const downloadHandout = async () => {
                 </p>
               </div>
               <div
-                class="type flex text-black-2 gap-2 justify-between px-4 mb-[34px]"
+                class="type flex md:flex-row flex-col text-black-2 gap-2 justify-between px-4 mb-[34px]"
               >
                 <div
                   v-for="(preference, index) in preferences"

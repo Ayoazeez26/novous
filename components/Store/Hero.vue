@@ -47,10 +47,10 @@ const handleDirection = (direction: string) => {
 <template>
   <div class="bg-blue-7 pt-20 md:pt-28 w-full">
     <div
-      class="w-full max-w-[1240px] flex h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
+      class="w-full max-w-[1240px] flex md:flex-row flex-col h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
       <div
-        class="bg-blue-8/20 px-[38px] pt-[99px] pb-[94px] relative text-whiter w-[410px] h-[507px]"
+        class="bg-blue-8/20 px-[38px] pt-[99px] pb-[94px] relative text-whiter md:w-[410px] w-full h-[507px]"
       >
         <img class="absolute top-0 right-0" src="/svg/fold.svg" alt="folded" />
         <p class="text-xl">

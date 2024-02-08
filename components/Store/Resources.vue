@@ -435,7 +435,9 @@ const changePaymentPlan = (plan: string) => {
           >
             Coming soon
           </div> -->
-          <div class="flex justify-center items-start w-full">
+          <div
+            class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
+          >
             <div
               class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
             >
