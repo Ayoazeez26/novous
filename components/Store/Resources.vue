@@ -425,7 +425,9 @@ const changePaymentPlan = () => {
           >
             Coming soon
           </div> -->
-          <div class="flex justify-center items-start w-full">
+          <div
+            class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
+          >
             <div
               class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
             >
@@ -508,7 +510,7 @@ const changePaymentPlan = () => {
                         class="h-16 flex items-center mt-[78px] justify-center"
                       >
                         <a
-                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
+                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
                           class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
                           >Pre-order Prepbook</a
                         >
@@ -553,7 +555,7 @@ const changePaymentPlan = () => {
                         class="h-16 flex items-center mt-[78px] justify-center"
                       >
                         <a
-                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
+                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
                           class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
                           >Pre-order Prepbook & Workbook</a
                         >

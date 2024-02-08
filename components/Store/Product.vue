@@ -35,7 +35,7 @@ window.scrollTo(0, 0);
 <template>
   <div class="py-20 md:py-28 w-full">
     <div
-      class="w-full max-w-[1317px] flex flex-col h-full pt-[140px] gap-14 px-4 md:px-6 xl:px-0 mx-auto"
+      class="w-full md:max-w-[1317px] flex flex-col h-full pt-[140px] gap-14 px-4 md:px-6 xl:px-0 mx-auto"
     >
       <button
         @click="router.go(-1)"
@@ -44,9 +44,9 @@ window.scrollTo(0, 0);
         <Icon name="mdi:chevron-left" size="20" />
         <p>Back</p>
       </button>
-      <div class="flex w-full gap-8 lg:gap-14">
+      <div class="flex w-full gap-8 lg:gap-14 md:flex-row flex-col">
         <div class="flex flex-col">
-          <div class="images w-[616px] overflow-hidden">
+          <div class="images md:w-[616px] w-full overflow-hidden">
             <img
               class="w-full"
               :src="dataStore.singleProduct.productImages[0].Location"
@@ -126,7 +126,7 @@ window.scrollTo(0, 0);
             {{ dataStore.singleProduct.description }}
           </p>
           <div class="my-[11px] w-full h-px bg-grey-15"></div>
-          <div class="flex gap-4 items-center">
+          <div class="flex md:flex-row flex-col gap-4 items-center">
             <template
               v-if="
                 dataStore.singleProduct.thumbNails &&
@@ -145,7 +145,12 @@ window.scrollTo(0, 0);
                 </a>
               </div>
             </template>
-            <template v-else-if="dataStore.singleProduct.productName === '12-Months Meeting Agenda and Minutes Template (CQC Compliant)'">
+            <template
+              v-else-if="
+                dataStore.singleProduct.productName ===
+                '12-Months Meeting Agenda and Minutes Template (CQC Compliant)'
+              "
+            >
               <div class="my-8 max-w-full">
                 <a
                   :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to get your free 12 Month Meeting Agenda`"
