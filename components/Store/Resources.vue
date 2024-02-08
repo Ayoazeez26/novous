@@ -172,7 +172,7 @@ const changePaymentPlan = (plan: string) => {
         >
           <button
             @click="category = 'All'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'All'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -183,7 +183,7 @@ const changePaymentPlan = (plan: string) => {
           </button>
           <button
             @click="category = 'Prep Books'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Prep Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -194,7 +194,7 @@ const changePaymentPlan = (plan: string) => {
           </button>
           <!-- <button
             @click="category = 'Guides'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Guides'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -205,7 +205,7 @@ const changePaymentPlan = (plan: string) => {
           </button> -->
           <button
             @click="category = 'Handouts'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Handouts'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -216,7 +216,7 @@ const changePaymentPlan = (plan: string) => {
           </button>
           <button
             @click="category = 'Books'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Books'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'
@@ -227,7 +227,7 @@ const changePaymentPlan = (plan: string) => {
           </button>
           <button
             @click="category = 'Enhancers'"
-            class=""
+            class="min-w-max"
             :class="
               category === 'Enhancers'
                 ? 'text-blue-4 bg-blue-9 font-semibold px-[34px] py-3 rounded-sm'

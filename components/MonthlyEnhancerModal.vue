@@ -108,7 +108,7 @@ const downloadHandout = async () => {
   <div class="parent flex justify-center items-center">
     <div
       v-click-outside="clickedOutside"
-      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative w-5/6 max-w-[1087px]"
+      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden h-auto"
     >
       <Icon
         @click="dialogStore.showMonthlyEnhancerModal = false"
@@ -119,9 +119,9 @@ const downloadHandout = async () => {
       />
       <div class="flex flex-col text-center">
         <div class="flex justify-between items-stretch text-whiter">
-          <img class="w-[503px]" src="/img/monthly-enhancers.png" alt="monthly-enhancers image" />
+          <img class="md:w-[503px] md:block hidden" src="/img/monthly-enhancers.png" alt="monthly-enhancers image" />
           <div
-            class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-[582px]"
+            class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-full md:w-[582px]"
           >
             <img src="/img/logo.png" alt="logo" />
             <p class="uppercase mt-6 mb-2.5 text-sm">

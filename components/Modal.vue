@@ -125,7 +125,7 @@ const downloadHandout = async () => {
   <div class="parent flex justify-center items-center">
     <div
       v-click-outside="clickedOutside"
-      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden md:h-auto h-4/5"
+      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden h-auto"
     >
       <Icon
         @click="dialogStore.showModal = false"

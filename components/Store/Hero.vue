@@ -47,7 +47,7 @@ const handleDirection = (direction: string) => {
 <template>
   <div class="bg-blue-7 pt-20 md:pt-28 w-full">
     <div
-      class="w-full max-w-[1240px] flex md:flex-row flex-col h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
+      class="w-full max-w-[1240px] flex lg:flex-row gap-8 lg:gap-0 flex-col justify-center h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
       <div
         class="bg-blue-8/20 px-[38px] pt-[99px] pb-[94px] relative text-whiter md:w-[410px] w-full h-[507px]"
@@ -74,19 +74,19 @@ const handleDirection = (direction: string) => {
       <div class="relative">
         <img
           @click="handleDirection('prev')"
-          class="absolute top-48 cursor-pointer z-[2]"
+          class="absolute top-32 lg:top-48 cursor-pointer z-[2]"
           src="/img/left-arrow.png"
           alt="left arrow"
         />
         <img
           @click="handleDirection('next')"
-          class="absolute top-48 right-0 cursor-pointer z-[2]"
+          class="absolute top-32 lg:top-48 -right-7 lg:right-0 cursor-pointer z-[2]"
           src="/img/right-arrow.png"
           alt="right arrow"
         />
 
         <div
-          class="flex items-center justify-between overflow-hidden relative px-7 h-[480px] w-[890px]"
+          class="flex items-center justify-between overflow-hidden relative px-7 h-[480px] w-[90vw] lg:w-[890px]"
         >
           <div class="images w-full h-full overflow-hidden absolute">
             <img
