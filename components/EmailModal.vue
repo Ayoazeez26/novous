@@ -8,49 +8,6 @@ const clickedOutside = () => {
   dialogStore.showEmailModal = false;
   dataStore.singleProduct = null;
 };
-const productCategories = ref([
-  {
-    productName: "Directors handout for effective coproduction in social care.",
-    productId: "65baf34d83f8f3ab2b616893",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Directors%E2%80%99.pdf",
-    checked: false,
-  },
-  {
-    productName: "Carers’ handout for effective coproduction in social care.",
-    productId: "65baf50183f8f3ab2b61689d",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Carers'.pdf",
-    checked: false,
-  },
-  {
-    productName:
-      "Registered Managers’ handout for effective coproduction in social care.",
-    productId: "65baf49983f8f3ab2b616898",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Registered+Managers%E2%80%99.pdf",
-    checked: false,
-  },
-]);
-
-const preferences = ref([
-  {
-    value: "Directors",
-    name: "Social Care Director",
-    checked: false,
-  },
-  {
-    value: "Carers",
-    name: "Support Worker/Carer",
-    checked: false,
-  },
-  {
-    value: "Managers",
-    name: "Care Manager",
-    checked: false,
-  }
-])
-
 const email = ref("");
 const payload = ref({
   product: "",
