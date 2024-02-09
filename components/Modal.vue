@@ -13,14 +13,14 @@ const productCategories = ref([
     productName: "Directors handout for effective coproduction in social care.",
     productId: "65baf34d83f8f3ab2b616893",
     productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Directors%E2%80%99.pdf",
+      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Directors%E2%80%99_new.pdf",
     checked: false,
   },
   {
     productName: "Carers’ handout for effective coproduction in social care.",
     productId: "65baf50183f8f3ab2b61689d",
     productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Carers'.pdf",
+      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Carers'_new.pdf",
     checked: false,
   },
   {
@@ -28,7 +28,7 @@ const productCategories = ref([
       "Registered Managers’ handout for effective coproduction in social care.",
     productId: "65baf49983f8f3ab2b616898",
     productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Registered+Managers%E2%80%99.pdf",
+      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Registered+Managers%E2%80%99_new.pdf",
     checked: false,
   },
 ]);
