@@ -6,7 +6,7 @@ const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
   dialogStore.showMonthlyEnhancerModal = false;
-  dataStore.singleProduct = null;
+  // dataStore.singleProduct = null;
 };
 
 const email = ref("");
@@ -14,6 +14,7 @@ const payload = ref({
   product: "",
   email: "",
   preference: "",
+  week: dataStore.selectedWeek.week  
 });
 
 const errorMsg = ref({
@@ -40,15 +41,15 @@ const validateEmail = (email) => {
 };
 
 const downloadHandout = async () => {
-  const href = "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/February+Meeting+Enhancers+Week+1.zip"
+  // const href = "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/February+Meeting+Enhancers+Week+1.zip"
   if (payload.value.email !== "" && errorMsg.value.email === "") {
     console.log(payload.value);
     const dataResponse = await dataStore.downloadHandout(payload.value);
-    if (dataResponse === 'success') {
+    if (dataResponse) {
       console.log(dataResponse);
       const link = document.createElement("a");
-      link.href = href;
-      const fileName = dataStore.singleProduct.productName;
+      link.href = dataResponse;
+      const fileName = `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
       link.setAttribute("download", fileName);
       // link.setAttribute("target", "_blank");
       document.body.appendChild(link);

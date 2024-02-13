@@ -6,7 +6,7 @@ const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
   dialogStore.showEmailModal = false;
-  dataStore.singleProduct = null;
+  // dataStore.singleProduct = null;
 };
 const email = ref("");
 const payload = ref({

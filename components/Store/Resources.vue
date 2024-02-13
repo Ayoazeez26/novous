@@ -104,10 +104,6 @@ const getFeaturedProducts = async () => {
   singleProduct.value = featuredProducts.value.splice(0, 1);
 };
 
-onMounted(() => {
-  dataStore.selectedWeek = "Select Week";
-});
-
 const getProducts = async (value) => {
   await dataStore.getAllProducts(`?limit=10&page=1&category[0]=${value}`);
 };
@@ -116,19 +112,18 @@ getFeaturedProducts();
 const saveFirstProductToStore = () => {
   dataStore.singleProduct = dataStore.allProducts[0];
   dataStore.category = category.value;
-  router.push("/store/id");
+  router.push(`/store/${dataStore.allProducts[0].id}`);
 };
 
 const saveProductToStore = (product) => {
   if (product.productName === dataStore.allProducts[0].productName) {
     if (
-      dataStore.selectedWeek !== "Select Week" &&
+      Object.entries(dataStore.selectedWeek).length > 0 &&
       selectedPaymentPlan.value !== "Choose Payment Plan"
     ) {
       dataStore.singleProduct = product;
-      router.push("/store/id");
+      router.push(`/store/${product.id}`);
       window.scrollTo(0, 0);
-      dataStore.selectedWeek = "Week 1 Shared Decision Making";
     }
   } else {
     dataStore.singleProduct = product;
@@ -144,8 +139,8 @@ const showModal = (handout) => {
   dialogStore.showModal = true;
 };
 
-const selectWeek = () => {
-  dataStore.selectedWeek = "Week 1 Shared Decision Making";
+const selectWeek = (week) => {
+  dataStore.selectedWeek = week;
   showSelectWeekDropdown.value = false;
 };
 
@@ -714,7 +709,7 @@ const changePaymentPlan = (plan: string) => {
                               name="material-symbols:calendar-month-sharp"
                             />
                             <h5 class="ml-[8.84px]">
-                              {{ dataStore.selectedWeek }}
+                              {{ Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
                             </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
@@ -727,25 +722,13 @@ const changePaymentPlan = (plan: string) => {
                             class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
                           >
                             <div
-                              @click="selectWeek"
+                              v-for="(week, index) in dataStore.allProducts[0]
+                                ?.weeklyLinks"
+                              :key="index"
+                              @click="selectWeek(week)"
                               class="border border-grey-19 flex items-center px-4 w-full h-10"
                             >
-                              <p>Week 1: Shared Decision Making</p>
-                            </div>
-                            <div
-                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
-                            >
-                              <p>Week 2: Shared Decision Making</p>
-                            </div>
-                            <div
-                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
-                            >
-                              <p>Week 3: Shared Decision Making</p>
-                            </div>
-                            <div
-                              class="border border-grey-19 flex items-center px-4 text-black-5/30 w-full h-10"
-                            >
-                              <p>Week 4: Shared Decision Making</p>
+                              <p>{{ week.week }}: {{ week.weekValue }}</p>
                             </div>
                           </div>
                           <div

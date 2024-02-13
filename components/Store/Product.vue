@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useDialogStore } from "~/stores/dialog";
 import { useDataStore } from "~/stores/data";
-import { successToast } from '~/plugins/vue3-toastify';
+import { successToast } from "~/plugins/vue3-toastify";
 
 const dataStore = useDataStore();
 const dialogStore = useDialogStore();
@@ -9,10 +9,10 @@ const router = useRouter();
 const route = useRoute();
 let count = ref(1);
 const phoneNumber = ref("7903094884");
+const showSelectWeekDropdown = ref(false);
 const message = ref("Hi, I would like to preorder a copy of The CQC Prepbook.");
 
-onMounted(() => {
-});
+onMounted(() => {});
 
 const routeToWhatsapp = () => {
   return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber.value}&text=Hi, I would like to purchase a copy of "${dataStore.singleProduct.productName}" by OC Management Consultants%27`;
@@ -30,12 +30,12 @@ onMounted(() => {
   }
 });
 
-const getSingleProduct = async (id:string) => {
+const getSingleProduct = async (id: string) => {
   const singleProduct = await dataStore.getSingleProduct(id);
   if (Object.entries(singleProduct).length) {
     dataStore.singleProduct = singleProduct;
   }
-}
+};
 
 const reduceCount = () => {
   if (count.value > 1) count.value--;
@@ -51,7 +51,12 @@ const copyLink = () => {
   const link = window.location.href;
   navigator.clipboard.writeText(link);
   successToast("Link copied!");
-}
+};
+
+const selectWeek = (week) => {
+  dataStore.selectedWeek = week;
+  showSelectWeekDropdown.value = false;
+};
 </script>
 <template>
   <div v-if="dataStore.singleProduct" class="py-20 md:py-28 w-full">
@@ -70,7 +75,11 @@ const copyLink = () => {
           <div class="images md:w-[616px] w-full overflow-hidden">
             <img
               class="w-full"
-              :src="dataStore.singleProduct.productImages[0].Location"
+              :src="
+                Object.entries(dataStore.selectedWeek).length > 0
+                  ? dataStore.selectedWeek.weekCover.Location
+                  : dataStore.singleProduct.productImages[0].Location
+              "
               alt="bridging the gap"
             />
           </div>
@@ -91,19 +100,54 @@ const copyLink = () => {
           </div> -->
         </div>
         <div class="flex flex-col w-full max-w-[648px]">
+          <div class="relative mb-8">
+            <div
+              v-if="dataStore.singleProduct.weeklyLinks.length"
+              @click="showSelectWeekDropdown = !showSelectWeekDropdown"
+              class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center w-full lg:max-w-md"
+            >
+              <Icon name="material-symbols:calendar-month-sharp" />
+              <h5 class="ml-[8.84px]">
+                {{
+                  Object.entries(dataStore.selectedWeek).length > 0
+                    ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
+                    : "Select a Week"
+                }}
+              </h5>
+              <Icon
+                class="absolute top-2.5 right-2"
+                name="mdi:chevron-down"
+                size="24"
+              />
+            </div>
+            <div
+              v-if="showSelectWeekDropdown"
+              class="absolute top-12 left-0 bg-grey-20 text-black-5 text-sm border border-grey-19 w-full lg:max-w-md"
+            >
+              <div
+                v-for="(week, index) in dataStore.singleProduct?.weeklyLinks"
+                :key="index"
+                @click="selectWeek(week)"
+                class="border border-grey-19 cursor-pointer flex items-center px-4 w-full h-10"
+              >
+                <p>{{ week.week }}: {{ week.weekValue }}</p>
+              </div>
+            </div>
+          </div>
           <div class="flex gap-1 items-center mb-7">
             <nuxt-link to="/store">Online Store</nuxt-link>
             <Icon name="material-symbols:arrow-forward-ios" />
-            <nuxt-link class="text-blue-14 font-bold" to="#"
-              >{{ dataStore.singleProduct.category.toLowerCase() === 'enhancers' ? 'Download Now' : 'Shop Now'}}</nuxt-link
-            >
+            <nuxt-link class="text-blue-14 font-bold" to="#">{{
+              dataStore.singleProduct.category.toLowerCase() === "enhancers"
+                ? "Download Now"
+                : "Shop Now"
+            }}</nuxt-link>
             <Icon name="material-symbols:arrow-forward-ios" color="#1D5BBE" />
           </div>
           <h3 class="text-xl text-black-2 font-medium leading-[28px]">
             {{
-              dataStore.singleProduct.thumbNails &&
-              dataStore.singleProduct.thumbNails.length
-                ? dataStore.selectedWeek
+              Object.entries(dataStore.selectedWeek).length > 0
+                ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
                 : dataStore.singleProduct.productName
             }}
           </h3>
@@ -149,10 +193,7 @@ const copyLink = () => {
           <div class="my-[11px] w-full h-px bg-grey-15"></div>
           <div class="flex md:flex-row flex-col gap-4 items-center">
             <template
-              v-if="
-                dataStore.singleProduct.thumbNails &&
-                dataStore.singleProduct.thumbNails.length
-              "
+              v-if="Object.entries(dataStore.selectedWeek).length > 0"
             >
               <div class="my-8 max-w-full">
                 <button
@@ -161,7 +202,7 @@ const copyLink = () => {
                 >
                   <p class="text-whiter text-sm">Download Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#FFFFFF" />
-              </button>
+                </button>
               </div>
             </template>
             <template
@@ -177,7 +218,7 @@ const copyLink = () => {
                 >
                   <p class="text-whiter text-sm">Download Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#FFFFFF" />
-              </button>
+                </button>
               </div>
             </template>
             <template v-else>
@@ -221,7 +262,10 @@ const copyLink = () => {
                 />
               </div>
             </template>
-            <button @click="copyLink" class="cursor-pointer flex items-center gap-3">
+            <button
+              @click="copyLink"
+              class="cursor-pointer flex items-center gap-3"
+            >
               <p class="text-grey-17 text-sm">Share product:</p>
               <Icon name="bi:copy" color="#5F6C72" />
             </button>

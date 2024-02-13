@@ -18,7 +18,7 @@ export const useDataStore = defineStore(
     const totalPages = ref(1);
     const singleProduct = ref(null);
     const category = ref('Books');
-    const selectedWeek = ref('Select Week');
+    const selectedWeek = ref({});
 
     const getAllProducts = (data: string) => {
       dialog.isLoading = true;
