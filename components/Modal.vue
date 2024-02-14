@@ -6,7 +6,7 @@ const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
   dialogStore.showModal = false;
-  dataStore.singleProduct = null;
+  // dataStore.singleProduct = null;
 };
 const productCategories = ref([
   {
