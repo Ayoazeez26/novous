@@ -31,6 +31,7 @@ const prepMessage = ref(
 const prepWorkMessage = ref(
   "Hi, I would like to preorder one copy of The CQC Prepbook and one copy of the Workbook"
 );
+const calendarMessage = ref('Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar')
 
 const services = ref([
   {
@@ -643,7 +644,7 @@ const changePaymentPlan = (plan: string) => {
                         </h3>
                         <div class="h-16 flex items-center justify-center">
                           <a
-                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`"
+                            :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${calendarMessage}%27`"
                             target="_blank"
                             download
                             class="bg-blue-17 h-16 flex items-center justify-center text-sm text-whiter w-full"
