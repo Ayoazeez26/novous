@@ -587,7 +587,7 @@ const changePaymentPlan = (plan: string) => {
                 <div
                   v-for="(publication, idx) in 3"
                   :key="idx"
-                  @click="showModal(publication)"
+                  @click="showModal(dataStore.allProducts[idx])"
                   class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
                 >
                   <img
