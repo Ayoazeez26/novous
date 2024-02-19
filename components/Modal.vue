@@ -55,35 +55,37 @@ const email = ref("");
 const payload = ref({
   product: "",
   email: "",
-  preference: "",
+  preference: "Handouts",
 });
 
 const errorMsg = ref({
   email: "",
 });
 
-let selectedProduct = ref([]);
+let selectedProduct = ref({});
 
 onMounted(() => {
   if (dataStore.singleProduct && dataStore.singleProduct.productName) {
-    selectedProduct.value = productCategories.value.filter(
-      (product) => dataStore.singleProduct.productName === product.productName
-    );
-    if (selectedProduct.value.length) {
-      payload.value.product = selectedProduct.value[0].productId;
-      if (selectedProduct.value[0].productId === "65baf50183f8f3ab2b61689d") {
-        payload.value.preference = "Carers";
-        preferences.value[1].checked = true;
-      } else if (
-        selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898"
-      ) {
-        payload.value.preference = "Managers";
-        preferences.value[2].checked = true;
-      } else {
-        payload.value.preference = "Directors";
-        preferences.value[0].checked = true;
-      }
-    }
+    console.log(dataStore.singleProduct);
+    // selectedProduct.value = productCategories.value.filter(
+    //   (product) => dataStore.singleProduct.productName === product.productName
+    // );
+    // if (selectedProduct.value.length) {
+    console.log(dataStore.singleProduct.id);
+    payload.value.product = dataStore.singleProduct.id;
+    preferences.value[1].checked = true;
+    // if (selectedProduct.value[0].productId === "65baf50183f8f3ab2b61689d") {
+    //   payload.value.preference = "Carers";
+    // } else if (
+    //   selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898"
+    // ) {
+    //   payload.value.preference = "Managers";
+    //   preferences.value[2].checked = true;
+    // } else {
+    //   payload.value.preference = "Directors";
+    //   preferences.value[0].checked = true;
+    // }
+    // }
   }
 }),
   watch(email, (value) => {
@@ -103,13 +105,13 @@ const downloadHandout = async () => {
   if (payload.value.email !== "" && errorMsg.value.email === "") {
     console.log(payload.value);
     const dataResponse = await dataStore.downloadHandout(payload.value);
-    if (dataResponse === "success") {
+    if (dataResponse) {
       console.log(dataResponse);
       const link = document.createElement("a");
-      link.href = selectedProduct.value[0].productLink;
-      const fileName = selectedProduct.value[0].productName;
+      link.href = dataResponse;
+      const fileName = dataStore.singleProduct.productName;
       link.setAttribute("download", fileName);
-      // link.setAttribute("target", "_blank");
+      link.setAttribute("target", "_blank");
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -156,15 +158,15 @@ const downloadHandout = async () => {
               Achieve concrete goals in your meetings with
             </h3>
             <div class="bg-blue-16 mt-7 rounded w-full">
-              <div class="border border-grey-18 py-5 rounded mb-7 w-full">
+              <!-- <div class="border border-grey-18 py-5 rounded mb-7 w-full">
                 <p class="text-black-2 text-lg font-medium">
                   Choose your preference
                 </p>
-              </div>
+              </div> -->
               <div
-                class="type flex md:flex-row flex-col text-black-2 gap-2 justify-between px-4 mb-[34px]"
+                class="type flex md:flex-row flex-col text-black-2 gap-2 justify-between px-4 mb-6"
               >
-                <div
+                <!-- <div
                   v-for="(preference, index) in preferences"
                   class="bg-white px-3 flex items-start relative py-3 rounded"
                 >
@@ -178,7 +180,7 @@ const downloadHandout = async () => {
                     />
                     <span class="text-xs">{{ preference.name }}</span>
                   </label>
-                </div>
+                </div> -->
                 <!-- <div class="bg-white px-3 relative py-3 rounded">
                   <label>
                     <input
@@ -204,7 +206,7 @@ const downloadHandout = async () => {
                   </label>
                 </div> -->
               </div>
-              <div class="flex w-full mt-3 px-3">
+              <div class="flex w-full px-3">
                 <div class="flex flex-col relative w-full">
                   <!-- <label for="email" class="mb-2"></label> -->
                   <Icon
