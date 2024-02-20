@@ -163,7 +163,7 @@ const touchSlide = () => {
 };
 </script>
 <template>
-  <div class="bg-blue-7 pt-20 md:pt-28 w-full">
+  <div class="bg-blue-7 pt-8 w-full">
     <div
       class="w-full max-w-[1240px] flex lg:flex-row gap-8 lg:gap-0 flex-col justify-center h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
