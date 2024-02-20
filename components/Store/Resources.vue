@@ -710,7 +710,7 @@ const changePaymentPlan = (plan: string) => {
                               name="material-symbols:calendar-month-sharp"
                             />
                             <h5 class="ml-[8.84px]">
-                              {{ Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
+                              {{ typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
                             </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
