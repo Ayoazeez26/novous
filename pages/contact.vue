@@ -7,14 +7,13 @@
     <ContactHero />
     <ContactTestimonials />
     <ContactBecause />
+    <AppFooter />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useDataStore } from '@/stores/data'
+import { useDataStore } from "@/stores/data";
 const dataStore = useDataStore();
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
