@@ -269,7 +269,7 @@ const touchSlide = () => {
 .prev,
 .next,
 .trail {
-  z-index: 10000;
+  z-index: 2;
   position: absolute;
 }
 

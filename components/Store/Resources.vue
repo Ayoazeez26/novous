@@ -31,7 +31,9 @@ const prepMessage = ref(
 const prepWorkMessage = ref(
   "Hi, I would like to preorder one copy of The CQC Prepbook and one copy of the Workbook"
 );
-const calendarMessage = ref('Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar')
+const calendarMessage = ref(
+  "Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar"
+);
 
 const services = ref([
   {
@@ -149,6 +151,9 @@ const changePaymentPlan = (plan: string) => {
   selectedPaymentPlan.value = plan;
   showPaymentDropdown.value = false;
 };
+
+const dated = new Date();
+const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -710,7 +715,13 @@ const changePaymentPlan = (plan: string) => {
                               name="material-symbols:calendar-month-sharp"
                             />
                             <h5 class="ml-[8.84px]">
-                              {{ typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
+                              {{
+                                typeof dataStore.selectedWeek !== "string" &&
+                                Object.entries(dataStore.selectedWeek).length >
+                                  0
+                                  ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
+                                  : "Select a Week"
+                              }}
                             </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
@@ -727,7 +738,8 @@ const changePaymentPlan = (plan: string) => {
                                 ?.weeklyLinks"
                               :key="index"
                               @click="selectWeek(week)"
-                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                              class="border border-grey-19 flex items-center disabled:border-black disabled:text-black-5/30 px-4 w-full h-10"
+                              :disabled="weekOfMonth < index + 1"
                             >
                               <p>{{ week.week }}: {{ week.weekValue }}</p>
                             </div>
