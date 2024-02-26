@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "nuxt-gtag",
     "@pinia-plugin-persistedstate/nuxt",
+    "nuxt-aos",
   ],
 
   gtag: {
