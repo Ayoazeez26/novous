@@ -4,6 +4,7 @@
     <NewHeader />
     <HomepageHero />
     <HomepageClients />
+    <!-- <HomepageClients2 /> -->
     <HomepageEnhancement />
     <HomepageTestimonials />
     <div class="resources-to-faq">
