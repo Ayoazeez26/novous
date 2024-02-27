@@ -175,7 +175,7 @@ const touchSlide = () => {
           Sale up to
           <span
             class="bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] ml-3"
-            >95% off</span
+            >50% off</span
           >
         </p>
         <h1 class="leading-[45px] mt-6 mb-[33px] text-4xl text-white">
