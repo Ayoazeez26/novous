@@ -31,7 +31,9 @@ const prepMessage = ref(
 const prepWorkMessage = ref(
   "Hi, I would like to preorder one copy of The CQC Prepbook and one copy of the Workbook"
 );
-const calendarMessage = ref('Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar')
+const calendarMessage = ref(
+  "Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar"
+);
 
 const services = ref([
   {
@@ -105,7 +107,7 @@ const getFeaturedProducts = async () => {
   singleProduct.value = featuredProducts.value.splice(0, 1);
 };
 
-const getProducts = async (value) => {
+const getProducts = async (value: string) => {
   await dataStore.getAllProducts(`?limit=10&page=1&category[0]=${value}`);
 };
 getFeaturedProducts();
@@ -149,6 +151,9 @@ const changePaymentPlan = (plan: string) => {
   selectedPaymentPlan.value = plan;
   showPaymentDropdown.value = false;
 };
+
+const dated = new Date();
+const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -420,8 +425,8 @@ const changePaymentPlan = (plan: string) => {
         </template>
       </div>
       <div v-show="category === 'Prep Books'" class="flex mt-14 w-full">
-        <template v-if="dataStore.allProducts.length">
-          <!-- <div
+        <!-- <template> -->
+        <!-- <div
             class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
           >
             95% off
@@ -431,148 +436,140 @@ const changePaymentPlan = (plan: string) => {
           >
             Coming soon
           </div> -->
+        <div
+          class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
+        >
           <div
-            class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
+            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
           >
             <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+              class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
             >
               <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+                class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
               >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
+                Coming soon
+              </div>
+              <img
+                class="w-full"
+                src="
                     /img/manager.png
                   "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                      >
-                        CQC Registered Managers interview Prepbook & Workbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £250
-                        </p>
-                        <p class="font-bold text-blue-13 text-[22px]">£150</p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepWorkMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook & Workbook</a
-                        >
-                      </div>
+              />
+              <div class="flex items-start">
+                <div class="flex w-full">
+                  <div class="flex flex-col">
+                    <h3
+                      class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                    >
+                      CQC Registered Managers interview Prepbook & Workbook
+                    </h3>
+                    <div class="flex mt-[12px] gap-[6px]">
+                      <p class="text-grey-13 line-through text-[22px]">£500</p>
+                      <p class="font-bold text-blue-13 text-[22px]">£300</p>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-            >
-              <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
-              >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
-                    /img/interview.png
-                  "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                    <div
+                      class="h-16 flex items-center mt-[78px] justify-center"
+                    >
+                      <a
+                        :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepWorkMessage}%27`"
+                        class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                        >Pre-order Prepbook & Workbook</a
                       >
-                        CQC Registered Managers interview Prepbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £150
-                        </p>
-                        <p class="font-semibold text-blue-13 text-[22px]">
-                          £75
-                        </p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-            >
-              <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
-              >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
-                    /img/registered.png
-                  "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                      >
-                        CQC Registered Managers interview Workbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £150
-                        </p>
-                        <p class="font-bold text-blue-13 text-[22px]">£75</p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook & Workbook</a
-                        >
-                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </template>
+          <div
+            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+          >
+            <div
+              class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
+            >
+              <div
+                class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+              >
+                Coming soon
+              </div>
+              <img
+                class="w-full"
+                src="
+                    /img/interview.png
+                  "
+              />
+              <div class="flex items-start">
+                <div class="flex w-full">
+                  <div class="flex flex-col">
+                    <h3
+                      class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                    >
+                      CQC Registered Managers interview Prepbook
+                    </h3>
+                    <div class="flex mt-[12px] gap-[6px]">
+                      <p class="text-grey-13 line-through text-[22px]">£250</p>
+                      <p class="font-semibold text-blue-13 text-[22px]">£150</p>
+                    </div>
+                    <div
+                      class="h-16 flex items-center mt-[78px] justify-center"
+                    >
+                      <a
+                        :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
+                        class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                        >Pre-order Prepbook</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+          >
+            <div
+              class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
+            >
+              <div
+                class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
+              >
+                Coming soon
+              </div>
+              <img
+                class="w-full"
+                src="
+                    /img/registered.png
+                  "
+              />
+              <div class="flex items-start">
+                <div class="flex w-full">
+                  <div class="flex flex-col">
+                    <h3
+                      class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
+                    >
+                      CQC Registered Managers interview Workbook
+                    </h3>
+                    <div class="flex mt-[12px] gap-[6px]">
+                      <p class="text-grey-13 line-through text-[22px]">£250</p>
+                      <p class="font-bold text-blue-13 text-[22px]">£150</p>
+                    </div>
+                    <div
+                      class="h-16 flex items-center mt-[78px] justify-center"
+                    >
+                      <a
+                        :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
+                        class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                        >Pre-order Workbook</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- </template> -->
       </div>
       <div
         v-show="category === 'Handouts'"
@@ -582,13 +579,13 @@ const changePaymentPlan = (plan: string) => {
           <div class="flex">
             <div class="flex justify-center items-start w-full">
               <div
-                class="bg-whiter gap-4 flex flex-col lg:flex-row md:items-start flex-wrap"
+                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
               >
                 <div
                   v-for="(publication, idx) in 3"
                   :key="idx"
                   @click="showModal(dataStore.allProducts[idx])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -628,7 +625,7 @@ const changePaymentPlan = (plan: string) => {
             <div class="flex justify-center items-start w-full">
               <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -657,7 +654,7 @@ const changePaymentPlan = (plan: string) => {
                 </div>
                 <div
                   @click="saveProductToStore(dataStore.allProducts[1])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -683,7 +680,7 @@ const changePaymentPlan = (plan: string) => {
                   </div>
                 </div>
                 <div
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -710,7 +707,13 @@ const changePaymentPlan = (plan: string) => {
                               name="material-symbols:calendar-month-sharp"
                             />
                             <h5 class="ml-[8.84px]">
-                              {{ typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
+                              {{
+                                typeof dataStore.selectedWeek !== "string" &&
+                                Object.entries(dataStore.selectedWeek).length >
+                                  0
+                                  ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
+                                  : "Select a Week"
+                              }}
                             </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
@@ -727,7 +730,8 @@ const changePaymentPlan = (plan: string) => {
                                 ?.weeklyLinks"
                               :key="index"
                               @click="selectWeek(week)"
-                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                              class="border border-grey-19 flex items-center disabled:border-black disabled:text-black-5/30 px-4 w-full h-10"
+                              :disabled="weekOfMonth < index + 1"
                             >
                               <p>{{ week.week }}: {{ week.weekValue }}</p>
                             </div>
