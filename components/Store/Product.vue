@@ -76,7 +76,7 @@ const selectWeek = (week) => {
             <img
               class="w-full"
               :src="
-                Object.entries(dataStore.selectedWeek).length > 0
+                typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0
                   ? dataStore.selectedWeek.weekCover.Location
                   : dataStore.singleProduct.productImages[0].Location
               "
@@ -146,7 +146,7 @@ const selectWeek = (week) => {
           </div>
           <h3 class="text-xl text-black-2 font-medium leading-[28px]">
             {{
-              Object.entries(dataStore.selectedWeek).length > 0
+              typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0
                 ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
                 : dataStore.singleProduct.productName
             }}
@@ -193,7 +193,7 @@ const selectWeek = (week) => {
           <div class="my-[11px] w-full h-px bg-grey-15"></div>
           <div class="flex md:flex-row flex-col gap-4 items-center">
             <template
-              v-if="Object.entries(dataStore.selectedWeek).length > 0"
+              v-if="typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0"
             >
               <div class="my-8 max-w-full">
                 <button
