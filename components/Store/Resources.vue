@@ -465,8 +465,8 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                       CQC Registered Managers interview Prepbook & Workbook
                     </h3>
                     <div class="flex mt-[12px] gap-[6px]">
-                      <p class="text-grey-13 line-through text-[22px]">£250</p>
-                      <p class="font-bold text-blue-13 text-[22px]">£150</p>
+                      <p class="text-grey-13 line-through text-[22px]">£500</p>
+                      <p class="font-bold text-blue-13 text-[22px]">£300</p>
                     </div>
                     <div
                       class="h-16 flex items-center mt-[78px] justify-center"
@@ -508,8 +508,8 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                       CQC Registered Managers interview Prepbook
                     </h3>
                     <div class="flex mt-[12px] gap-[6px]">
-                      <p class="text-grey-13 line-through text-[22px]">£150</p>
-                      <p class="font-semibold text-blue-13 text-[22px]">£75</p>
+                      <p class="text-grey-13 line-through text-[22px]">£250</p>
+                      <p class="font-semibold text-blue-13 text-[22px]">£150</p>
                     </div>
                     <div
                       class="h-16 flex items-center mt-[78px] justify-center"
@@ -551,8 +551,8 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                       CQC Registered Managers interview Workbook
                     </h3>
                     <div class="flex mt-[12px] gap-[6px]">
-                      <p class="text-grey-13 line-through text-[22px]">£150</p>
-                      <p class="font-bold text-blue-13 text-[22px]">£75</p>
+                      <p class="text-grey-13 line-through text-[22px]">£250</p>
+                      <p class="font-bold text-blue-13 text-[22px]">£150</p>
                     </div>
                     <div
                       class="h-16 flex items-center mt-[78px] justify-center"
