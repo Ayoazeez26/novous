@@ -1,24 +1,30 @@
 <template>
-  <div>
-    <AppHeader />
-    <CareServicesDropdown v-if="dataStore.careServices" />
-    <AboutUsDropdown v-if="dataStore.about" />
-    <TrainingDropdown v-if="dataStore.training" />
-    <HomeHero />
-    <HomeServices />
-    <HomeAbout />
-    <HomeTestimonials />
-    <HomeTeam />
-    <HomeEbooks />
-    <HomeEnroll />
-    <AppFooter />
-    <!-- <HomeVideos /> -->
+  <div class="overflow-x-hidden max-w-[1440px] mx-auto">
+    <Banner />
+    <NewHeader />
+    <HomepageHero />
+    <HomepageClients />
+    <HomepageEnhancement />
+    <HomepageTestimonials />
+    <div class="resources-to-faq">
+      <HomepageResources />
+      <HomepageTenders />
+      <HomepageFAQ />
+    </div>
+    <NewFooter />
   </div>
 </template>
 
-<script setup lang="ts">
-import { useDataStore } from "@/stores/data";
-const dataStore = useDataStore();
+<script>
+export default {
+  setup() {
+    return {};
+  },
+};
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.resources-to-faq {
+  background: linear-gradient(178.81deg, #e5f6ff 10.59%, #fff9f0 87.95%);
+}
+</style>
