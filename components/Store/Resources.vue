@@ -104,7 +104,7 @@ watch(category, (value) => {
 
 const getFeaturedProducts = async () => {
   featuredProducts.value = await dataStore.getFeaturedProducts();
-  singleProduct.value = featuredProducts.value.splice(0, 1);
+  // singleProduct.value = featuredProducts.value.splice(0, 1);
 };
 
 const getProducts = async (value: string) => {
@@ -242,59 +242,6 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
       <div v-show="category === 'All'" class="flex mt-14 w-full">
         <template v-if="featuredProducts.length">
           <div class="flex flex-wrap md:flex-nowrap">
-            <div v-if="Object.entries(singleProduct).length !== 0" class="flex">
-              <div
-                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
-              >
-                <!-- <div
-                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-                >
-                  95% off
-                </div>
-                <div
-                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
-                >
-                  HOT
-                </div> -->
-                <img
-                  class="absolute top-24 left-4 h-10"
-                  :src="singleProduct[0].banners[0].Location"
-                />
-                <img
-                  class="absolute top-8 left-4 h-10"
-                  :src="singleProduct[0].banners[1].Location"
-                />
-                <img
-                  :src="singleProduct[0].productImages[0].Location"
-                  alt="A picture of a Books titled bridging the gap"
-                />
-                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
-                  {{ singleProduct[0].productName }}
-                </h3>
-                <div class="flex my-6 gap-[6px]">
-                  <p class="line-through text-grey-13 text-[25px]">
-                    £{{ singleProduct[0].price }}
-                  </p>
-                  <p class="font-bold text-blue-13 text-[25px]">
-                    £{{ singleProduct[0].currentPrice }}
-                  </p>
-                </div>
-                <p
-                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
-                >
-                  {{ singleProduct[0].description }}
-                </p>
-                <div class="mt-12 max-w-fit">
-                  <button
-                    class="bg-blue-4 flex h-[76px] items-center px-10"
-                    @click="saveFirstProductToStore"
-                  >
-                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
-                    <span class="text-white">SHOP NOW</span>
-                  </button>
-                </div>
-              </div>
-            </div>
             <div class="flex justify-center items-start w-full">
               <div
                 class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
@@ -303,7 +250,7 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                   v-for="(publication, idx) in featuredProducts"
                   :key="idx"
                   @click="saveProductToStore(publication)"
-                  class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+                  class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="absolute top-8 left-4 h-10"
@@ -329,6 +276,19 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                             £{{ publication.currentPrice }}
                           </p>
                         </div>
+                        <div class="mt-12 w-full">
+                          <button
+                            class="bg-blue-4 flex h-[76px] items-center px-10 w-full justify-center"
+                            @click="saveProductToStore(publication)"
+                          >
+                            <img
+                              class="mr-3"
+                              src="/svg/shop.svg"
+                              alt="shop icon"
+                            />
+                            <span class="text-white">SHOP NOW</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -341,65 +301,20 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
       <div v-show="category === 'Books'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
           <div class="flex flex-wrap md:flex-nowrap">
-            <div class="flex">
-              <div
-                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
-              >
-                <!-- <div
-                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-                >
-                  95% off
-                </div>
-                <div
-                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
-                >
-                  HOT
-                </div> -->
-                <img
-                  :src="dataStore.allProducts[0].productImages[0].Location"
-                  alt="A picture of a Books titled bridging the gap"
-                />
-                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
-                  {{ dataStore.allProducts[0].productName }}
-                </h3>
-                <div class="flex my-6 gap-[6px]">
-                  <!-- <p class="line-through text-grey-13 text-[25px]">
-                    {{ hotResource.slashedPrice }}
-                  </p> -->
-                  <p class="font-bold text-blue-13 text-[25px]">
-                    £{{ dataStore.allProducts[0].price }}
-                  </p>
-                </div>
-                <p
-                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
-                >
-                  {{ dataStore.allProducts[0].description }}
-                </p>
-                <div class="mt-12 max-w-fit">
-                  <button
-                    class="bg-blue-4 flex h-[76px] items-center px-10"
-                    @click="saveFirstProductToStore"
-                  >
-                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
-                    <span class="text-white">SHOP NOW</span>
-                  </button>
-                </div>
-              </div>
-            </div>
             <div class="flex justify-center items-start w-full">
               <div
                 class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
               >
                 <div
-                  v-for="(publication, idx) in dataStore.allProducts.length - 1"
+                  v-for="(publication, idx) in dataStore.allProducts"
                   :key="idx"
-                  @click="saveProductToStore(dataStore.allProducts[idx + 1])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  @click="saveProductToStore(publication)"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
                     :src="
-                      dataStore.allProducts[idx + 1].productImages[0].Location
+                      publication.productImages[0].Location
                     "
                   />
                   <div class="flex items-start">
@@ -408,11 +323,11 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[idx + 1].productName }}
+                          {{ publication.productName }}
                         </h3>
                         <div class="flex mt-[12px] gap-[6px]">
                           <p class="font-bold text-blue-13 text-[22px]">
-                            £{{ dataStore.allProducts[idx + 1].price }}
+                            £{{ publication.price }}
                           </p>
                         </div>
                       </div>
