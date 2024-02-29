@@ -163,7 +163,7 @@ const touchSlide = () => {
 };
 </script>
 <template>
-  <div class="bg-blue-7 pt-8 w-full">
+  <div class="bg-blue-7 py-8 w-full">
     <div
       class="w-full max-w-[1240px] flex lg:flex-row gap-8 lg:gap-0 flex-col justify-center h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
@@ -175,7 +175,7 @@ const touchSlide = () => {
           Sale up to
           <span
             class="bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] ml-3"
-            >50% off</span
+            >60% off</span
           >
         </p>
         <h1 class="leading-[45px] mt-6 mb-[33px] text-4xl text-white">
@@ -197,7 +197,7 @@ const touchSlide = () => {
             <div class="box1 box">
               <img
                 class="w-[800px]"
-                src="/img/bridging.png"
+                src="/img/prep&work.jpg"
                 alt="bridging the gap"
               />
             </div>
@@ -205,7 +205,7 @@ const touchSlide = () => {
             <div class="box2 box">
               <img
                 class="w-[800px]"
-                src="/img/tender-slide.png"
+                src="/img/prep.jpg"
                 alt="bridging the gap"
               />
             </div>
@@ -213,7 +213,7 @@ const touchSlide = () => {
             <div class="box3 box">
               <img
                 class="w-[800px]"
-                src="/img/care-slide.png"
+                src="/img/work.jpg"
                 alt="bridging the gap"
               />
             </div>
