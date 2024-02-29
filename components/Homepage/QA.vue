@@ -53,7 +53,7 @@ watch([first, second, third, fourth, fifth], () => {
           data-aos-duration="1000"
         >
           <div class="faq__container">
-            <h3 class="sans faq__question">What is HSCT Portal?</h3>
+            <h3 class="sans faq__question">What is your success rate like?</h3>
             <div class="faq__button">
               <Icon
                 v-if="first"
@@ -72,9 +72,11 @@ watch([first, second, third, fourth, fifth], () => {
             </div>
           </div>
           <p v-if="first" class="faq__answer">
-            Find answers to frequently asked questions about OCMC's services,
-            pricing, and how we work with clients to ensure the best possible
-            results.
+            Our 80% success rate is largely influenced by our collaborative
+            approach. From finding tenders to submitting them, we guide our
+            clients every step of the way. This approach not only welcomes
+            client feedback but also ensures a thorough grasp of all tender
+            requirements.
           </p>
         </div>
         <div
@@ -84,7 +86,9 @@ watch([first, second, third, fourth, fifth], () => {
           data-aos-duration="1000"
         >
           <div class="faq__container">
-            <h3 class="sans faq__question">What are the benefits?</h3>
+            <h3 class="sans faq__question">
+              I am a new provider and unsure how to start this business.
+            </h3>
             <div class="faq__button">
               <Icon
                 v-if="second"
@@ -103,9 +107,10 @@ watch([first, second, third, fourth, fifth], () => {
             </div>
           </div>
           <p v-if="second" class="faq__answer">
-            Find answers to frequently asked questions about OCMC's services,
-            pricing, and how we work with clients to ensure the best possible
-            results.
+            For new providers, we recommend focusing on Dynamic Purchasing
+            System (DPS) tenders due to their flexibility and openness to new
+            providers. DPS tenders have fewer constraints, longer open periods,
+            and basic requirements, making them ideal for newcomers.
           </p>
         </div>
         <div
@@ -115,7 +120,9 @@ watch([first, second, third, fourth, fifth], () => {
           data-aos-duration="1000"
         >
           <div class="faq__container">
-            <h3 class="sans faq__question">What types of services?</h3>
+            <h3 class="sans faq__question">
+              What's your tender writing and management process like?
+            </h3>
             <div class="faq__button">
               <Icon
                 v-if="third"
@@ -134,9 +141,12 @@ watch([first, second, third, fourth, fifth], () => {
             </div>
           </div>
           <p v-if="third" class="faq__answer">
-            Find answers to frequently asked questions about OCMC's services,
-            pricing, and how we work with clients to ensure the best possible
-            results.
+            Upon receiving a tender you're keen on, we analyse it to ensure
+            basic requirements are understood. Once confirmed, we start crafting
+            the tender. Before submission, we share a draft for your review.
+            After submission, you'll get a folder with a copy of all responses.
+            If we source tenders for you, we tailor them to your profile and
+            send them for your approval before submission.
           </p>
         </div>
         <div
@@ -146,7 +156,9 @@ watch([first, second, third, fourth, fifth], () => {
           data-aos-duration="1000"
         >
           <div class="faq__container">
-            <h3 class="sans faq__question">How to contact?</h3>
+            <h3 class="sans faq__question">
+              What are your payment services like?
+            </h3>
             <div class="faq__button">
               <Icon
                 v-if="fourth"
@@ -165,12 +177,13 @@ watch([first, second, third, fourth, fifth], () => {
             </div>
           </div>
           <p v-if="fourth" class="faq__answer">
-            Find answers to frequently asked questions about OCMC's services,
-            pricing, and how we work with clients to ensure the best possible
-            results.
+            We require an initial down payment. Our pricing structure varies
+            based on the complexity of the tender. Pricing can differ for DPS or
+            framework tenders. For detailed pricing information, clients can
+            request our pricing schedule via email.
           </p>
         </div>
-        <div
+        <!-- <div
           @click="fifth = !fifth"
           class="md:p-8 p-5"
           data-aos="fade-up"
@@ -200,7 +213,7 @@ watch([first, second, third, fourth, fifth], () => {
             pricing, and how we work with clients to ensure the best possible
             results.
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="" id="connect" />
