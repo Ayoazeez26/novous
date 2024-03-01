@@ -161,6 +161,10 @@ const touchSlide = () => {
   // call mobile on touch end
   slider.value.addEventListener("touchend", mobile);
 };
+
+// const goToProduct = () => {
+
+// }
 </script>
 <template>
   <div class="bg-blue-7 py-8 w-full">
@@ -181,13 +185,13 @@ const touchSlide = () => {
         <h1 class="leading-[45px] mt-6 mb-[33px] text-4xl text-white">
           Explore Our Latest Books on Social Care Excellence!
         </h1>
-        <nuxt-link
-          to=""
+        <button
+          @click="goToProduct"
           class="bg-whiter text-blue-4 text-xl font-bold rounded w-full flex h-[76px] items-center justify-center"
         >
           Shop Now
           <Icon class="ml-1" name="mdi:arrow-right" size="24" />
-        </nuxt-link>
+        </button>
       </div>
       <div
         class="w-[90vw] flex items-center justify-center relative lg:w-[890px]"
