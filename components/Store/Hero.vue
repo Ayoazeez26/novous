@@ -187,14 +187,14 @@ getProducts();
       >
         <img class="absolute top-0 right-0" src="/svg/fold.svg" alt="folded" />
         <p class="text-xl">
-          Sale up to
+          Out Now:
           <span
             class="bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] ml-3"
             >60% off</span
           >
         </p>
         <h1 class="leading-[45px] mt-6 mb-[33px] text-4xl text-white">
-          Explore Our Latest Books on Social Care Excellence!
+          CQC Registered Managers Interview Prepbook and Workbook!
         </h1>
         <button
           @click="goToProduct"
