@@ -244,17 +244,17 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
           <div class="flex flex-wrap md:flex-nowrap">
             <div class="flex justify-center items-start w-full">
               <div
-                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+                class="bg-whiter flex flex-col lg:flex-row flex-wrap"
               >
                 <div
                   v-for="(publication, idx) in featuredProducts"
                   :key="idx"
                   @click="saveProductToStore(publication)"
-                  class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
+                  class="flex flex-col w-full p-[25px] border justify-between bg-whiter relative border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="absolute top-8 left-4 h-10"
-                    :src="publication.banners[0].Location"
+                    :src="publication.banners[0]?.Location"
                   />
                   <img
                     class="w-full"
@@ -352,10 +352,10 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
             Coming soon
           </div> -->
         <div
-          class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
+          class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center w-full"
         >
           <div
-            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            class="bg-whiter flex flex-col lg:flex-row flex-wrap"
           >
             <div
               class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
@@ -398,10 +398,10 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
             </div>
           </div>
           <div
-            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            class="bg-whiter flex flex-col lg:flex-row flex-wrap"
           >
             <div
-              class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
+              class="cursor-pointer flex flex-col justify-between w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
             >
               <div
                 class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
@@ -441,10 +441,10 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
             </div>
           </div>
           <div
-            class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+            class="bg-whiter flex flex-col lg:flex-row flex-wrap"
           >
             <div
-              class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
+              class="cursor-pointer flex flex-col justify-between w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[433px]"
             >
               <div
                 class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
@@ -494,7 +494,7 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
           <div class="flex">
             <div class="flex justify-center items-start w-full">
               <div
-                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
+                class="bg-whiter flex flex-col lg:flex-row flex-wrap"
               >
                 <div
                   v-for="(publication, idx) in 3"
