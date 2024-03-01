@@ -335,8 +335,11 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                           {{ publication.productName }}
                         </h3>
                         <div class="flex mt-[12px] gap-[6px]">
-                          <p class="font-bold text-blue-13 text-[22px]">
+                           <p class="line-through text-grey-13 text-[22px]">
                             £{{ publication.price }}
+                          </p>
+                          <p  class="font-bold text-blue-13 text-[22px]">
+                            £{{ publication.currentPrice }}
                           </p>
                         </div>
                       </div>
