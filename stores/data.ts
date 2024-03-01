@@ -19,6 +19,7 @@ export const useDataStore = defineStore(
     const singleProduct = ref(null);
     const category = ref('Books');
     const selectedWeek = ref({});
+    const prepbookIndex = ref(null);
 
     const getAllProducts = (data: string) => {
       dialog.isLoading = true;
@@ -76,7 +77,8 @@ export const useDataStore = defineStore(
       downloadHandout,
       selectedWeek,
       getFeaturedProducts,
-      getSingleProduct
+      getSingleProduct,
+      prepbookIndex
     };
   },
   {

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDataStore } from '~/stores/data';
+
 const { $gsap, $ScrollTrigger, $TweenMax } = useNuxtApp();
 
 const mm = $gsap.matchMedia();
@@ -7,7 +9,8 @@ const ctx = $gsap.context(() => {});
 onUnmounted(() => {
   ctx.revert();
 });
-
+const dataStore = useDataStore();
+const router = useRouter();
 // Slider(all Slides in a contain)
 // const slider = document.querySelector(".slider");
 let trail;
@@ -162,9 +165,17 @@ const touchSlide = () => {
   slider.value.addEventListener("touchend", mobile);
 };
 
-// const goToProduct = () => {
+const goToProduct = () => {
+  // dataStore.prepbookIndex = trailValue;
+  dataStore.singleProduct = dataStore.allProducts[trailValue];
+    router.push(`/store/${dataStore.allProducts[trailValue].id}`);
+    window.scrollTo(0, 0);
+}
 
-// }
+const getProducts = async () => {
+  await dataStore.getAllProducts('?limit=10&page=1&category[0]=Prep Books');
+};
+getProducts();
 </script>
 <template>
   <div class="bg-blue-7 py-8 w-full">
