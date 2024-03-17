@@ -27,11 +27,7 @@ import getStarted from "~/assets/loading-animation.json";
           class="-mb-20 md:-mb-40 translate-y-10 md:translate-y-20 relative max-w-fit"
         >
           <div class="absolute -right-2 md:right-8 xl:-right-8 -top-8">
-            <img
-              class=""
-              src="/img/play-icon.png"
-              alt="play icon"
-            />
+            <img class="" src="/img/play-icon.png" alt="play icon" />
             <div class="-translate-y-[85px] -translate-x-[19px]">
               <Vue3Lottie
                 ref="getStartedAnim"
@@ -42,10 +38,17 @@ import getStarted from "~/assets/loading-animation.json";
             </div>
           </div>
           <video ref="video" controls playsinline autoplay muted loop>
-            <source src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/ocmc-video.mp4" type="video/mp4" />
+            <source
+              src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/ocmc-video.mp4"
+              type="video/mp4"
+            />
             <p>
               Your browser does not support HTML video, here's a
-              <a href="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/ocmc-video.mp4">link </a> to watch the video
+              <a
+                href="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/ocmc-video.mp4"
+                >link
+              </a>
+              to watch the video
             </p>
           </video>
         </div>

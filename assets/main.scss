@@ -1,5 +1,5 @@
 body {
-  font-family: 'Product Sans', sans-serif;
+  font-family: "Product Sans", sans-serif;
   scroll-behavior: smooth;
   color: $blue-6;
 }
@@ -9,17 +9,27 @@ body {
 .router-link-exact-active {
   color: $blue-4;
 }
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Recoleta', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Recoleta", sans-serif;
   color: $blue-2;
 }
+
+.sans {
+  font-family: "Product Sans", sans-serif;
+}
+
 .swiper {
   width: 100%;
   &-3d {
     width: 1210px !important;
   }
   &-slide {
-    width: 380px !important;
+    width: 380px;
     font-size: 18px !important;
     line-height: 1.7rem;
     display: flex;
@@ -55,9 +65,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hovered {
   -webkit-transition: 300ms ease-in-out;
-    -moz-transition: 300ms ease-in-out;
-    -o-transition: 300ms ease-in-out;
-    transition: 300ms ease-in-out;
+  -moz-transition: 300ms ease-in-out;
+  -o-transition: 300ms ease-in-out;
+  transition: 300ms ease-in-out;
 }
 .loader {
   position: fixed;
@@ -69,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .clamp {
   display: -webkit-box;
--webkit-box-orient: vertical;
--webkit-line-clamp: 2;
-align-self: stretch;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-self: stretch;
 }

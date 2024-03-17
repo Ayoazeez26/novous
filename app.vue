@@ -16,22 +16,18 @@ import { useDialogStore } from "~/stores/dialog";
 // })
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
-  console.log('clicked outside');
-  
+  console.log("clicked outside");
+
   dialogStore.showModal = false;
 };
 </script>
 <template>
+  <!-- <ThePreloader /> -->
   <div class="body">
     <main>
-      <Modal
-        v-if="dialogStore.showModal"
-        class="loader"
-      />
-      <EmailModal
-        v-if="dialogStore.showEmailModal"
-        class="loader"
-      />
+      <CustomCursor />
+      <Modal v-if="dialogStore.showModal" class="loader" />
+      <EmailModal v-if="dialogStore.showEmailModal" class="loader" />
       <MonthlyEnhancerModal
         v-if="dialogStore.showMonthlyEnhancerModal"
         class="loader"
@@ -39,7 +35,6 @@ const clickedOutside = () => {
       <Loading v-if="dialogStore.isLoading" class="loader" />
       <NuxtPage />
     </main>
-    <AppFooter />
   </div>
 </template>
 <style lang="scss">

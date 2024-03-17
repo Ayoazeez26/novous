@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.client__name__container {
+  @apply bg-white w-80 py-4 rounded-[32px] pl-14
+}
+
+.client__name {
+  @apply text-left font-light text-2xl leading-normal
+}
+
+.client__image__container {
+  @apply h-[120px] w-[120px] rounded-[32px] flex items-center justify-center
+}
+
+.social-icon {
+  @apply h-9 w-9 rounded-full border border-[#FFFFFF40] flex items-center justify-center hover:bg-slate-400 transition-all duration-300
+}
+
+.faq__question {
+  @apply text-xl font-bold
+}
+
+.faq__button {
+  @apply bg-white h-14 w-14 flex items-center justify-center rounded text-xl hover:bg-slate-300 transition-all duration-500
+}
+
+.faq__container {
+  @apply flex justify-between items-center
+}
+
+.faq__answer {
+  @apply pt-4 text-lg
+}
