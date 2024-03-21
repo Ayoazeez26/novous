@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDataStore } from '~/stores/data';
+
 const { $gsap, $ScrollTrigger, $TweenMax } = useNuxtApp();
 
 const mm = $gsap.matchMedia();
@@ -7,7 +9,8 @@ const ctx = $gsap.context(() => {});
 onUnmounted(() => {
   ctx.revert();
 });
-
+const dataStore = useDataStore();
+const router = useRouter();
 // Slider(all Slides in a contain)
 // const slider = document.querySelector(".slider");
 let trail;
@@ -161,9 +164,21 @@ const touchSlide = () => {
   // call mobile on touch end
   slider.value.addEventListener("touchend", mobile);
 };
+
+const goToProduct = () => {
+  // dataStore.prepbookIndex = trailValue;
+  dataStore.singleProduct = dataStore.allProducts[trailValue];
+    router.push(`/store/${dataStore.allProducts[trailValue].id}`);
+    window.scrollTo(0, 0);
+}
+
+const getProducts = async () => {
+  await dataStore.getAllProducts('?limit=10&page=1&category[0]=Prep Books');
+};
+getProducts();
 </script>
 <template>
-  <div class="bg-blue-7 pt-8 w-full">
+  <div class="bg-blue-7 py-8 w-full">
     <div
       class="w-full max-w-[1240px] flex lg:flex-row gap-8 lg:gap-0 flex-col justify-center h-full items-center pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
@@ -172,22 +187,22 @@ const touchSlide = () => {
       >
         <img class="absolute top-0 right-0" src="/svg/fold.svg" alt="folded" />
         <p class="text-xl">
-          Sale up to
+          Out Now:
           <span
             class="bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] ml-3"
-            >95% off</span
+            >60% off</span
           >
         </p>
         <h1 class="leading-[45px] mt-6 mb-[33px] text-4xl text-white">
-          Explore Our Latest Books on Social Care Excellence!
+          CQC Registered Managers Interview Prepbook and Workbook!
         </h1>
-        <nuxt-link
-          to=""
+        <button
+          @click="goToProduct"
           class="bg-whiter text-blue-4 text-xl font-bold rounded w-full flex h-[76px] items-center justify-center"
         >
           Shop Now
           <Icon class="ml-1" name="mdi:arrow-right" size="24" />
-        </nuxt-link>
+        </button>
       </div>
       <div
         class="w-[90vw] flex items-center justify-center relative lg:w-[890px]"
@@ -197,7 +212,7 @@ const touchSlide = () => {
             <div class="box1 box">
               <img
                 class="w-[800px]"
-                src="/img/bridging.png"
+                src="/img/prep&work.jpg"
                 alt="bridging the gap"
               />
             </div>
@@ -205,7 +220,7 @@ const touchSlide = () => {
             <div class="box2 box">
               <img
                 class="w-[800px]"
-                src="/img/tender-slide.png"
+                src="/img/prep.jpg"
                 alt="bridging the gap"
               />
             </div>
@@ -213,7 +228,7 @@ const touchSlide = () => {
             <div class="box3 box">
               <img
                 class="w-[800px]"
-                src="/img/care-slide.png"
+                src="/img/work.jpg"
                 alt="bridging the gap"
               />
             </div>
@@ -269,7 +284,7 @@ const touchSlide = () => {
 .prev,
 .next,
 .trail {
-  z-index: 10000;
+  z-index: 2;
   position: absolute;
 }
 

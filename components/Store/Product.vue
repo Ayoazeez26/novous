@@ -76,6 +76,7 @@ const selectWeek = (week) => {
             <img
               class="w-full"
               :src="
+                typeof dataStore.selectedWeek !== 'string' &&
                 Object.entries(dataStore.selectedWeek).length > 0
                   ? dataStore.selectedWeek.weekCover.Location
                   : dataStore.singleProduct.productImages[0].Location
@@ -146,6 +147,7 @@ const selectWeek = (week) => {
           </div>
           <h3 class="text-xl text-black-2 font-medium leading-[28px]">
             {{
+              typeof dataStore.selectedWeek !== "string" &&
               Object.entries(dataStore.selectedWeek).length > 0
                 ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
                 : dataStore.singleProduct.productName
@@ -168,12 +170,15 @@ const selectWeek = (week) => {
               </p>
             </div>
           </div>
-          <div class="flex items-center mt-[11px] gap-[6px]">
-            <!-- <p class="line-through text-grey-13 text-[28px]">
-            {{ singleProduct.slashedPrice }}
-          </p> -->
-            <p class="font-bold text-blue-13 text-[28px]">
+          <div
+            v-if="dataStore.singleProduct.currentPrice"
+            class="flex items-center mt-[11px] gap-[6px]"
+          >
+            <p class="line-through text-grey-13 text-[28px]">
               £{{ dataStore.singleProduct.price }}
+            </p>
+            <p class="font-bold text-blue-13 text-[28px]">
+              £{{ dataStore.singleProduct.currentPrice }}
             </p>
             <div
               v-if="
@@ -193,7 +198,10 @@ const selectWeek = (week) => {
           <div class="my-[11px] w-full h-px bg-grey-15"></div>
           <div class="flex md:flex-row flex-col gap-4 items-center">
             <template
-              v-if="Object.entries(dataStore.selectedWeek).length > 0"
+              v-if="
+                typeof dataStore.selectedWeek !== 'string' &&
+                Object.entries(dataStore.selectedWeek).length > 0
+              "
             >
               <div class="my-8 max-w-full">
                 <button
@@ -221,22 +229,39 @@ const selectWeek = (week) => {
                 </button>
               </div>
             </template>
-            <template v-else>
+            <template
+              v-else-if="
+                dataStore.singleProduct.category.toUpperCase() === 'PREP BOOKS'
+              "
+            >
               <div class="my-8 max-w-full">
-                <!-- <a
-                  v-if="
-                    dataStore.singleProduct.productName ===
-                      'February Meeting Enhancer' ||
-                    dataStore.singleProduct.productName ===
-                      'Febuary Meeting Enhancer'
-                  "
-                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, Hi, I would like to get your Free February Meeting Enhancers`"
+                <a
+                  href="https://docs.google.com/forms/d/1L3V7FMMeJ4fnswoZsg_Q4vJYEj2LUG5Jr8RroIsZB0E/viewform?pli=1&pli=1&edit_requested=true"
                   target="_blank"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                 >
                   <p class="text-blue-4 text-sm">Shop Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
-                </a> -->
+                </a>
+              </div>
+              <div
+                class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between"
+              >
+                <Icon
+                  @click="reduceCount"
+                  class="cursor-pointer"
+                  name="bi:dash-lg"
+                />
+                <span>{{ count < 10 ? `0${count}` : count }}</span>
+                <Icon
+                  @click="increaseCount"
+                  class="cursor-pointer"
+                  name="mdi:plus"
+                />
+              </div>
+            </template>
+            <template v-else>
+              <div class="my-8 max-w-full">
                 <a
                   :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to purchase a copy of ${dataStore.singleProduct.productName} by OC Management Consultants%27`"
                   target="_blank"

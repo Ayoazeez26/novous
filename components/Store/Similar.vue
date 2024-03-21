@@ -9,7 +9,7 @@ const router = useRouter();
 
 const getProducts = async () => {
   await dataStore.getAllProducts(
-    `?limit=10&page=1&category[0]=Books`
+    `?limit=10&page=1&category[0]=${dataStore.singleProduct.category}`
   );
 };
 getProducts();
@@ -57,9 +57,13 @@ const saveFirstProductToStore = (product) => {
                       {{ dataStore.allProducts[idx].productName }}
                     </h3>
                     <div class="flex mt-[12px] gap-[6px]">
-                      <p class="font-bold text-blue-13 text-[22px]">
-                        £{{ dataStore.allProducts[idx].price }}
-                      </p>
+                      
+                       <p v-if="dataStore.allProducts[idx].currentPrice" class="line-through text-grey-13 text-[22px]">
+                            £{{ dataStore.allProducts[idx].price }}
+                          </p>
+                          <p class="font-bold text-blue-13 text-[22px]">
+                            £{{ dataStore.allProducts[idx].currentPrice }}
+                          </p>
                     </div>
                   </div>
                 </div>

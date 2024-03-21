@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useDialogStore } from "~/stores/dialog";
 import { useDataStore } from "~/stores/data";
+import { storeToRefs } from "pinia";
 
 const dataStore = useDataStore();
 const dialogStore = useDialogStore();
@@ -10,7 +11,18 @@ const selectedPaymentPlan = ref("Choose Payment Plan");
 const showPaymentDropdown = ref(false);
 const showSelectWeekDropdown = ref(false);
 const featuredProducts = ref([]);
+const featuredWorkbooks = ref([]);
+const featuredOtherbooks = ref([]);
 const singleProduct = ref({});
+// const { prepbookIndex } = storeToRefs(dataStore);
+
+// watch(prepbookIndex, () => {
+//   console.log(prepbookIndex.value);
+//   if (prepbookIndex.value) {
+//     goToCheckout(prepbookIndex.value);
+//   }
+//   dataStore.prepbookIndex = null;
+// })
 
 const phoneNumber = ref("7903094884");
 const workMessage = ref(
@@ -31,69 +43,12 @@ const prepMessage = ref(
 const prepWorkMessage = ref(
   "Hi, I would like to preorder one copy of The CQC Prepbook and one copy of the Workbook"
 );
-const calendarMessage = ref('Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar')
-
-const services = ref([
-  {
-    image: "dom-care",
-    title:
-      "BEST PRACTICES FOR PROVIDING DOMICILIARY CARE IN SUPPORTED LIVING SCHEMES ",
-    price: "£0.99",
-    slashedPrice: "£3.15",
-  },
-  {
-    image: "tupe",
-    title: "MASTERING TUPE TRANSFERS IN SOCIAL CARE SERVICES",
-    price: "£0.99",
-    slashedPrice: "£3.15",
-  },
-  {
-    image: "social-care",
-    title: "A Social Care Provider's Guide to the 2023 State of Care Report ",
-    price: "£0.99",
-    slashedPrice: "£3.15",
-  },
-  {
-    image: "workBooks",
-    title: "CQC Registered Manager's Interview WorkBooks",
-    price: "£0.99",
-    slashedPrice: "£3.15",
-  },
-]);
-const videos = ref([
-  {
-    title: "CQC Regulation 13: Good Governance",
-    img: "video-placeholder",
-  },
-  {
-    title: "CQC Regulation 13: Good Governance",
-    img: "video-placeholder",
-  },
-  {
-    title: "CQC Regulation 13: Good Governance",
-    img: "video-placeholder",
-  },
-]);
-const posts = ref([
-  {
-    title: "£500 million fund to make patients top priority",
-    date: "April 23, 2023",
-    author: "Mrs Obi",
-  },
-  {
-    title: "workforce development fund: adult social care",
-    date: "April 23, 2023",
-    author: "Mrs Obi",
-  },
-  {
-    title: "supported living: the economical benefits",
-    date: "April 23, 2023",
-    author: "Mrs Obi",
-  },
-]);
+const calendarMessage = ref(
+  "Hi, I would like to preorder one copy of the 12-Months Meeting Schedule Calendar"
+);
 
 watch(category, (value) => {
-  if (value !== "All" && value !== "Prep Books") {
+  if (value !== "All") {
     getProducts(value);
   } else if (value === "All") {
     getFeaturedProducts();
@@ -102,30 +57,29 @@ watch(category, (value) => {
 
 const getFeaturedProducts = async () => {
   featuredProducts.value = await dataStore.getFeaturedProducts();
-  singleProduct.value = featuredProducts.value.splice(0, 1);
+  featuredWorkbooks.value = featuredProducts.value.filter(
+    (product) => product.category.toLowerCase() === "prep books"
+  );
+  featuredOtherbooks.value = featuredProducts.value.filter(
+    (product) => product.category.toLowerCase() !== "prep books"
+  );
+  // singleProduct.value = featuredProducts.value.splice(0, 1);
 };
 
-const getProducts = async (value) => {
+const getProducts = async (value: string) => {
   await dataStore.getAllProducts(`?limit=10&page=1&category[0]=${value}`);
 };
 getFeaturedProducts();
 
-const saveFirstProductToStore = () => {
-  dataStore.singleProduct = dataStore.allProducts[0];
-  dataStore.category = category.value;
-  router.push(`/store/${dataStore.allProducts[0].id}`);
-};
-
 const saveProductToStore = (product) => {
-  if (product.productName === dataStore.allProducts[0].productName) {
-    if (
-      Object.entries(dataStore.selectedWeek).length > 0 &&
-      selectedPaymentPlan.value !== "Choose Payment Plan"
-    ) {
-      dataStore.singleProduct = product;
-      router.push(`/store/${product.id}`);
-      window.scrollTo(0, 0);
-    }
+  if (
+    product.productName === dataStore.allProducts[0].productName &&
+    Object.entries(dataStore.selectedWeek).length > 0 &&
+    selectedPaymentPlan.value !== "Choose Payment Plan"
+  ) {
+    dataStore.singleProduct = product;
+    router.push(`/store/${product.id}`);
+    window.scrollTo(0, 0);
   } else {
     dataStore.singleProduct = product;
     router.push(`/store/${product.id}`);
@@ -149,6 +103,25 @@ const changePaymentPlan = (plan: string) => {
   selectedPaymentPlan.value = plan;
   showPaymentDropdown.value = false;
 };
+
+const getOutput = (index: number) => {
+  switch (index) {
+    case 0:
+      return "Prepbook & Workbook";
+      break;
+    case 1:
+      return "Prepbook";
+      break;
+    case 2:
+      return "Workbook";
+      break;
+    default:
+      return "Prepbook & Workbook";
+  }
+};
+
+const dated = new Date();
+const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
 </script>
 <template>
   <div class="bg-blue-11 py-28 w-full">
@@ -237,72 +210,16 @@ const changePaymentPlan = (plan: string) => {
       <div v-show="category === 'All'" class="flex mt-14 w-full">
         <template v-if="featuredProducts.length">
           <div class="flex flex-wrap md:flex-nowrap">
-            <div v-if="Object.entries(singleProduct).length !== 0" class="flex">
-              <div
-                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
-              >
-                <!-- <div
-                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-                >
-                  95% off
-                </div>
-                <div
-                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
-                >
-                  HOT
-                </div> -->
-                <img
-                  class="absolute top-24 left-4 h-10"
-                  :src="singleProduct[0].banners[0].Location"
-                />
-                <img
-                  class="absolute top-8 left-4 h-10"
-                  :src="singleProduct[0].banners[1].Location"
-                />
-                <img
-                  :src="singleProduct[0].productImages[0].Location"
-                  alt="A picture of a Books titled bridging the gap"
-                />
-                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
-                  {{ singleProduct[0].productName }}
-                </h3>
-                <div class="flex my-6 gap-[6px]">
-                  <p class="line-through text-grey-13 text-[25px]">
-                    £{{ singleProduct[0].price }}
-                  </p>
-                  <p class="font-bold text-blue-13 text-[25px]">
-                    £{{ singleProduct[0].currentPrice }}
-                  </p>
-                </div>
-                <p
-                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
-                >
-                  {{ singleProduct[0].description }}
-                </p>
-                <div class="mt-12 max-w-fit">
-                  <button
-                    class="bg-blue-4 flex h-[76px] items-center px-10"
-                    @click="saveFirstProductToStore"
-                  >
-                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
-                    <span class="text-white">SHOP NOW</span>
-                  </button>
-                </div>
-              </div>
-            </div>
             <div class="flex justify-center items-start w-full">
-              <div
-                class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-              >
+              <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
-                  v-for="(publication, idx) in featuredProducts"
+                  v-for="(publication, idx) in featuredWorkbooks"
                   :key="idx"
-                  @click="saveProductToStore(publication)"
-                  class="flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
+                  class="flex flex-col w-full p-[25px] border justify-between bg-whiter relative border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="absolute top-8 left-4 h-10"
-                    :src="publication.banners[0].Location"
+                    :src="publication.banners[0]?.Location"
                   />
                   <img
                     class="w-full"
@@ -320,9 +237,68 @@ const changePaymentPlan = (plan: string) => {
                           <p class="line-through text-grey-13 text-[22px]">
                             £{{ publication.price }}
                           </p>
-                          <p class="font-bold text-blue-13 text-[22px]">
+                          <p v-if="publication.currentPrice" class="font-bold text-blue-13 text-[22px]">
                             £{{ publication.currentPrice }}
                           </p>
+                        </div>
+                        <div class="mt-12 w-full">
+                          <button
+                            class="bg-blue-4 flex h-[76px] items-center px-10 w-full justify-center"
+                            @click="saveProductToStore(publication)"
+                          >
+                            <img
+                              class="mr-3"
+                              src="/svg/shop.svg"
+                              alt="shop icon"
+                            />
+                            <span class="text-white">SHOP NOW</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  v-for="(publication, idx) in featuredOtherbooks"
+                  :key="idx"
+                  class="flex flex-col w-full p-[25px] border justify-between bg-whiter relative border-grey-15 lg:w-[433px]"
+                >
+                  <img
+                    class="absolute top-8 left-4 h-10"
+                    :src="publication.banners[0]?.Location"
+                  />
+                  <img
+                    class="w-full"
+                    :src="publication.productImages[0].Location"
+                  />
+                  <div class="flex items-start">
+                    <div class="flex w-full">
+                      <div class="flex flex-col">
+                        <h3
+                          class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
+                        >
+                          {{ publication.productName }}
+                        </h3>
+                        <!-- <div class="flex mt-[12px] gap-[6px]">
+                          <p class="line-through text-grey-13 text-[22px]">
+                            £{{ publication.price }}
+                          </p>
+                          <p  class="font-bold text-blue-13 text-[22px]">
+                            £{{ publication.currentPrice }}
+                          </p>
+                        </div> -->
+                        <div class="mt-12 w-full">
+                          <button
+                            class="bg-blue-4 flex h-[76px] items-center px-10 w-full justify-center"
+                            @click="saveProductToStore(publication)"
+                          >
+                            <img
+                              class="mr-3"
+                              src="/svg/shop.svg"
+                              alt="shop icon"
+                            />
+                            <span class="text-white">SHOP NOW</span>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -336,66 +312,19 @@ const changePaymentPlan = (plan: string) => {
       <div v-show="category === 'Books'" class="flex mt-14 w-full">
         <template v-if="dataStore.allProducts.length">
           <div class="flex flex-wrap md:flex-nowrap">
-            <div class="flex">
-              <div
-                class="border border-grey-15 flex flex-col relative p-5 md:p-[38px] pb-[85px] bg-whiter md:w-[519px]"
-              >
-                <!-- <div
-                  class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-                >
-                  95% off
-                </div>
-                <div
-                  class="absolute top-20 left-10 bg-red text-base text-whiter rounded-sm px-[17px] py-[7.91px] max-w-fit"
-                >
-                  HOT
-                </div> -->
-                <img
-                  :src="dataStore.allProducts[0].productImages[0].Location"
-                  alt="A picture of a Books titled bridging the gap"
-                />
-                <h3 class="mt-[78px] text-xl font-medium leading-[37.951px]">
-                  {{ dataStore.allProducts[0].productName }}
-                </h3>
-                <div class="flex my-6 gap-[6px]">
-                  <!-- <p class="line-through text-grey-13 text-[25px]">
-                    {{ hotResource.slashedPrice }}
-                  </p> -->
-                  <p class="font-bold text-blue-13 text-[25px]">
-                    £{{ dataStore.allProducts[0].price }}
-                  </p>
-                </div>
-                <p
-                  class="clamp leading-[31.626px] overflow-hidden text-ellipsis text-grey-14"
-                >
-                  {{ dataStore.allProducts[0].description }}
-                </p>
-                <div class="mt-12 max-w-fit">
-                  <button
-                    class="bg-blue-4 flex h-[76px] items-center px-10"
-                    @click="saveFirstProductToStore"
-                  >
-                    <img class="mr-3" src="/svg/shop.svg" alt="shop icon" />
-                    <span class="text-white">SHOP NOW</span>
-                  </button>
-                </div>
-              </div>
-            </div>
             <div class="flex justify-center items-start w-full">
               <div
                 class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
               >
                 <div
-                  v-for="(publication, idx) in dataStore.allProducts.length - 1"
+                  v-for="(publication, idx) in dataStore.allProducts"
                   :key="idx"
-                  @click="saveProductToStore(dataStore.allProducts[idx + 1])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  @click="saveProductToStore(publication)"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
-                    :src="
-                      dataStore.allProducts[idx + 1].productImages[0].Location
-                    "
+                    :src="publication.productImages[0].Location"
                   />
                   <div class="flex items-start">
                     <div class="flex w-full">
@@ -403,11 +332,14 @@ const changePaymentPlan = (plan: string) => {
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[idx + 1].productName }}
+                          {{ publication.productName }}
                         </h3>
                         <div class="flex mt-[12px] gap-[6px]">
-                          <p class="font-bold text-blue-13 text-[22px]">
-                            £{{ dataStore.allProducts[idx + 1].price }}
+                           <p class="line-through text-grey-13 text-[22px]">
+                            £{{ publication.price }}
+                          </p>
+                          <p  class="font-bold text-blue-13 text-[22px]">
+                            £{{ publication.currentPrice }}
                           </p>
                         </div>
                       </div>
@@ -420,159 +352,57 @@ const changePaymentPlan = (plan: string) => {
         </template>
       </div>
       <div v-show="category === 'Prep Books'" class="flex mt-14 w-full">
-        <template v-if="dataStore.allProducts.length">
-          <!-- <div
-            class="absolute top-7 left-10 bg-blue-9 text-base text-blue-10 rounded-md px-[17px] py-[5.76px] max-w-fit"
-          >
-            95% off
-          </div>
-          <div
-            class="absolute top-20 left-10 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-          >
-            Coming soon
-          </div> -->
-          <div
-            class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center items-start w-full"
-          >
-            <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-            >
-              <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
-              >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
-                    /img/manager.png
-                  "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                      >
-                        CQC Registered Managers interview Prepbook & Workbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £250
-                        </p>
-                        <p class="font-bold text-blue-13 text-[22px]">£150</p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepWorkMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook & Workbook</a
-                        >
+        <div
+          class="flex md:flex-row flex-col md:space-y-0 space-y-5 justify-center w-full"
+        >
+          <template v-if="dataStore.allProducts.length">
+            <div class="flex flex-wrap md:flex-nowrap">
+              <div class="flex justify-center items-start w-full">
+                <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
+                  <div
+                    v-for="(publication, idx) in dataStore.allProducts"
+                    :key="idx"
+                    @click="saveProductToStore(publication)"
+                    class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 h-[530px] lg:w-[433px]"
+                  >
+                    <img
+                      class="w-full"
+                      :src="publication.productImages[0].Location"
+                    />
+                    <div class="flex items-start h-full">
+                      <div class="flex w-full h-full">
+                        <div class="flex flex-col justify-between h-full">
+                          <div class="">
+                            <h3
+                              class="mt-[12.65px] text-black-2 text-xl font-medium leading-[31.626px]"
+                            >
+                              {{ publication.productName }}
+                            </h3>
+                            <div class="flex mt-[12px] gap-[6px]">
+                              <p class="text-grey-13 line-through text-[22px]">
+                                £{{ publication.price }}
+                              </p>
+                              <p class="font-bold text-blue-13 text-[22px]">
+                                £{{ publication.currentPrice }}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="h-16 flex items-center justify-center">
+                            <a
+                              :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
+                              class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
+                              >Pre-order {{ getOutput(idx) }}</a
+                            >
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-            >
-              <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
-              >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
-                    /img/interview.png
-                  "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                      >
-                        CQC Registered Managers interview Prepbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £150
-                        </p>
-                        <p class="font-semibold text-blue-13 text-[22px]">
-                          £75
-                        </p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${prepMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bg-whiter flex flex-col lg:flex-row md:items-start flex-wrap"
-            >
-              <div
-                class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter relative border-grey-15 lg:w-[392px]"
-              >
-                <div
-                  class="absolute top-8 left-4 bg-red text-sm text-whiter rounded px-[17px] py-[7.91px] max-w-fit"
-                >
-                  Coming soon
-                </div>
-                <img
-                  class="w-full"
-                  src="
-                    /img/registered.png
-                  "
-                />
-                <div class="flex items-start">
-                  <div class="flex w-full">
-                    <div class="flex flex-col">
-                      <h3
-                        class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                      >
-                        CQC Registered Managers interview Workbook
-                      </h3>
-                      <div class="flex mt-[12px] gap-[6px]">
-                        <p class="text-grey-13 line-through text-[22px]">
-                          £150
-                        </p>
-                        <p class="font-bold text-blue-13 text-[22px]">£75</p>
-                      </div>
-                      <div
-                        class="h-16 flex items-center mt-[78px] justify-center"
-                      >
-                        <a
-                          :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${workMessage}%27`"
-                          class="light-blue-bg text-blue-17 h-16 flex items-center justify-center text-sm w-full"
-                          >Pre-order Prepbook & Workbook</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </template>
+          </template>
+        </div>
       </div>
       <div
         v-show="category === 'Handouts'"
@@ -581,29 +411,38 @@ const changePaymentPlan = (plan: string) => {
         <template v-if="dataStore.allProducts.length">
           <div class="flex">
             <div class="flex justify-center items-start w-full">
-              <div
-                class="bg-whiter gap-4 flex flex-col lg:flex-row md:items-start flex-wrap"
-              >
+              <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
                   v-for="(publication, idx) in 3"
                   :key="idx"
                   @click="showModal(dataStore.allProducts[idx])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] justify-between border bg-whiter border-grey-15 h-[664px] lg:w-[433px]"
                 >
-                  <img
-                    class="w-full"
-                    :src="dataStore.allProducts[idx].productImages[0].Location"
-                  />
-                  <div class="flex items-start">
-                    <div class="flex w-full">
-                      <div class="flex flex-col">
-                        <h3
-                          class="mt-[12.65px] text-lg font-medium leading-[34.934px] text-black-2"
-                        >
-                          {{ dataStore.allProducts[idx].productName }}
-                        </h3>
+                  <div class="">
+                    <img
+                      class="w-[200px] mx-auto"
+                      :src="
+                        dataStore.allProducts[idx].productImages[0].Location
+                      "
+                    />
+                    <div class="flex items-start">
+                      <div class="flex w-full">
+                        <div class="flex flex-col">
+                          <h3
+                            class="mt-6 text-lg leading-[34.934px] text-black-2"
+                          >
+                            {{ dataStore.allProducts[idx].productName }}
+                          </h3>
+                        </div>
                       </div>
                     </div>
+                  </div>
+                  <div class="h-16 flex items-center justify-center">
+                    <button
+                      class="light-blue-bg bg-blue-5 text-white h-16 flex items-center font-medium justify-center w-full"
+                    >
+                      Order Now
+                    </button>
                   </div>
                 </div>
               </div>
@@ -628,7 +467,7 @@ const changePaymentPlan = (plan: string) => {
             <div class="flex justify-center items-start w-full">
               <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
                 <div
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -657,7 +496,7 @@ const changePaymentPlan = (plan: string) => {
                 </div>
                 <div
                   @click="saveProductToStore(dataStore.allProducts[1])"
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -683,7 +522,7 @@ const changePaymentPlan = (plan: string) => {
                   </div>
                 </div>
                 <div
-                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[392px]"
+                  class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
@@ -710,7 +549,13 @@ const changePaymentPlan = (plan: string) => {
                               name="material-symbols:calendar-month-sharp"
                             />
                             <h5 class="ml-[8.84px]">
-                              {{ typeof dataStore.selectedWeek !== 'string' && Object.entries(dataStore.selectedWeek).length > 0 ? `${ dataStore.selectedWeek.week }: ${ dataStore.selectedWeek.weekValue }` : 'Select a Week' }}
+                              {{
+                                typeof dataStore.selectedWeek !== "string" &&
+                                Object.entries(dataStore.selectedWeek).length >
+                                  0
+                                  ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
+                                  : "Select a Week"
+                              }}
                             </h5>
                             <Icon
                               class="absolute top-2.5 right-2"
@@ -727,7 +572,8 @@ const changePaymentPlan = (plan: string) => {
                                 ?.weeklyLinks"
                               :key="index"
                               @click="selectWeek(week)"
-                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                              class="border border-grey-19 flex items-center disabled:border-black disabled:text-black-5/30 px-4 w-full h-10"
+                              :disabled="weekOfMonth < index + 1"
                             >
                               <p>{{ week.week }}: {{ week.weekValue }}</p>
                             </div>
@@ -804,6 +650,5 @@ const changePaymentPlan = (plan: string) => {
 }
 .light-blue-bg {
   border-radius: 2.209px;
-  background: rgba(12, 98, 201, 0.12);
 }
 </style>

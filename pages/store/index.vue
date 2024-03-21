@@ -5,8 +5,8 @@
     <AboutUsDropdown v-if="dataStore.about" />
     <TrainingDropdown v-if="dataStore.training" />
     <StoreHero />
-    <StoreExample />
-    <StoreFeatures />
+    <!-- <StoreExample /> -->
+    <!-- <StoreFeatures /> -->
     <StoreResources />
     <StoreCTA />
     <StoreTestimonials />
