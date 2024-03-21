@@ -22,7 +22,7 @@ const clickedOutside = () => {
 };
 </script>
 <template>
-  <!-- <ThePreloader /> -->
+  <PreLoader />
   <div class="body">
     <main>
       <CustomCursor />
