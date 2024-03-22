@@ -1,5 +1,12 @@
 <script setup lang="ts">
 const router = useRouter();
+
+const phoneNumber = ref("7903094884");
+const message = ref("");
+
+const messageUrl = () => {
+  return `https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27;`;
+};
 </script>
 <template>
   <div
@@ -46,32 +53,39 @@ const router = useRouter();
         <span>By Oby-Chinye Okonkwo </span>
       </div>
     </div>
-    <img
-      class=""
-      src="/img/blog-cover-first.jpg"
-      alt="people working"
-    />
-    <p
-      class="my-6 px-4 md:px-0 max-w-full text-left"
-    >
-      <span class="text-3xl">B</span>idding on tenders can be a fantastic way to secure new contracts and grow your business. However, investing time and resources in bids you're unlikely to win is a recipe for wasted effort. The key? Selecting the right tenders that perfectly align with your company's strengths and experience.
+    <img class="" src="/img/blog-cover-first.jpg" alt="people working" />
+    <p class="my-6 px-4 md:px-0 max-w-full text-left">
+      <span class="text-3xl">B</span>idding on tenders can be a fantastic way to
+      secure new contracts and grow your business. However, investing time and
+      resources in bids you're unlikely to win is a recipe for wasted effort.
+      The key? Selecting the right tenders that perfectly align with your
+      company's strengths and experience.
     </p>
-    <p
-      class="my-6 px-4 md:px-0 max-w-full text-left"
-    >
-      <span class="text-3xl">T</span>his article will introduce you to the Types of Tenders and Eligible Companies, helping you navigate the tender landscape and identify opportunities that maximise your chances of success.
+    <p class="my-6 px-4 md:px-0 max-w-full text-left">
+      <span class="text-3xl">T</span>his article will introduce you to the Types
+      of Tenders and Eligible Companies, helping you navigate the tender
+      landscape and identify opportunities that maximise your chances of
+      success.
     </p>
-    <p
-      class="my-6 px-4 md:px-0 max-w-full text-left"
-    >
-      <span class="text-3xl">B</span>y understanding the different tender types and the typical company profile each one seeks, you'll be well-equipped to target tenders that are a perfect fit for your business, regardless of size or experience level.
+    <p class="my-6 px-4 md:px-0 max-w-full text-left">
+      <span class="text-3xl">B</span>y understanding the different tender types
+      and the typical company profile each one seeks, you'll be well-equipped to
+      target tenders that are a perfect fit for your business, regardless of
+      size or experience level.
     </p>
-    <img
-      class=""
-      src="/img/types-of-tenders.jpg"
-      alt="people working"
-    />
-    <div
+    <img class="" src="/img/types-of-tenders.jpg" alt="people working" />
+    <p class="my-6 px-4 md:px-0 max-w-full text-left">
+      For more assistance on your bidding journey, get in touch with us
+    </p>
+    <div class="h-16 mb-20 flex items-center justify-start max-w-fit">
+      <a
+        :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`"
+        class=" light-blue-bg bg-blue-5 text-white h-12 px-5 flex items-center rounded font-medium justify-center w-full"
+        target="_blank"
+        >Click here</a
+      >
+    </div>
+    <!-- <div
       class="flex flex-col lg:flex-row-reverse justify-between items-center my-[64px] lg:my-[120px] mx-auto w-full max-w-[1240px]"
     >
       <div
@@ -143,7 +157,7 @@ const router = useRouter();
           ><Icon name="ic:round-facebook" size="24px" color="#001D40"
         /></a>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
