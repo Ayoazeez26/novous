@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import hero from "~/assets/hero.json";
+import hero from "~/assets/hero2.json";
 
 const content = [
   "Secure and Maintain Public Contracts",
