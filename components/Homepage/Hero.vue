@@ -15,7 +15,7 @@
       <button
         class="text-[#ddd] bg-blue-4 hover:bg-[#e5f6ff] hover:text-blue-4 hover:border-blue-4 transition-all duration-300 rounded-2xl border-2 border-[#023C82] px-14 py-3 text-2xl mt-5"
       >
-        Lets Talk
+        <NuxtLink to="/store">Lets Talk</NuxtLink>
       </button>
     </div>
   </section>
@@ -32,7 +32,7 @@
       <button
         class="text-[#ddd] bg-blue-4 hover:bg-[#e5f6ff] hover:text-blue-4 hover:border-blue-4 transition-all duration-300 rounded-2xl border-2 border-[#023C82] px-14 py-3 md:text-2xl mt-5"
       >
-        Lets Talk
+        <NuxtLink to="/store">Lets Talk</NuxtLink>Talk
       </button>
     </div>
   </section>

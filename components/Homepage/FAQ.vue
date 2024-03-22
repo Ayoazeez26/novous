@@ -29,7 +29,7 @@
           <button
             class="w-[80%] bg-[#0073ff] text-white transition-all duration-500 hover:bg-white hover:text-[#0073ff] py-4 border border-white rounded-2xl"
           >
-            Lets Talk
+            <NuxtLink to="/store">Lets Talk</NuxtLink>
           </button>
         </div>
       </div>
