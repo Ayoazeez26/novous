@@ -249,8 +249,8 @@ const selectWeek = (week) => {
                   :to="{
                     path: `/store/payment/${productId}`,
                     query: {
-                      jobTitle: position.jobTitle,
-                      jobRole: position.role,
+                      price: ,
+                      title: ,
                     },
                   }"
                   target="_blank"
