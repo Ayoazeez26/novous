@@ -235,8 +235,9 @@ const selectWeek = (week) => {
               "
             >
               <div class="my-8 max-w-full">
+                <!-- href="https://docs.google.com/forms/d/1L3V7FMMeJ4fnswoZsg_Q4vJYEj2LUG5Jr8RroIsZB0E/viewform?pli=1&pli=1&edit_requested=true" -->
                 <a
-                  href="https://docs.google.com/forms/d/1L3V7FMMeJ4fnswoZsg_Q4vJYEj2LUG5Jr8RroIsZB0E/viewform?pli=1&pli=1&edit_requested=true"
+                  :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to purchase a copy of ${dataStore.singleProduct.productName} by OC Management Consultants%27`"
                   target="_blank"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                 >
