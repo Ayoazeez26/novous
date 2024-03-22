@@ -30,7 +30,9 @@
       </div>
       <div class="w-full">
         <div class="text-white uppercase tracking-wide text-right">
-          <a href="#!" class="bg-[#0073ff] p-7 rounded-2xl"
+          <a
+            href="https://healthandsocialcaretenders.co.uk/"
+            class="bg-[#0073ff] p-7 rounded-2xl"
             >Visit Tender portal</a
           >
         </div>
@@ -61,7 +63,9 @@
           <li><a href="/contact">Contact us</a></li>
         </ul>
         <div class="text-center bg-white py-5 text-black">
-          <a href="/contact">Visit Tender portal</a>
+          <a href="https://healthandsocialcaretenders.co.uk/"
+            >Visit Tender portal</a
+          >
         </div>
       </div>
     </nav>
