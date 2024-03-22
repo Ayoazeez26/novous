@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter();
+</script>
 <template>
   <div
     class="mx-auto text-lg leading-relaxed lg:leading-9 w-full max-w-[1240px] px-4 md:px-6 xl:px-0 pt-[200px]"
@@ -6,6 +8,7 @@
     <nuxt-link to="/blog" class="flex items-center gap-2 mb-4">
       <button
         class="ml-3 flex min-w-max rounded-full p-2 items-center justify-center bg-grey-2 self-start"
+        @click="router.go(-1)"
       >
         <Icon
           name="ic:baseline-arrow-back-ios"
@@ -20,7 +23,7 @@
       <h1
         class="font-bold leading-snug text-2xl md:text-3xl lg:text-[56px] lg:leading-[64px] text-black max-w-[984px]"
       >
-        Supported living: More than providing a house and a service
+        Don't Waste Your Bid: Choose the Right Tenders for Your Business Success
       </h1>
       <div
         class="text-blue flex items-center justify-center mt-8 gap-3 md:gap-6"
@@ -38,14 +41,34 @@
             Trending
           </nuxt-link>
         </div>
-        <span> April 23, 2023</span>
+        <span> March 22, 2024</span>
         <p class="h-6 w-1 bg-blue-4"></p>
-        <span>By Mrs Obi </span>
+        <span>By Oby-Chinye Okonkwo </span>
       </div>
     </div>
     <img
       class=""
-      src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/vid-placeholder.png"
+      src="/img/blog-cover-first.jpg"
+      alt="people working"
+    />
+    <p
+      class="my-6 px-4 md:px-0 max-w-full text-left"
+    >
+      <span class="text-3xl">B</span>idding on tenders can be a fantastic way to secure new contracts and grow your business. However, investing time and resources in bids you're unlikely to win is a recipe for wasted effort. The key? Selecting the right tenders that perfectly align with your company's strengths and experience.
+    </p>
+    <p
+      class="my-6 px-4 md:px-0 max-w-full text-left"
+    >
+      <span class="text-3xl">T</span>his article will introduce you to the Types of Tenders and Eligible Companies, helping you navigate the tender landscape and identify opportunities that maximise your chances of success.
+    </p>
+    <p
+      class="my-6 px-4 md:px-0 max-w-full text-left"
+    >
+      <span class="text-3xl">B</span>y understanding the different tender types and the typical company profile each one seeks, you'll be well-equipped to target tenders that are a perfect fit for your business, regardless of size or experience level.
+    </p>
+    <img
+      class=""
+      src="/img/types-of-tenders.jpg"
       alt="people working"
     />
     <div
@@ -73,14 +96,6 @@
         />
       </div>
     </div>
-    <p
-      class="mt-6 mb-10 px-4 md:px-0 max-w-[612px] mx-auto flex items-center justify-center text-center"
-    >
-      At OC Management Consultants, we believe in the power of trust,
-      transparency, and lasting relationships. Our commitment to your success
-      goes beyond transactions; it's about forging strong, long-term
-      partnerships.
-    </p>
     <img
       class=""
       src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/vid-placeholder.png"
