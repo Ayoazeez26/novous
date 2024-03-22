@@ -74,15 +74,13 @@ const messageUrl = () => {
       size or experience level.
     </p>
     <img class="" src="/img/types-of-tenders.jpg" alt="people working" />
-    <p class="my-6 px-4 md:px-0 max-w-full text-left">
-      For more assistance on your bidding journey, get in touch with us
-    </p>
+
     <div class="h-16 mb-20 flex items-center justify-start max-w-fit">
       <a
         :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=${message}%27`"
-        class=" light-blue-bg bg-blue-5 text-white h-12 px-5 flex items-center rounded font-medium justify-center w-full"
+        class="light-blue-bg bg-blue-5 text-white h-12 px-5 flex items-center rounded font-medium justify-center w-full"
         target="_blank"
-        >Click here</a
+        >Get in Touch</a
       >
     </div>
     <!-- <div
