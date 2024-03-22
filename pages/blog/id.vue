@@ -7,7 +7,7 @@
     <BlogInfo />
     <!-- <BlogMission />
     <BlogTestimonials /> -->
-    <BlogMore />
+    <!-- <BlogMore /> -->
     <AppFooter />
   </div>
 </template>
