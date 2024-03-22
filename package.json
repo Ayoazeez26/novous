@@ -24,6 +24,7 @@
     "@pinia/nuxt": "^0.4.11",
     "@stripe/stripe-js": "^3.0.10",
     "@tato30/vue-pdf": "^1.9.5",
+    "@vue-stripe/vue-stripe": "^4.5.0",
     "click-outside-vue3": "^4.0.1",
     "gsap": "npm:@gsap/shockingly",
     "nuxt-gtag": "^0.6.1",

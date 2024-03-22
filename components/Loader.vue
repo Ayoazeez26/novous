@@ -1,15 +1,17 @@
 <template>
   <div class="h-screen w-full custom_bg flex items-center justify-center">
     <div
-      class="flex flex-col gap-[20px] items-center bg-black py-[80px] px-[40px] rounded-full"
+      class="flex items-center justify-center h-64 w-64 rounded-full bg-[#0073ff]"
     >
-      <div>
-        <img src="/svg/ocmc-logo-large.svg" />
-      </div>
-      <div class="cirlces flex gap-[20px]">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+      <div class="flex flex-col gap-[20px] items-center">
+        <div>
+          <img src="/svg/header-logo.svg" class="w-24" />
+        </div>
+        <div class="cirlces flex gap-[20px]">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -17,7 +19,7 @@
 
 <style scoped>
 .custom_bg {
-  background: rgba(0, 0, 0, 0.9);
+  background: #fff;
   z-index: 8000;
 }
 .circle {

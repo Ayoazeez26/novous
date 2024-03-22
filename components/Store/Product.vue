@@ -11,6 +11,7 @@ let count = ref(1);
 const phoneNumber = ref("7903094884");
 const showSelectWeekDropdown = ref(false);
 const message = ref("Hi, I would like to preorder a copy of The CQC Prepbook.");
+const id = dataStore.singleProduct.id;
 
 onMounted(() => {});
 
@@ -28,6 +29,9 @@ onMounted(() => {
   ) {
     dataStore.singleProduct.productName = "";
   }
+  const id = dataStore.singleProduct.id;
+  console.log(id);
+  // console.log(dataStore.singleProduct.id);
 });
 
 const getSingleProduct = async (id: string) => {
@@ -247,11 +251,7 @@ const selectWeek = (week) => {
               <div class="my-8 max-w-full">
                 <NuxtLink
                   :to="{
-                    path: `/store/payment/${productId}`,
-                    query: {
-                      price: ,
-                      title: ,
-                    },
+                    path: `/store/payment/${id}`,
                   }"
                   target="_blank"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
