@@ -234,7 +234,7 @@ const selectWeek = (week) => {
                 dataStore.singleProduct.category.toUpperCase() === 'PREP BOOKS'
               "
             >
-              <div class="my-8 max-w-full">
+              <!-- <div class="my-8 max-w-full">
                 <a
                   href="https://docs.google.com/forms/d/1L3V7FMMeJ4fnswoZsg_Q4vJYEj2LUG5Jr8RroIsZB0E/viewform?pli=1&pli=1&edit_requested=true"
                   target="_blank"
@@ -243,6 +243,22 @@ const selectWeek = (week) => {
                   <p class="text-blue-4 text-sm">Shop Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
                 </a>
+              </div> -->
+              <div class="my-8 max-w-full">
+                <NuxtLink
+                  :to="{
+                    path: `/store/payment/${productId}`,
+                    query: {
+                      jobTitle: position.jobTitle,
+                      jobRole: position.role,
+                    },
+                  }"
+                  target="_blank"
+                  class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
+                >
+                  <p class="text-blue-4 text-sm">Shop Now</p>
+                  <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
+                </NuxtLink>
               </div>
               <div
                 class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between"

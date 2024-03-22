@@ -22,9 +22,11 @@ export default defineNuxtConfig({
           async: true,
           defer: true,
         },
+        { src: "https://js.stripe.com/v3/", defer: true },
       ],
     },
   },
+
   css: ["~/assets/main.scss", "~/assets/fonts/fonts.css"],
   modules: [
     "@nuxtjs/tailwindcss",
@@ -53,6 +55,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL,
+      stripePk: process.env.STRIPE_PK_KEY,
     },
   },
   build: {
