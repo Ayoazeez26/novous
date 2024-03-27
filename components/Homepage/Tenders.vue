@@ -33,7 +33,9 @@
             <button
               class="w-full bg-[#0073ff] text-white hover:bg-white hover:text-[#0073ff] hover:border-[#0073ff] transition-all duration-500 border border-[#DDDBDB] rounded-2xl py-4 md:text-xl"
             >
-              Find My Tender
+              <NuxtLink to="https://healthandsocialcaretenders.co.uk/"
+                >Find My Tender</NuxtLink
+              >
             </button>
           </div>
         </div>

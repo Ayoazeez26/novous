@@ -9,7 +9,7 @@
       <div
         class="bg-[#2c71f6] py-[60px] md:px-[120px] text-center rounded-b-[20.74px] relative md:mx-44"
       >
-        <img
+        <!-- <img
           src="/svg/footer-border.svg"
           alt=""
           class="md:w-[99%] w-[97%] absolute md:bottom-1 bottom-2 md:left-1 left-1.5 md:block hidden"
@@ -18,7 +18,7 @@
           src="/svg/footer-border2.svg"
           alt=""
           class="w-[98%] absolute bottom-1 left-1 md:hidden"
-        />
+        /> -->
         <div class="mb-8">
           <h4
             class="sans text-white md:text-2xl text-xl md:px-0 px-20 md:mb-0 mb-5"
@@ -41,10 +41,11 @@
               name="phone"
               id="phone"
               value="+44"
-              class="bg-transparent py-2 px-3 w-[50%] text-white md:text-auto text-sm"
+              class="bg-transparent py-2 px-3 w-[70%] text-white md:text-auto text-sm outline-none"
             />
             <button
-              class="bg-[#122031] text-white uppercase rounded-[15px] py-2 px-5 border-2 border-[#537ac5] my-0.5 md:text-base text-sm"
+              disabled
+              class="bg-[#122031] cursor-auto text-white uppercase rounded-[15px] py-2 px-5 border-2 border-[#537ac5] my-0.5 md:text-base text-sm"
             >
               send request
             </button>
@@ -87,17 +88,17 @@
             class="flex md:flex-row flex-col md:space-y-0 space-y-4 items-start justify-between text-white/80"
           >
             <div class="flex flex-col">
-              <a href="tel:+2349023421755">+234 (902) 342-1755</a>
-              <a href="tel:+14805550103">+1 (480) 555-0103</a>
+              <a href="tel:+447903094884 ">+44 7903 094884 </a>
             </div>
-            <a href="mailto:hellp@ocmanagentment.com"
-              >hellp@ocmanagentment.com</a
+            <a href="mailto:hello@ocmanagementconsultants.co.uk"
+              >hello@ocmanagementconsultants.co.uk</a
             >
-            <button
+            <a
+              href="https://healthandsocialcaretenders.co.uk/"
               class="bg-[#2c71f6] text-white transition-all duration-300 hover:bg-white hover:text-[#2c71f6] uppercase rounded-[15px] py-3 px-10 border-4 border-[#537ac5] my-0.5 text-sm"
             >
               visit tender portal
-            </button>
+            </a>
           </div>
         </div>
         <div
@@ -107,22 +108,30 @@
             <h5 class="text-white/40 sans mb-6">Follow us</h5>
             <div class="flex items-start justify-between text-white/80">
               <div class="flex space-x-2 items-center">
-                <a href="https://www.facebook.com/" class="social-icon"
+                <a
+                  href="https://web.facebook.com/p/O-C-Management-Consultants-100067805363248/?_rdc=1&_rdr"
+                  class="social-icon"
                   ><Icon name="mdi:facebook-box" size="20px" class=""
                 /></a>
-                <a href="https://www.google.com/" class="social-icon"
-                  ><Icon name="mdi:google-plus" size="20px" class=""
+                <a
+                  href="https://www.linkedin.com/company/o-c-management-consultants/"
+                  class="social-icon"
+                  ><Icon name="mdi:linkedin" size="20px" class=""
                 /></a>
-                <a href="https://www.instagram.com/" class="social-icon"
+                <a
+                  href="https://www.instagram.com/ocmanagementconsultants/"
+                  class="social-icon"
                   ><Icon name="mdi:instagram" size="20px" class=""
                 /></a>
-                <a href="https://www.youtube.com/" class="social-icon"
+                <a
+                  href="https://www.youtube.com/@ocmanagementconsultants"
+                  class="social-icon"
                   ><Icon name="mdi:youtube" size="20px" class=""
                 /></a>
               </div>
             </div>
           </div>
-          <div>
+          <!-- <div>
             <h5 class="text-white/40 sans mb-6">Let's Chat</h5>
             <div class="flex items-start justify-between text-white/80">
               <div class="flex space-x-2 items-center">
@@ -137,13 +146,13 @@
                 /></a>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="mt-16 flex md:space-x-[90px]">
           <div>
             <h5 class="text-white/40 sans mb-6">Location</h5>
             <p class="text-white/80">
-              2972 Westheimer Rd. Santa Ana, Illinois 85486
+              Blue information 133 Benets Rd, Hornchurch RM11 3PT, UK
             </p>
           </div>
         </div>

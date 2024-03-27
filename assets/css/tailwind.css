@@ -34,3 +34,7 @@
 .faq__answer {
   @apply pt-4 text-lg
 }
+
+.form-input {
+  @apply border border-gray-300 rounded-md w-full p-2
+}
