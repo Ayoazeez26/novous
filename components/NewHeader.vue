@@ -14,18 +14,18 @@
         <ul
           class="flex items-center space-x-6 px-11 py-6 bg-white shadow-md rounded-2xl text-sm"
         >
-          <a href="/about">
+          <NuxtLink to="/about">
             <li>About Us</li>
-          </a>
-          <a href="/services" class="flex items-center space-x-3">
+          </NuxtLink>
+          <NuxtLink to="/services" class="flex items-center space-x-3">
             <li>Services</li>
-          </a>
-          <a href="resources">
+          </NuxtLink>
+          <NuxtLink to="resources">
             <li>Resources</li>
-          </a>
-          <a href="store">
+          </NuxtLink>
+          <NuxtLink to="store">
             <li>Online Store</li>
-          </a>
+          </NuxtLink>
         </ul>
       </div>
       <div class="w-full">
@@ -56,11 +56,11 @@
       </div>
       <div v-show="mobileNavOpen" class="mobile-nav">
         <ul class="flex flex-col space-y-7 text-lg p-5">
-          <li><a href="/about">About us</a></li>
-          <li><a href="/services">Services</a></li>
-          <li><a href="/resources">Resources</a></li>
-          <li><a href="/store">Online Store</a></li>
-          <li><a href="/contact">Contact us</a></li>
+          <li><NuxtLink to="/about">About us</NuxtLink></li>
+          <li><NuxtLink to="/services">Services</NuxtLink></li>
+          <li><NuxtLink to="/resources">Resources</NuxtLink></li>
+          <li><NuxtLink to="/store">Online Store</NuxtLink></li>
+          <li><NuxtLink to="/contact">Contact us</NuxtLink></li>
         </ul>
         <div class="text-center bg-white py-5 text-black">
           <a href="https://healthandsocialcaretenders.co.uk/"

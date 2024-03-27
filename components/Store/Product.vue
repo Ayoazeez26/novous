@@ -11,7 +11,7 @@ let count = ref(1);
 const phoneNumber = ref("7903094884");
 const showSelectWeekDropdown = ref(false);
 const message = ref("Hi, I would like to preorder a copy of The CQC Prepbook.");
-const id = dataStore.singleProduct.id;
+const id = dataStore.singleProduct?.id;
 
 onMounted(() => {});
 
@@ -60,6 +60,33 @@ const copyLink = () => {
 const selectWeek = (week) => {
   dataStore.selectedWeek = week;
   showSelectWeekDropdown.value = false;
+};
+
+const createCheckoutSession = async () => {
+  try {
+    const amount = dataStore.singleProduct.currentPrice * 100;
+    const productName = dataStore.singleProduct.productName;
+
+    const response = await fetch(
+      `https://dev.tgpcmedia.com/payment/create-checkout-session`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          productName,
+        }),
+      }
+    );
+
+    const json = await response.json();
+    console.log(json.paymentIntentLink);
+    window.location.href = json.paymentIntentLink;
+  } catch (error) {
+    console.log("Error creating checkout session:", error);
+  }
 };
 </script>
 <template>
@@ -249,16 +276,13 @@ const selectWeek = (week) => {
                 </a>
               </div> -->
               <div class="my-8 max-w-full">
-                <NuxtLink
-                  :to="{
-                    path: `/store/payment/${id}`,
-                  }"
-                  target="_blank"
+                <button
+                  @click="createCheckoutSession"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                 >
                   <p class="text-blue-4 text-sm">Shop Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
-                </NuxtLink>
+                </button>
               </div>
               <div
                 class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between"
