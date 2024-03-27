@@ -52,6 +52,31 @@ const messageUrl = () => {
   <div
     class="mx-auto w-full px-4 md:px-6 xl:px-0 mt-14 md:mt-16 mb-16 max-w-[1240px]"
   >
+    <h2
+      class="font-bold px-8 lg:px-0 leading-[36px] md:leading-[48px] lg:leading-[54px] mb-3 tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] w-full"
+    >
+      Don't Waste Your Bid: Choose the Right Tenders for Your Business Success
+    </h2>
+    <img
+      class=""
+      src="/img/blog-cover-first.jpg"
+      alt="people working"
+    />
+    <p class="leading-[28px] text-lg mt-8">
+      Bidding on tenders can be a fantastic way to secure new contracts and grow
+      your business. However, investing time and resources in bids you're
+      unlikely to win is a recipe for wasted effort. The key? Selecting the
+      right tenders that perfectly align with your company's strengths and
+      experience.
+    </p>
+    <div class="h-16 flex items-center justify-start max-w-fit">
+      <nuxt-link
+        to="/blog/id"
+        class="light-blue-bg bg-blue-5 text-white h-12 px-5 flex items-center font-medium justify-center w-full"
+      >
+        Read More
+      </nuxt-link>
+    </div>
     <!-- <div class="flex xl:justify-center mb-16 items-start w-full">
       <div
         class="bg-whiter flex flex-col gap-6 lg:flex-row md:items-stretch flex-wrap"
@@ -76,7 +101,7 @@ const messageUrl = () => {
       </div>
     </div> -->
     <h2
-      class="font-bold px-8 lg:px-0 leading-[36px] md:leading-[48px] lg:leading-[54px] mb-5 tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] w-full"
+      class="font-bold px-8 lg:px-0 leading-[36px] md:leading-[48px] lg:leading-[54px] mt-12 mb-5 tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] w-full"
     >
       Out Now: A Social Care Provider’s Guide to the 2023 CQC State of Care
       Report. An Analytical Summary by OC Management Consultants
