@@ -29,8 +29,8 @@ onMounted(() => {
   ) {
     dataStore.singleProduct.productName = "";
   }
-  const id = dataStore.singleProduct.id;
-  console.log(id);
+  // const id = dataStore.singleProduct.id;
+  // console.log(id);
   // console.log(dataStore.singleProduct.id);
 });
 
@@ -67,6 +67,14 @@ const createCheckoutSession = async () => {
     const amount = dataStore.singleProduct.currentPrice * 100;
     const productName = dataStore.singleProduct.productName;
 
+    // Store product ID in local storage
+    localStorage.setItem("productId", dataStore.singleProduct.id);
+
+    // Update button state to show loading
+    const button = document.getElementById("checkoutButton");
+    button.disabled = true; // Disable button
+    button.innerText = "Loading...";
+
     const response = await fetch(
       `https://dev.tgpcmedia.com/payment/create-checkout-session`,
       {
@@ -83,9 +91,22 @@ const createCheckoutSession = async () => {
 
     const json = await response.json();
     console.log(json.paymentIntentLink);
-    window.location.href = json.paymentIntentLink;
+
+    // Open payment link in another tab
+    window.open(json.paymentIntentLink, "_blank");
+
+    // Log local storage to the console
+    console.log(localStorage.getItem("productId"));
+
+    // Reset button state
+    button.disabled = false;
+    button.innerText = "Shop Now";
   } catch (error) {
     console.log("Error creating checkout session:", error);
+    // Reset button state on error
+    const button = document.getElementById("checkoutButton");
+    button.disabled = false;
+    button.innerText = "Shop Now";
   }
 };
 </script>
@@ -277,6 +298,7 @@ const createCheckoutSession = async () => {
               </div> -->
               <div class="my-8 max-w-full">
                 <button
+                  id="checkoutButton"
                   @click="createCheckoutSession"
                   class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
                 >
