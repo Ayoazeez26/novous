@@ -76,7 +76,7 @@ const createCheckoutSession = async () => {
     button.innerText = "Loading...";
 
     const response = await fetch(
-      `https://dev.tgpcmedia.com/payment/create-checkout-session`,
+      `https://prod.tgpcmedia.com/payment/create-checkout-session`,
       {
         method: "POST",
         headers: {
