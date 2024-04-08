@@ -11,6 +11,7 @@ let count = ref(1);
 const phoneNumber = ref("7903094884");
 const showSelectWeekDropdown = ref(false);
 const message = ref("Hi, I would like to preorder a copy of The CQC Prepbook.");
+const id = dataStore.singleProduct?.id;
 
 onMounted(() => {});
 
@@ -28,6 +29,9 @@ onMounted(() => {
   ) {
     dataStore.singleProduct.productName = "";
   }
+  // const id = dataStore.singleProduct.id;
+  // console.log(id);
+  // console.log(dataStore.singleProduct.id);
 });
 
 const getSingleProduct = async (id: string) => {
@@ -56,6 +60,54 @@ const copyLink = () => {
 const selectWeek = (week) => {
   dataStore.selectedWeek = week;
   showSelectWeekDropdown.value = false;
+};
+
+const createCheckoutSession = async () => {
+  try {
+    const amount = dataStore.singleProduct.currentPrice * 100;
+    const productName = dataStore.singleProduct.productName;
+
+    // Store product ID in local storage
+    localStorage.setItem("productId", dataStore.singleProduct.id);
+
+    // Update button state to show loading
+    const button = document.getElementById("checkoutButton");
+    button.disabled = true; // Disable button
+    button.innerText = "Loading...";
+
+    const response = await fetch(
+      `https://dev.tgpcmedia.com/payment/create-checkout-session`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount,
+          productName,
+        }),
+      }
+    );
+
+    const json = await response.json();
+    console.log(json.paymentIntentLink);
+
+    // Open payment link in another tab
+    window.open(json.paymentIntentLink, "_blank");
+
+    // Log local storage to the console
+    console.log(localStorage.getItem("productId"));
+
+    // Reset button state
+    button.disabled = false;
+    button.innerText = "Shop Now";
+  } catch (error) {
+    console.log("Error creating checkout session:", error);
+    // Reset button state on error
+    const button = document.getElementById("checkoutButton");
+    button.disabled = false;
+    button.innerText = "Shop Now";
+  }
 };
 </script>
 <template>
@@ -234,8 +286,7 @@ const selectWeek = (week) => {
                 dataStore.singleProduct.category.toUpperCase() === 'PREP BOOKS'
               "
             >
-              <div class="my-8 max-w-full">
-                <!-- href="https://docs.google.com/forms/d/1L3V7FMMeJ4fnswoZsg_Q4vJYEj2LUG5Jr8RroIsZB0E/viewform?pli=1&pli=1&edit_requested=true" -->
+              <!-- <div class="my-8 max-w-full">
                 <a
                   :href="`https://api.whatsapp.com/send/?phone=%2B44${phoneNumber}&text=Hi, I would like to purchase a copy of ${dataStore.singleProduct.productName} by OC Management Consultants%27`"
                   target="_blank"
@@ -244,6 +295,16 @@ const selectWeek = (week) => {
                   <p class="text-blue-4 text-sm">Shop Now</p>
                   <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
                 </a>
+              </div> -->
+              <div class="my-8 max-w-full">
+                <button
+                  id="checkoutButton"
+                  @click="createCheckoutSession"
+                  class="bg-blue-15 border border-blue-4 rounded flex gap-[18px] h-[53px] items-center justify-center max-w-full w-[321px]"
+                >
+                  <p class="text-blue-4 text-sm">Shop Now</p>
+                  <Icon name="mdi:arrow-right" size="20" color="#0073FF" />
+                </button>
               </div>
               <div
                 class="px-5 py-4 rounded border-2 border-grey-15 flex items-center w-[164px] justify-between"

@@ -23,9 +23,11 @@ export default defineNuxtConfig({
           async: true,
           defer: true,
         },
+        // { src: "https://js.stripe.com/v3/", defer: true },
       ],
     },
   },
+
   css: ["~/assets/main.scss", "~/assets/fonts/fonts.css"],
   modules: [
     "@nuxtjs/tailwindcss",
@@ -42,6 +44,10 @@ export default defineNuxtConfig({
     id: "G-KV47Z7SGCC",
   },
 
+  alias: {
+    "./runtimeConfig": "./runtimeConfig.browser",
+  },
+
   vite: {
     css: {
       preprocessorOptions: {
@@ -50,10 +56,15 @@ export default defineNuxtConfig({
         },
       },
     },
+    define: {
+      "window.global": {},
+    },
   },
   runtimeConfig: {
+    STRIPE_SK_KEY: process.env.STRIPE_SK_KEY,
     public: {
       baseUrl: process.env.BASE_URL,
+      STRIPE_PK_KEY: process.env.STRIPE_PK_KEY,
     },
   },
   build: {
