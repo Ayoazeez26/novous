@@ -9,9 +9,9 @@
         <h3
           class="sans text-[#044da6] md:text-7xl text-4xl font-extrabold mb-9"
         >
-          Whats <span class="text-[#0073ff]">HOT</span> on OCMC!
+          Whats <span class="text-[#0073ff]">HOT</span> on TGPC Health!
         </h3>
-        <p>Check out whats New on OCMC!</p>
+        <p>Check out whats New on TGPC Health!</p>
       </div>
       <HomepageResourceSlider />
     </div>

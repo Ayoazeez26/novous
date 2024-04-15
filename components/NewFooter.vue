@@ -2,7 +2,7 @@
   <footer class="bg-[#1d334d] pt-24 pb-20 md:px-[101.6px] px-5 sans">
     <div>
       <img
-        src="/svg/ocmc-logo-large.svg"
+        src="/img/logo.png"
         alt=""
         class="mx-auto mb-[72px] md:w-auto w-[80%]"
       />

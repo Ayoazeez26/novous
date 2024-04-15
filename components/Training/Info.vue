@@ -49,7 +49,7 @@
           Bid Management
         </h2>
         <p class="text-grey-4/80 text-lg mt-3">
-          At OCMC, we excel in bid management, enabling our esteemed customers
+          At TGPC Health, we excel in bid management, enabling our esteemed customers
           to effectively manage the contracts they have won. We provide
           comprehensive support throughout the entire bid management process,
           including contract negotiation, performance monitoring, and compliance

@@ -29,13 +29,13 @@ const workMessage = ref(
   "Hi, I would like to preorder a copy of The CQC Prepbook."
 );
 const bridgeMessage = ref(
-  'Hi, I would like to purchase a copy of "Bridging the Gap: The Vital Role of MSMEs in Reducing Health Inequalities" by OC Management Consultants'
+  'Hi, I would like to purchase a copy of "Bridging the Gap: The Vital Role of MSMEs in Reducing Health Inequalities" by TGPC Health'
 );
 const domMessage = ref(
-  'Hi, I would like to purchase a copy of "Best Practices in Providing Domiciliary Care in Supported Living Schemes" by OC Management Consultants'
+  'Hi, I would like to purchase a copy of "Best Practices in Providing Domiciliary Care in Supported Living Schemes" by TGPC Health'
 );
 const tupeMessage = ref(
-  'Hi, I would like to purchase a copy of "Mastering TUPE Transfers in Social Care Service" by OC Management Consultants'
+  'Hi, I would like to purchase a copy of "Mastering TUPE Transfers in Social Care Service" by TGPC Health'
 );
 const prepMessage = ref(
   "Hi, I would like to preorder a copy of The CQC Workbook"

@@ -9,7 +9,7 @@
         class="mt-20 mb-12 lg:mb-0 lg:mt-0 flex flex-col items-center lg:items-start"
       >
         <nuxt-link to="/">
-          <img class="w-[85px] md:w-[134px]" src="/svg/logo-footer.svg" />
+          <img class="w-[85px] md:w-[134px]" src="/img/logo.png" />
         </nuxt-link>
         <p
           class="text-whiter text-lg w-full max-w-[310px] lg:text-left mt-3 font-normal"
@@ -101,7 +101,7 @@
     <div class="text-grey-9 py-6">
       <p class="text-center mb-3 leading-snug">Designed by TGPC Media</p>
       <p class="text-center leading-snug">
-        © {{ new Date().getFullYear() }} OC Management Consultants. All Rights
+        © {{ new Date().getFullYear() }} TGPC Health. All Rights
         Reserved.
       </p>
     </div>

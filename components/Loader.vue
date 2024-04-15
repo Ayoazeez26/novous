@@ -5,7 +5,7 @@
     >
       <div class="flex flex-col gap-[20px] items-center">
         <div>
-          <img src="/svg/header-logo.svg" class="w-24" />
+          <img src="/img/logo.png" class="w-24" />
         </div>
         <div class="cirlces flex gap-[20px]">
           <div class="circle"></div>

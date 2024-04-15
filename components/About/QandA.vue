@@ -40,7 +40,7 @@ watch(third, (val) => {
           class="flex bg-whiter border border-blue-2 cursor-pointer flex-col w-full lg:w-[823px] px-6 py-8"
         >
           <div class="flex justify-between items-center">
-            <h3 class="font-bold text-xl">What is OC Management Consultant</h3>
+            <h3 class="font-bold text-xl">What is TGPC Health</h3>
             <Icon
               v-if="first"
               class="cursor-pointer"
@@ -55,7 +55,7 @@ watch(third, (val) => {
             />
           </div>
           <p v-if="first" class="mt-3 text-lg leading-relaxed">
-            OCMC is your strategic partner in navigating complex regulations, securing funding, and winning tenders. We deliver tailored solutions to diverse organizations, backed by a proven track record of success. With a focus on trust and transparency, we empower your journey to excellence.
+            TGPC Health is your strategic partner in navigating complex regulations, securing funding, and winning tenders. We deliver tailored solutions to diverse organizations, backed by a proven track record of success. With a focus on trust and transparency, we empower your journey to excellence.
           </p>
         </div>
         <div
@@ -63,7 +63,7 @@ watch(third, (val) => {
           class="flex bg-whiter cursor-pointer border border-blue-2 flex-col w-full lg:w-[823px] px-6 py-8 my-6"
         >
           <div class="flex justify-between items-center">
-            <h3 class="font-bold text-xl">How do I get Training With OCMC?</h3>
+            <h3 class="font-bold text-xl">How do I get Training With TGPC Health?</h3>
             <Icon
               v-if="second"
               class="cursor-pointer"
@@ -78,7 +78,7 @@ watch(third, (val) => {
             />
           </div>
           <p v-if="second" class="mt-3 text-lg leading-relaxed">
-            At O C Management Consultants, we excel in navigating complex
+            At TGPC Health, we excel in navigating complex
             regulations, securing funding, and winning tenders with a proven
             track record of success across industries. Our tailored solutions,
             built on trust and transparency, ensure regulatory compliance.
@@ -91,7 +91,7 @@ watch(third, (val) => {
           class="flex bg-whiter cursor-pointer border border-blue-2 flex-col w-full lg:w-[823px] px-6 py-8"
         >
           <div class="flex justify-between items-center">
-            <h3 class="font-bold text-xl">What Can I Gain From OCMC?</h3>
+            <h3 class="font-bold text-xl">What Can I Gain From TGPC Health?</h3>
             <Icon
               v-if="third"
               class="cursor-pointer"
@@ -106,7 +106,7 @@ watch(third, (val) => {
             />
           </div>
           <p v-if="third" class="mt-3 text-lg leading-relaxed">
-            At O C Management Consultants, we excel in navigating complex
+            At TGPC Health, we excel in navigating complex
             regulations, securing funding, and winning tenders with a proven 
             track record of success across industries. Our tailored solutions,
             built on trust and transparency, ensure regulatory compliance.

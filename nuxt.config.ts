@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "O.C. Management Consulting",
+      title: "TGPC Health",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
       meta: [
         { charset: "utf-8" },

@@ -220,7 +220,7 @@ const posts = ref([
               <div class="flex md:justify-center max-w-fit relative">
                 <img
                   class="absolute -right-2 -top-2"
-                  src="/svg/dark-logo-splash.svg"
+                  src="/img/logo.png"
                   alt="splash logo"
                 />
                 <nuxt-link

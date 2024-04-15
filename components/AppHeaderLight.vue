@@ -7,10 +7,7 @@
       class="bg-grey-2 flex h-24 md:h-[88px] items-center justify-between px-6 px-md-0 w-full max-w-[1240px] rounded-xl mx-auto"
     >
       <nuxt-link to="/">
-        <img
-          class="w-[50px] md:w-20 h-[50px] md:h-20"
-          src="/svg/logo-light.svg"
-        />
+        <img class="w-[50px] md:w-28" src="/img/logo.png" />
       </nuxt-link>
       <div class="lg:hidden flex gap-x-4">
         <button
@@ -30,10 +27,7 @@
       >
         <div v-if="open" class="flex items-center justify-between w-full">
           <nuxt-link to="/">
-            <img
-              class="w-[50px] md:w-20 h-[50px] md:h-20"
-              src="/svg/logo-light.svg"
-            />
+            <img class="w-[50px] md:w-28" src="/img/logo.png" />
           </nuxt-link>
           <button class="" @click="open = !open">
             <Icon name="ic:round-close" size="24px" color="#0073FF" />

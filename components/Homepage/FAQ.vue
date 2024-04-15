@@ -15,7 +15,7 @@
             FAQ's
           </h3>
           <p class="text-white text-lg">
-            Find answers to frequently asked questions about OCMC's services,
+            Find answers to frequently asked questions about TGPC Health's services,
             pricing, and how we work with clients to ensure the best possible
             results.
           </p>

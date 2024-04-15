@@ -5,9 +5,9 @@
     <nav class="flex items-center justify-between">
       <div class="w-full">
         <img
-          src="/svg/header-logo.svg"
+          src="/img/logo.png"
           alt=""
-          class="bg-[#0073ff] px-6 py-5 rounded-2xl"
+          class="bg-[#0073ff] px-6 py-5 rounded-2xl w-40"
         />
       </div>
       <div class="w-full">
@@ -44,7 +44,7 @@
   >
     <nav>
       <div class="flex items-center justify-between py-3 px-5 border-b">
-        <img src="/svg/logo.svg" alt="" />
+        <img src="/img/logo.png" alt="" />
         <div @click="toggleMobileNav">
           <Icon
             v-if="!mobileNavOpen"

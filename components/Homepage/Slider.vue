@@ -123,7 +123,7 @@ export default {
           companyName: "Admin BloomPage Consulting",
           starCount: 5,
           description:
-            "OC Management Consultants have been very reliable business partners going the extra mile to meet some last minute requests whenever they are called upon. They are a very well led organisation and we highly recommend their services.",
+            "TGPC Health have been very reliable business partners going the extra mile to meet some last minute requests whenever they are called upon. They are a very well led organisation and we highly recommend their services.",
           time: "8 months Ago",
         },
         {
@@ -163,7 +163,7 @@ export default {
           companyName: "Dan Elkaim",
           starCount: 5,
           description:
-            "From the interactions I have observed that, O C Management Consultants appears to be an exceptional business. Their customer service team is knowledgeable, responsive, and always willing to go the extra mile to ensure that their clients are satisfied. ",
+            "From the interactions I have observed that, TGPC Health appears to be an exceptional business. Their customer service team is knowledgeable, responsive, and always willing to go the extra mile to ensure that their clients are satisfied. ",
           time: "9 months Ago",
         },
       ],

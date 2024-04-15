@@ -7,19 +7,19 @@ const services = ref([
   {
     name: "I. Afone",
     title: "DIVINE 24/7 RECRUITMENT LTD",
-    desc: "“Thinking of applying for a tender, OCMC is the go-to. If you require Business Consultation OCMC has the solution. If you require strategic business advice, go to OCMC any time any day, and they will deliver. This has been my experience.”",
+    desc: "“Thinking of applying for a tender, TGPC Health is the go-to. If you require Business Consultation TGPC Health has the solution. If you require strategic business advice, go to TGPC Health any time any day, and they will deliver. This has been my experience.”",
     image: "divine-recruitment",
   },
   {
     name: "J. Katsande",
     title: "Company Director of Haven Healthcare Services",
-    desc: "“OCMC has been absolutely helpful in the process of being awarded our tender. Oby especially has also offered invaluable support and key information for business sustainability. Excellent service!”",
+    desc: "TGPC Health has been absolutely helpful in the process of being awarded our tender. Oby especially has also offered invaluable support and key information for business sustainability. Excellent service!”",
     image: "haven",
   },
   {
     name: "Chris Dube",
     title: "Executive Director of Relief Professionals Group",
-    desc: "“I don’t hesitate to recommend anyone to OCMC. They are the best tender writers I have worked with so far. They made everything very easy for us. We have commissioned the writing of another 3, after winning 2.”",
+    desc: "“I don’t hesitate to recommend anyone to TGPC Health. They are the best tender writers I have worked with so far. They made everything very easy for us. We have commissioned the writing of another 3, after winning 2.”",
     image: "relief",
   },
 ]);
@@ -59,7 +59,7 @@ const resetBtnValues = () => {
           >
             our client's experiences
           </h2>
-          <!-- <p class="mt-2 md:text-lg leading-[26px] w-full max-w-[523px]">Praise for OCMC's exceptional service and successful outcomes. Hear from our best clients.</p> -->
+          <!-- <p class="mt-2 md:text-lg leading-[26px] w-full max-w-[523px]">Praise for TGPC Health's exceptional service and successful outcomes. Hear from our best clients.</p> -->
         </div>
         <!-- <div class="hidden md:flex">
           <button @click="prevClicked = true" class="flex min-w-max gap-2 items-center self-start mt-2">
