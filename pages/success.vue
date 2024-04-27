@@ -81,7 +81,7 @@ const handleSubmit = () => {
     product: id,
   };
 
-  fetch("https://dev.tgpcmedia.com/payment/success", {
+  fetch("https://prod.tgpcmedia.com/payment/success", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
