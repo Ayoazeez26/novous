@@ -287,7 +287,93 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                             £{{ publication.currentPrice }}
                           </p>
                         </div> -->
-                        <div class="mt-12 w-full">
+                        <div
+                          v-if="publication.weeklyLinks.length"
+                          class="bg-blue-16 flex flex-col items-start mt-[12px] rounded-md px-[26px] py-4 h-[230px] overflow-y-hidden"
+                        >
+                          <div
+                            @click="
+                              showSelectWeekDropdown = !showSelectWeekDropdown
+                            "
+                            class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center w-full"
+                          >
+                            <Icon
+                              name="material-symbols:calendar-month-sharp"
+                            />
+                            <h5 class="ml-[8.84px]">
+                              {{
+                                typeof dataStore.selectedWeek !== "string" &&
+                                Object.entries(dataStore.selectedWeek).length >
+                                  0
+                                  ? `${dataStore.selectedWeek.week}: ${dataStore.selectedWeek.weekValue}`
+                                  : "Select a Week"
+                              }}
+                            </h5>
+                            <Icon
+                              class="absolute top-2.5 right-2"
+                              name="mdi:chevron-down"
+                              size="24"
+                            />
+                          </div>
+                          <div
+                            v-if="showSelectWeekDropdown"
+                            class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
+                          >
+                            <div
+                              v-for="(week, index) in publication
+                                ?.weeklyLinks"
+                              :key="index"
+                              @click="selectWeek(week)"
+                              class="border border-grey-19 flex items-center disabled:border-black disabled:text-black-5/30 px-4 w-full h-10"
+                              :disabled="weekOfMonth < index + 1"
+                            >
+                              <p>{{ week.week }}: {{ week.weekValue }}</p>
+                            </div>
+                          </div>
+                          <div
+                            @click="showPaymentDropdown = !showPaymentDropdown"
+                            class="bg-whiter border h-[47px] border-grey-19 px-[13.26px] py-[8.84px] rounded-sm relative flex items-center mt-[18px] w-full"
+                          >
+                            <Icon name="fluent:payment-32-filled" />
+                            <h5 class="ml-[8.84px]">
+                              {{ selectedPaymentPlan }}
+                            </h5>
+                            <Icon
+                              class="absolute top-2.5 right-2"
+                              name="mdi:chevron-down"
+                              size="24"
+                            />
+                          </div>
+                          <div
+                            v-if="showPaymentDropdown"
+                            class="bg-grey-20 text-black-5 text-sm border border-grey-19 w-full"
+                          >
+                            <div
+                              @click="changePaymentPlan('Free Plan')"
+                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                            >
+                              <p>Free Plan</p>
+                            </div>
+                            <div
+                              @click="changePaymentPlan('£0')"
+                              class="border border-grey-19 flex items-center px-4 w-full h-10"
+                            >
+                              <p>
+                                <span class="line-through">£39.96</span
+                                ><span class="text-blue-4 ml-2">£0</span>
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            @click="
+                              saveProductToStore(publication)
+                            "
+                            class="bg-blue-17 h-16 text-whiter mt-[18px] w-full"
+                          >
+                            Get My Enhancer
+                          </button>
+                        </div>
+                        <div v-else class="mt-12 w-full">
                           <button
                             class="bg-blue-4 flex h-[76px] items-center px-10 w-full justify-center"
                             @click="saveProductToStore(publication)"
@@ -471,7 +557,7 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                 >
                   <img
                     class="w-full"
-                    :src="dataStore.allProducts[2].productImages[0].Location"
+                    :src="dataStore.allProducts[3].productImages[0].Location"
                   />
                   <div class="flex items-start h-full">
                     <div class="flex w-full h-full">
@@ -479,7 +565,7 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[2].productName }}
+                          {{ dataStore.allProducts[3].productName }}
                         </h3>
                         <div class="h-16 flex items-center justify-center">
                           <a
@@ -495,12 +581,12 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                   </div>
                 </div>
                 <div
-                  @click="saveProductToStore(dataStore.allProducts[1])"
+                  @click="saveProductToStore(dataStore.allProducts[2])"
                   class="cursor-pointer flex flex-col w-full p-[25px] border bg-whiter border-grey-15 lg:w-[433px]"
                 >
                   <img
                     class="w-full"
-                    :src="dataStore.allProducts[1].productImages[0].Location"
+                    :src="dataStore.allProducts[2].productImages[0].Location"
                   />
                   <div class="flex items-start h-full">
                     <div class="flex w-full h-full">
@@ -508,7 +594,7 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
                         <h3
                           class="mt-[12.65px] text-lg font-medium leading-[31.626px]"
                         >
-                          {{ dataStore.allProducts[1].productName }}
+                          {{ dataStore.allProducts[2].productName }}
                         </h3>
                         <div class="h-16 flex items-center justify-center">
                           <button

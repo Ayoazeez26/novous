@@ -78,7 +78,7 @@ const downloadHandout = async () => {
       />
       <div class="flex flex-col text-center">
         <div class="flex justify-between items-stretch text-whiter">
-          <img class="md:w-[503px] md:block hidden" src="/img/monthly-enhancers.png" alt="monthly-enhancers image" />
+          <img class="md:w-[503px] md:block hidden" :src="dataStore.singleProduct.productImages[0].Location" alt="monthly-enhancers image" />
           <div
             class="flex flex-col items-center mt-[43px] pb-[49px] px-4 w-full md:w-[582px]"
           >
@@ -89,7 +89,7 @@ const downloadHandout = async () => {
             <h3
               class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter max-w-[308px]"
             >
-              Get Your February Meeting Enhancers Here!
+              Get Your {{ dataStore.singleProduct.productName.split(' ')[0] }} Meeting Enhancers Here!
             </h3>
             <div class="mt-11">Please enter your details here to Proceed</div>
             <div class="bg-blue-16 mt-2 rounded w-full">
