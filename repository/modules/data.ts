@@ -1,7 +1,9 @@
 import FetchFactory from '../factory';
 
-import {
+import type {
   HandoutInput,
+  FileUploadResponse,
+  ArticleCreateInput,
 } from '~/types';
 
 class DataModule extends FetchFactory {
@@ -23,8 +25,27 @@ class DataModule extends FetchFactory {
     );
   }
 
+  async uploadDocument(credentials: FormData): Promise<FileUploadResponse> {
+    return await this.call<FileUploadResponse>(
+      "POST",
+      `${this.RESOURCE}/file/upload-document`,
+      credentials
+    );
+  }
+
+  async createArticle(credentials: ArticleCreateInput): Promise {
+    return await this.call(
+      "POST",
+      `${this.RESOURCE}/article/create`,
+      credentials
+    );
+  }
+
   async getFeaturedProducts(): Promise {
-    return await this.call("GET", `${this.RESOURCE}/product/featured-publications`);
+    return await this.call(
+      "GET",
+      `${this.RESOURCE}/product/featured-publications`
+    );
   }
 }
 
