@@ -15,16 +15,16 @@
           class="flex items-center space-x-6 px-11 py-6 bg-white shadow-md rounded-2xl text-sm"
         >
           <NuxtLink to="/about">
-            <li>About Us</li>
+            <li class="min-w-max">About Us</li>
           </NuxtLink>
           <NuxtLink to="/services" class="flex items-center space-x-3">
-            <li>Services</li>
+            <li class="min-w-max">Services</li>
           </NuxtLink>
           <NuxtLink to="resources">
-            <li>Resources</li>
+            <li class="min-w-max">Resources</li>
           </NuxtLink>
           <NuxtLink to="store">
-            <li>Online Store</li>
+            <li class="min-w-max">Online Store</li>
           </NuxtLink>
         </ul>
       </div>
