@@ -8,7 +8,7 @@
       <div class="flex space-x-3 items-center">
         <p class="">Stay Compliant with our Free MEQC Tools...</p>
         <NuxtLink
-          to="https://ocmanagementconsultants.co.uk/store/65c14aec0bae87c74c75709e"
+          to="https://tgpchealth.co.uk/store/65c14aec0bae87c74c75709e"
           target="_blank"
           class="bg-[#699BF7B2] hover:border-[#699BF7B2] hover:text-[#699BF7B2] hover:bg-white transition-all duration-300 md:px-5 md:py-2 px-3 py-1 rounded-full shadow-sm"
         >
