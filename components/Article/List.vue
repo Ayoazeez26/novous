@@ -45,8 +45,9 @@
 
 <script setup lang='ts'>
 import { useRouter } from 'vue-router';
+import { useDataStore } from '~/stores/data';
 const router = useRouter();
-import { useDataStore } from "~/stores/data";
+// import { useDataStore } from "~/stores/data";
 
 const data = useDataStore();
 console.log(data);
@@ -57,13 +58,16 @@ const searched = ref(false);
 const loading = ref(false);
 
 const fetchArticles = async () => {
-  try {
-    const response = await fetch('https://dev.tgpcmedia.com/article/search?limit=100');
-    const data = await response.json();
-    articles.value = data.foundArticles;
-  } catch (error) {
-    console.error('Error fetching articles:', error);
-  }
+  // try {
+  //   const response = await fetch('https://dev.tgpcmedia.com/article/search?limit=100');
+  //   const data = await response.json();
+  //   articles.value = data.foundArticles;
+  // } catch (error) {
+  //   console.error('Error fetching articles:', error);
+  // }
+  const allArticles = await data.getAllArticles();
+  articles.value = allArticles;
+  console.log('articles are => ', articles);
 };
 
 const truncateDescription = (description) => {

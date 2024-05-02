@@ -45,7 +45,7 @@ export const useDataStore = defineStore(
           // totalCount.value = res.count;
           // currentPage.value = res.currentPage;
           // totalPages.value = res.totalPages;
-          resolve(res);
+          resolve(res.foundArticles);
         });
       });
     };
