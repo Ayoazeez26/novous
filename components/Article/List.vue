@@ -6,11 +6,10 @@
         <div class="grid grid-cols-2 gap-x-14 pb-16">
           <!-- First column -->
           <div class="col-span-1">
-            <div v-for="(article, index) in articles.slice(0, 1)" :key="article.name" class="bg-[#3b4857] rounded-b-lg">
-              <a :href="article.link" target="_blank">
-                <img :src="article.headLineCover.Location" :alt="article.name" class="article-logo" />
-              </a>
-              <div class="px-6 pb-10 pt-6 text-white">
+            <div v-for="(article, index) in articles.slice(0, 1)" :key="article.name" class="bg-[#3b4857] rounded-b-lg"
+              @click="goToArticle(article.id)">
+              <img :src="article.headLineCover.Location" :alt="article.name" class="article-logo" />
+              <div class="px-6 pb-10 pt-6 text-white cursor-pointer">
                 <p class="sans font-semibold text-xl mb-4 capitalize">
                   {{ article.name }}
                 </p>
@@ -44,40 +43,42 @@
   </section>
 </template>
 
-<script>
-const config = useRuntimeConfig();
+<script setup lang='ts'>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+import { useDataStore } from "~/stores/data";
 
-export default {
-  data() {
-    return {
-      articles: [],
-      searchTerm: '',
-      searched: false,
-      loading: false,
-    };
-  },
-  methods: {
-    async fetchArticles() {
-      try {
-        const response = await fetch('https://dev.tgpcmedia.com/article/search?limit=100');
-        const data = await response.json();
-        this.articles = data.foundArticles;
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-      }
-    },
-    truncateDescription(description) {
-      return description.slice(0, 200);
-    },
-    truncateTitle(name) {
-      return name.slice(0, 30);
-    },
-    goToArticle(id) {
-      this.$router.push(`/articles/${id}`);
-    },
-  },
-  mounted() {
-    this.fetchArticles();
-  },
+const data = useDataStore();
+console.log(data);
+
+const articles = ref([]);
+const searchTerm = ref('');
+const searched = ref(false);
+const loading = ref(false);
+
+const fetchArticles = async () => {
+  try {
+    const response = await fetch('https://dev.tgpcmedia.com/article/search?limit=100');
+    const data = await response.json();
+    articles.value = data.foundArticles;
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+  }
 };
+
+const truncateDescription = (description) => {
+  return description.slice(0, 200);
+};
+
+const truncateTitle = (name) => {
+  return name.slice(0, 30);
+};
+
+const goToArticle = (id) => {
+  router.push(`/articles/${id}`);
+};
+
+onMounted(() => {
+  fetchArticles();
+});
 </script>

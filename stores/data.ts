@@ -13,6 +13,7 @@ export const useDataStore = defineStore(
     const training = ref(false);
     const scrolled = ref(false);
     const allProducts = ref([]);
+    const allArticles = ref([]);
     const totalCount = ref(0);
     const currentPage = ref(1);
     const totalPages = ref(1);
@@ -30,6 +31,20 @@ export const useDataStore = defineStore(
           totalCount.value = res.count;
           currentPage.value = res.currentPage;
           totalPages.value = res.totalPages;
+          resolve(res);
+        });
+      });
+    };
+
+    const getAllArticles = () => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.getAllArticles().then((res) => {
+          dialog.isLoading = false;
+          allArticles.value = res.foundArticles;
+          // totalCount.value = res.count;
+          // currentPage.value = res.currentPage;
+          // totalPages.value = res.totalPages;
           resolve(res);
         });
       });
@@ -71,6 +86,8 @@ export const useDataStore = defineStore(
       training,
       scrolled,
       getAllProducts,
+      getAllArticles,
+      allArticles,
       allProducts,
       singleProduct,
       category,
