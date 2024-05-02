@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { successToast } from "~/plugins/vue3-toastify";
 import { useDialogStore } from "./dialog";
-import { HandoutInput } from "types";
+import type { HandoutInput, ArticleCreateInput } from "~/types";
 
 export const useDataStore = defineStore(
   "data",
@@ -18,7 +18,7 @@ export const useDataStore = defineStore(
     const currentPage = ref(1);
     const totalPages = ref(1);
     const singleProduct = ref(null);
-    const category = ref('Books');
+    const category = ref("Books");
     const selectedWeek = ref({});
     const prepbookIndex = ref(null);
 
@@ -70,11 +70,36 @@ export const useDataStore = defineStore(
       });
     };
 
-    const getSingleProduct = (id:string) => {
+    const getSingleProduct = (id: string) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
         $api.data.viewSingleProduct(id).then((res) => {
           dialog.isLoading = false;
+          resolve(res);
+        });
+      });
+    };
+
+    const uploadDocument = (payload: FormData) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.uploadDocument(payload).then((res) => {
+          dialog.isLoading = false;
+          successToast("Picture Uploaded Successfully");
+          // user.value = res;
+          resolve(res);
+        });
+      });
+    };
+
+    const createArticle = (payload: ArticleCreateInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.createArticle(payload).then((res) => {
+          console.log(res);
+          dialog.isLoading = false;
+          successToast("Article Created Successfully");
+          // user.value = res;
           resolve(res);
         });
       });
@@ -95,7 +120,9 @@ export const useDataStore = defineStore(
       selectedWeek,
       getFeaturedProducts,
       getSingleProduct,
-      prepbookIndex
+      prepbookIndex,
+      uploadDocument,
+      createArticle,
     };
   },
   {

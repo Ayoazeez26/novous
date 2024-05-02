@@ -545,10 +545,10 @@ const weekOfMonth = (0 | (dated.getDate() / 7)) + 1;
       </div> -->
       </div>
       <div
-        v-show="category === 'Enhancers'"
+        v-if="category === 'Enhancers'"
         class="flex lg:justify-center mt-14 w-full"
       >
-        <template v-if="dataStore.allProducts.length">
+        <template v-if="dataStore.allProducts.length > 2">
           <div class="flex flex-wrap md:flex-nowrap lg:justify-center">
             <div class="flex justify-center items-start w-full">
               <div class="bg-whiter flex flex-col lg:flex-row flex-wrap">
