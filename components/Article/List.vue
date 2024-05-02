@@ -1,5 +1,5 @@
 <template>
-  <section class="px-16">
+  <section v-if="articles.length" class="px-16">
     <div class="relative">
       <div class="mt-28">
         <h4 class="mb-6 font-bold text-3xl sans">Our Blog</h4>
