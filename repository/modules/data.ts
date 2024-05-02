@@ -17,6 +17,10 @@ class DataModule extends FetchFactory {
     return await this.call("GET", `${this.RESOURCE}/article/search?limit=100`);
   }
 
+  async getSingleArticle(id: string): Promise {
+    return await this.call("GET", `${this.RESOURCE}/article/search?id[0]=${id}`);
+  }
+
   async viewSingleProduct(id: string): Promise {
     return await this.call("GET", `${this.RESOURCE}/product/view/${id}`);
   }

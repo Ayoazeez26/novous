@@ -50,6 +50,20 @@ export const useDataStore = defineStore(
       });
     };
 
+    const getSingleArticle = (id: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.getSingleArticle(id).then((res) => {
+          dialog.isLoading = false;
+          // allArticles.value = res.foundArticles[0];
+          // totalCount.value = res.count;
+          // currentPage.value = res.currentPage;
+          // totalPages.value = res.totalPages;
+          resolve(res.foundArticles[0]);
+        });
+      });
+    };
+
     const downloadHandout = (data: HandoutInput) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
@@ -123,6 +137,7 @@ export const useDataStore = defineStore(
       prepbookIndex,
       uploadDocument,
       createArticle,
+      getSingleArticle
     };
   },
   {
