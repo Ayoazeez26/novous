@@ -1,7 +1,6 @@
 <template>
   <main>
-    <Banner />
-    <NewHeader />
+    <AppHeader />
     <ArticleHero />
     <ArticleList />
     <NewFooter />

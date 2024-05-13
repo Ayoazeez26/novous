@@ -1,7 +1,6 @@
 <template>
   <div class="overflow-x-hidden max-w-[1440px] mx-auto">
-    <Banner />
-    <NewHeader />
+    <AppHeader />
     <HomepageHero />
     <HomepageClients />
     <HomepageEnhancement />
