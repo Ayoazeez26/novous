@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-hidden max-w-[1440px] mx-auto">
+  <div class="overflow-x-hidden mx-auto">
     <AppHeader />
     <HomepageHero />
     <HomepageClients />

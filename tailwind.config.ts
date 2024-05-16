@@ -5,9 +5,9 @@ export default <Partial<Config>>{
   theme: {
     extend: {
       colors: {
-        'grey-1': '#F5F5FF',
-        text: '#2B2B2B',
-        secondary: '#EA3223',
+        "grey-1": "#F5F5FF",
+        text: "#2B2B2B",
+        secondary: "#EA3223",
         black: "#000A0A",
         "black-2": "#191C1F",
         "black-3": "#1F1F1F",
@@ -33,8 +33,6 @@ export default <Partial<Config>>{
         yellow: "#FADB36",
         "yellow-2": "#EFD33D",
         primary: "#03989E",
-        white: "#FAFFFF",
-        whiter: "#FFFFFF",
         red: "#EE5858",
         "light-green": "#CDEAEC",
         grey: "#1A2323",
@@ -66,8 +64,10 @@ export default <Partial<Config>>{
         "grey-22": "#E9EEF3",
       },
       backgroundImage: {
-        "hero-bg":
-          "url('https://s3.eu-west-2.amazonaws.com/ocmc-img.com/hero-bg.png')",
+        "hero-bg-one": "url('/img/hero-bg-one.webp')",
+        "hero-bg-two": "url('/img/hero-bg-two.webp')",
+        "hero-bg-three": "url('/img/hero-bg-three.webp')",
+        "hero-bg-four": "url('/img/hero-bg-four.webp')",
         "hero-bg-mob":
           "url('https://s3.eu-west-2.amazonaws.com/ocmc-img.com/hero-bg-mob.png')",
         "about-bg":
