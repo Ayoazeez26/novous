@@ -127,115 +127,32 @@ const downloadHandout = async () => {
   <div class="parent flex justify-center items-center">
     <div
       v-click-outside="clickedOutside"
-      class="bg-blue-4 rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden h-auto"
+      class="bg-white rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden h-auto"
     >
-      <Icon
-        @click="dialogStore.showModal = false"
-        class="absolute right-4 top-4"
-        name="mdi:close"
-        color="#FFFFFF"
-        size="24"
-      />
+      <div class="flex items-center justify-between py-5 px-10 w-full">
+        <h4>Privacy Policy & Protection</h4>
+        <Icon
+          @click="dialogStore.showModal = false"
+          class=""
+          name="mdi:close"
+          color="#555"
+          size="24"
+        />
+      </div>
       <div class="flex flex-col text-center">
         <div
           class="flex md:flex-row flex-col justify-between items-stretch text-whiter"
         >
-          <img
-            class="md:w-[503px] md:block hidden"
-            src="/img/enhancer.jpg"
-            alt="bridging image"
-          />
-          <div
-            class="flex flex-col items-center mt-[43px] pb-[49px] px-4 md:w-[582px]"
-          >
+          <div class="flex flex-col items-center mt-[43px] pb-[49px] px-4">
             <img src="/img/logo.png" alt="logo" />
             <p class="uppercase mt-6 mb-2.5 text-sm">
               our free meeting enhancer
             </p>
             <h3
-              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase md:max-w-[371px]"
+              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase"
             >
               Achieve concrete goals in your meetings with
             </h3>
-            <div class="bg-blue-16 mt-7 rounded w-full">
-              <!-- <div class="border border-grey-18 py-5 rounded mb-7 w-full">
-                <p class="text-black-2 text-lg font-medium">
-                  Choose your preference
-                </p>
-              </div> -->
-              <div
-                class="type flex md:flex-row flex-col text-black-2 gap-2 justify-between px-4 mb-6"
-              >
-                <!-- <div
-                  v-for="(preference, index) in preferences"
-                  class="bg-white px-3 flex items-start relative py-3 rounded"
-                >
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      :id="preference.value"
-                      :value="preference.value"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">{{ preference.name }}</span>
-                  </label>
-                </div> -->
-                <!-- <div class="bg-white px-3 relative py-3 rounded">
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      id="Carers"
-                      value="Carers"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">Support Worker/Carer</span>
-                  </label>
-                </div>
-                <div class="bg-white px-3 relative py-3 rounded">
-                  <label>
-                    <input
-                      type="radio"
-                      name="handoutPreference"
-                      id="Managers"
-                      value="Managers"
-                      v-model="payload.preference"
-                    />
-                    <span class="text-xs">Care Manager</span>
-                  </label>
-                </div> -->
-              </div>
-              <div class="flex w-full px-3">
-                <div class="flex flex-col relative w-full">
-                  <!-- <label for="email" class="mb-2"></label> -->
-                  <Icon
-                    class="absolute top-3 left-4"
-                    name="material-symbols:mail-rounded"
-                    color="#000"
-                    size="24"
-                  />
-                  <input
-                    id="email"
-                    v-model="email"
-                    type="email"
-                    name="email"
-                    required
-                    class="bg-white text-black-2 bg-transparent rounded-lg py-4 pl-14 pr-2 focus:outline-none h-12"
-                    :class="errorMsg.email ? 'border border-red' : ''"
-                    placeholder="Enter your email address"
-                  />
-                  <span
-                    v-if="errorMsg.email"
-                    class="text-red text-left text-xs mt-1"
-                    >{{ errorMsg.email }}</span
-                  >
-                  <span v-else class="text-transparent text-xs mt-1"
-                    >There is no error message</span
-                  >
-                </div>
-              </div>
-            </div>
             <div class="type type-subscribe mt-[33px] self-start">
               <div class="flex items-start relative rounded">
                 <label class="pl-0">

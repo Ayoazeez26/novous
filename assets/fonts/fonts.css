@@ -1,79 +1,153 @@
 @font-face {
-    font-family: 'Recoleta';
-    src: url('Recoleta-Medium.eot');
-    src: local('Recoleta Medium'), local('Recoleta-Medium'),
-        url('Recoleta-Medium.eot?#iefix') format('embedded-opentype'),
-        url('Recoleta-Medium.woff2') format('woff2'),
-        url('Recoleta-Medium.woff') format('woff'),
-        url('Recoleta-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Recoleta';
-    src: url('Recoleta-SemiBold.eot');
-    src: local('Recoleta SemiBold'), local('Recoleta-SemiBold'),
-        url('Recoleta-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('Recoleta-SemiBold.woff2') format('woff2'),
-        url('Recoleta-SemiBold.woff') format('woff'),
-        url('Recoleta-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Recoleta';
-    src: url('Recoleta-Regular.eot');
-    src: local('Recoleta Regular'), local('Recoleta-Regular'),
-        url('Recoleta-Regular.eot?#iefix') format('embedded-opentype'),
-        url('Recoleta-Regular.woff2') format('woff2'),
-        url('Recoleta-Regular.woff') format('woff'),
-        url('Recoleta-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Recoleta';
-    src: url('Recoleta-Bold.eot');
-    src: local('Recoleta Bold'), local('Recoleta-Bold'),
-        url('Recoleta-Bold.eot?#iefix') format('embedded-opentype'),
-        url('Recoleta-Bold.woff2') format('woff2'),
-        url('Recoleta-Bold.woff') format('woff'),
-        url('Recoleta-Bold.ttf') format('truetype');
+    font-family: 'Geist';
+    src: url('Geist-Bold.woff2') format('woff2'),
+        url('Geist-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'Recoleta';
-    src: url('Recoleta-Black.eot');
-    src: local('Recoleta Black'), local('Recoleta-Black'),
-        url('Recoleta-Black.eot?#iefix') format('embedded-opentype'),
-        url('Recoleta-Black.woff2') format('woff2'),
-        url('Recoleta-Black.woff') format('woff'),
-        url('Recoleta-Black.ttf') format('truetype');
+    font-family: 'Geist UltraBlack';
+    src: url('Geist-UltraBlack.woff2') format('woff2'),
+        url('Geist-UltraBlack.woff') format('woff');
     font-weight: 900;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-    font-family: 'Product Sans';
-    src: url('ProductSans-Regular.woff2') format('woff2'),
-        url('ProductSans-Regular.woff') format('woff'),
-        url('Product\ Sans\ Regular.ttf') format('truetype');
+    font-family: 'Geist';
+    src: url('Geist-Light.woff2') format('woff2'),
+        url('Geist-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Medium.woff2') format('woff2'),
+        url('Geist-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Black.woff2') format('woff2'),
+        url('Geist-Black.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Thin.woff2') format('woff2'),
+        url('Geist-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-SemiBold.woff2') format('woff2'),
+        url('Geist-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Geist';
+    src: url('Geist-Regular.woff2') format('woff2'),
+        url('Geist-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Product Sans';
-    src: url('ProductSans-Bold.woff2') format('woff2'),
-        url('ProductSans-Bold.woff') format('woff'),
-        url('Product\ Sans\ Bold.ttf') format('truetype');
+    font-family: 'Geist';
+    src: url('Geist-UltraLight.woff2') format('woff2'),
+        url('Geist-UltraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Extralight.woff2') format('woff2'),
+        url('CabinetGrotesk-Extralight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Regular.woff2') format('woff2'),
+        url('CabinetGrotesk-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Extrabold.woff2') format('woff2'),
+        url('CabinetGrotesk-Extrabold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Light.woff2') format('woff2'),
+        url('CabinetGrotesk-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Medium.woff2') format('woff2'),
+        url('CabinetGrotesk-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Bold.woff2') format('woff2'),
+        url('CabinetGrotesk-Bold.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Black.woff2') format('woff2'),
+        url('CabinetGrotesk-Black.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cabinet Grotesk';
+    src: url('CabinetGrotesk-Thin.woff2') format('woff2'),
+        url('CabinetGrotesk-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
