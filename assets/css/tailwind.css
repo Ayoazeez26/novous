@@ -16,7 +16,7 @@
 }
 
 .social-icon {
-  @apply h-9 w-9 rounded-full border border-[#FFFFFF40] flex items-center justify-center hover:bg-slate-400 transition-all duration-300
+  @apply h-9 w-9 bg-blue rounded-full border border-[#FFFFFF40] flex items-center justify-center hover:bg-slate-400 transition-all duration-300
 }
 
 .faq__question {

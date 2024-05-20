@@ -4,13 +4,13 @@
     <HomepageHero />
     <HomepageRecommendations />
     <HomepageCTA />
-    <HomepageClients />
-    <HomepageEnhancement />
-    <HomepageTestimonials />
+    <!-- <HomepageClients /> -->
+    <!-- <HomepageEnhancement /> -->
+    <!-- <HomepageTestimonials /> -->
     <div class="resources-to-faq">
-      <HomepageResources />
-      <HomepageTenders />
-      <HomepageFAQ />
+      <!-- <HomepageResources /> -->
+      <!-- <HomepageTenders /> -->
+      <!-- <HomepageFAQ /> -->
     </div>
     <NewFooter />
   </div>
