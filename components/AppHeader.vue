@@ -34,41 +34,38 @@
         </div>
         <ul
           v-if="!open"
-          class="flex flex-col lg:flex-row lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-11"
+          class="flex flex-col lg:flex-row cursor-pointer lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-11"
         >
           <li @click="aboutUsToggled">
-            <p
-              class="hover:text-blue-4 cursor-pointer"
-              :class="route.name === 'about' ? 'text-blue-4' : ''"
+            <nuxt-link
+              to="/"
+              class="hover:text-secondary"
+              :class="route.name === 'about' ? 'text-secondary' : ''"
             >
               About Us
-            </p>
+            </nuxt-link>
           </li>
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/resources"
-              :class="route.name === 'ebooks' ? 'text-blue-4' : ''"
+              to="/"
+              class="hover:text-secondary"
+              :class="route.name === 'ebooks' ? 'text-secondary' : ''"
               >Our Services</nuxt-link
             >
           </li>
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/resources"
-              :class="route.name === 'ebooks' ? 'text-blue-4' : ''"
+              to="/"
+              class="hover:text-secondary"
+              :class="route.name === 'ebooks' ? 'text-secondary' : ''"
               >Career</nuxt-link
             >
           </li>
-          <!-- <li @click="open = !open" class="min-w-max">
-            <nuxt-link
-              to="/blog"
-              :class="route.name === 'blog' ? 'text-blue-4' : ''"
-              >News</nuxt-link
-            >
-          </li> -->
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/store"
-              :class="route.name === 'store' ? 'text-blue-4' : ''"
+              to="/"
+              class="hover:text-secondary"
+              :class="route.name === 'store' ? 'text-secondary' : ''"
               >Contact Us</nuxt-link
             >
           </li>
@@ -89,40 +86,40 @@
           <!-- <li @click="open = !open" class="min-w-max"><nuxt-link to="/">Home</nuxt-link></li> -->
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/about"
+              to="/"
               class="hover:text-blue-4 cursor-pointer py-4 my-2"
               >About Us</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/services"
+              to="/"
               class="hover:text-blue-4 cursor-pointer py-4 my-2"
               >Care Services</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/strategy"
+              to="/"
               class="hover:text-blue-4 cursor-pointer py-4 my-2"
               >Core Strategy</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/training"
+              to="/"
               class="hover:text-blue-4 cursor-pointer py-4 my-2"
               >Training & Events
             </nuxt-link>
           </li>
           <li class="py-4" @click="open = !open">
-            <nuxt-link to="/resources" class="py-4 my-2">Resources</nuxt-link>
+            <nuxt-link to="/" class="py-4 my-2">Resources</nuxt-link>
           </li>
           <!-- <li class="py-4" @click="open = !open">
             <nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link>
           </li> -->
           <li class="py-4" @click="open = !open">
-            <nuxt-link to="/store" class="py-4 my-2">Online Store</nuxt-link>
+            <nuxt-link to="/" class="py-4 my-2">Online Store</nuxt-link>
           </li>
           <div
             class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6"

@@ -2,124 +2,9 @@
 import { useDialogStore } from "~/stores/dialog";
 import { useDataStore } from "~/stores/data";
 
-const dataStore = useDataStore();
 const dialogStore = useDialogStore();
 const clickedOutside = () => {
   dialogStore.showModal = false;
-  // dataStore.singleProduct = null;
-};
-const productCategories = ref([
-  {
-    productName: "Directors handout for effective coproduction in social care.",
-    productId: "65baf34d83f8f3ab2b616893",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Directors%E2%80%99_new.pdf",
-    checked: false,
-  },
-  {
-    productName: "Carers’ handout for effective coproduction in social care.",
-    productId: "65baf50183f8f3ab2b61689d",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Carers'_new.pdf",
-    checked: false,
-  },
-  {
-    productName:
-      "Registered Managers’ handout for effective coproduction in social care.",
-    productId: "65baf49983f8f3ab2b616898",
-    productLink:
-      "https://s3.eu-west-2.amazonaws.com/files.tgpcmedia/pdfs/Registered+Managers%E2%80%99_new.pdf",
-    checked: false,
-  },
-]);
-
-const preferences = ref([
-  {
-    value: "Directors",
-    name: "Social Care Director",
-    checked: false,
-  },
-  {
-    value: "Carers",
-    name: "Support Worker/Carer",
-    checked: false,
-  },
-  {
-    value: "Managers",
-    name: "Care Manager",
-    checked: false,
-  },
-]);
-
-const email = ref("");
-const payload = ref({
-  product: "",
-  email: "",
-  preference: "Handouts",
-});
-
-const errorMsg = ref({
-  email: "",
-});
-
-let selectedProduct = ref({});
-
-onMounted(() => {
-  if (dataStore.singleProduct && dataStore.singleProduct.productName) {
-    console.log(dataStore.singleProduct);
-    // selectedProduct.value = productCategories.value.filter(
-    //   (product) => dataStore.singleProduct.productName === product.productName
-    // );
-    // if (selectedProduct.value.length) {
-    console.log(dataStore.singleProduct.id);
-    payload.value.product = dataStore.singleProduct.id;
-    preferences.value[1].checked = true;
-    // if (selectedProduct.value[0].productId === "65baf50183f8f3ab2b61689d") {
-    //   payload.value.preference = "Carers";
-    // } else if (
-    //   selectedProduct.value[0].productId === "65baf49983f8f3ab2b616898"
-    // ) {
-    //   payload.value.preference = "Managers";
-    //   preferences.value[2].checked = true;
-    // } else {
-    //   payload.value.preference = "Directors";
-    //   preferences.value[0].checked = true;
-    // }
-    // }
-  }
-}),
-  watch(email, (value) => {
-    validateEmail(value);
-  });
-
-const validateEmail = (email) => {
-  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-    errorMsg.value.email = "";
-    payload.value.email = email;
-  } else {
-    errorMsg.value.email = "Invalid Email Address";
-  }
-};
-
-const downloadHandout = async () => {
-  if (payload.value.email !== "" && errorMsg.value.email === "") {
-    console.log(payload.value);
-    const dataResponse = await dataStore.downloadHandout(payload.value);
-    if (dataResponse) {
-      console.log(dataResponse);
-      const link = document.createElement("a");
-      link.href = dataResponse;
-      const fileName = dataStore.singleProduct.productName;
-      link.setAttribute("download", fileName);
-      link.setAttribute("target", "_blank");
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      clickedOutside();
-    }
-  } else {
-    errorMsg.value.email = "Invalid Email Address";
-  }
 };
 </script>
 
@@ -127,10 +12,12 @@ const downloadHandout = async () => {
   <div class="parent flex justify-center items-center">
     <div
       v-click-outside="clickedOutside"
-      class="bg-white rounded-xl gap-10 flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1087px] overflow-x-hidden h-auto"
+      class="bg-white rounded-xl flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1000px] overflow-x-hidden h-auto"
     >
-      <div class="flex items-center justify-between py-5 px-10 w-full">
-        <h4>Privacy Policy & Protection</h4>
+      <div
+        class="border-b border-b-grey-2 flex items-center justify-between py-5 px-10 w-full"
+      >
+        <h4 class="text-2xl font-bold">Privacy Policy & Protection</h4>
         <Icon
           @click="dialogStore.showModal = false"
           class=""
@@ -139,21 +26,30 @@ const downloadHandout = async () => {
           size="24"
         />
       </div>
-      <div class="flex flex-col text-center">
+      <div class="flex flex-col">
         <div
           class="flex md:flex-row flex-col justify-between items-stretch text-whiter"
         >
-          <div class="flex flex-col items-center mt-[43px] pb-[49px] px-4">
-            <img src="/img/logo.png" alt="logo" />
-            <p class="uppercase mt-6 mb-2.5 text-sm">
-              our free meeting enhancer
+          <div class="flex flex-col justify-start px-10 py-5">
+            <p class="text-lg leading-[36px] border-b border-b-grey-2 pb-5">
+              This Privacy Notice refers to the
+              <a href="#" class="text-secondary">Novusmfb.com</a> website and
+              its related subdomains. By accessing or using our Service hosted
+              on this domain, you indicate that you have read, understood, and
+              agreed to our data collecting policies as outlined in our
+              <nuxt-link to="#" class="text-secondary"
+                >Privacy Policy</nuxt-link
+              >
+               to be used for website operation, quality of service maintenance,
+              and general website statistics.<br />
+              We value your privacy and will only use your personal information
+              to improve your banking experience. Continuing to use this
+              platform shows your agreement to the processing of your personal
+              data by Novus Microfinance bank, and third-party processors as
+              outlined in our Privacy Policy, in compliance with the NDPR (2019)
+              and the NDPA (2023).
             </p>
-            <h3
-              class="font-semibold text-[24px] leading-[32px] tracking-[0.25px] text-whiter uppercase"
-            >
-              Achieve concrete goals in your meetings with
-            </h3>
-            <div class="type type-subscribe mt-[33px] self-start">
+            <div class="type type-subscribe mt-5 self-start">
               <div class="flex items-start relative rounded">
                 <label class="pl-0">
                   <input
@@ -164,17 +60,16 @@ const downloadHandout = async () => {
                   />
                   <span class="text-sm text-wrap"></span>
                 </label>
-                <p class="text-left text-sm">
-                  By subscribing to our newsletter you're agreeing to our terms
-                  & conditions & cookie policy.
+                <p class="text-left mt-0.5">
+                  Don't show again
                 </p>
               </div>
             </div>
             <button
-              @click="downloadHandout"
-              class="mt-5 bg-whiter text-blue-4 w-full text-lg px-4 py-3 font-medium"
+              @click="dialogStore.showModal = false"
+              class="mt-5 bg-secondary text-white max-w-fit font-medium self-end px-12 py-5 rounded-lg"
             >
-              Get My Enhancer
+              Got it
             </button>
           </div>
         </div>
@@ -246,7 +141,7 @@ input[type="radio"] {
 
 .type label {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px;
   cursor: pointer;
   min-width: max-content;
 }
@@ -282,7 +177,7 @@ input[type="radio"] {
   border: 2px solid #404976;
   width: 16px;
   height: 16px;
-  margin-right: 10px;
+  margin-right: 5px;
   display: inline-block;
   vertical-align: center;
 }
@@ -299,7 +194,7 @@ input[type="radio"] {
 }
 
 .type-subscribe label span:after {
-  background: #000;
+  background: $secondary;
   width: 12px;
   height: 12px;
   position: absolute;

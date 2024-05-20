@@ -2,6 +2,8 @@
   <div class="overflow-x-hidden mx-auto">
     <AppHeader />
     <HomepageHero />
+    <HomepageRecommendations />
+    <HomepageCTA />
     <HomepageClients />
     <HomepageEnhancement />
     <HomepageTestimonials />
