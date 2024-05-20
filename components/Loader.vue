@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen w-full custom_bg flex items-center justify-center">
     <div
-      class="flex items-center justify-center h-64 w-64 rounded-full bg-[#0073ff]"
+      class="flex items-center justify-center h-64 w-64 rounded-full bg-secondary/80"
     >
       <div class="flex flex-col gap-[20px] items-center">
         <div>
