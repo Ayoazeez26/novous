@@ -54,16 +54,16 @@ onUnmounted(() => {
         un myth. Por scientie, musica, sport etc, litot Europa usa li sam
         vocabular.
       </p>
-      <div class="flex flex-col md:flex-row justify-center gap-2 mt-16">
+      <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-2 mt-[28px] md:mt-16">
         <NuxtLink
           to="/"
-          class="text-[#ddd] bg-secondary hover:bg-white hover:text-secondary hover:border-white transition-all duration-300 rounded-xl border border-secondary px-8 md:px-12 py-5 md:py-6 min-w-max md:text-2xl mt-5"
+          class="text-[#ddd] bg-secondary hover:bg-white hover:text-secondary hover:border-white transition-all duration-300 rounded-xl border border-secondary px-8 md:px-12 py-5 md:py-6 min-w-max md:text-2xl"
         >
           Create Account
         </NuxtLink>
         <NuxtLink
           to="/"
-          class="text-white bg-transparent flex items-center gap-3 justify-center hover:bg-white hover:text-secondary hover:border-white transition-all duration-300 rounded-xl border border-transparent px-12 py-6 md:text-2xl mt-5"
+          class="text-white bg-transparent flex items-center gap-3 justify-center hover:bg-white hover:text-secondary hover:border-white transition-all duration-300 rounded-xl border border-transparent px-12 py-6 md:text-2xl"
         >
           <Icon name="material-symbols:play-arrow" />
           <span class="min-w-max"> Watch Video </span>

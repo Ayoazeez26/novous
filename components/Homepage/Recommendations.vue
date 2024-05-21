@@ -111,7 +111,7 @@ const memberInfo = ref([
       <div class="flex lg:items-center justify-center w-full mb-10">
         <div class="text-center">
           <h2
-            class="font-bold leading-[36px] md:leading-[48px] lg:leading-[54px] tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] capitalize"
+            class="md:font-semibold leading-[36px] md:leading-[48px] lg:leading-[54px] tracking-[-1.5px] text-2xl md:text-[32px] lg:text-[48px] capitalize"
           >
             Recommended for You
           </h2>
@@ -128,7 +128,7 @@ const memberInfo = ref([
             class="flex flex-col w-full md:w-[384px]"
           >
             <div
-              class="flex flex-col items-start p-4 border h-[] bg-white border-grey-4 rounded-2xl"
+              class="flex flex-col items-start p-3 md:p-4 border h-[] bg-white border-grey-4 rounded-2xl"
             >
               <img class="w-full" :src="`/img/${member.image}.webp`" />
               <div class="flex flex-col justify-between mt-2 w-full h-full">
@@ -146,7 +146,7 @@ const memberInfo = ref([
 
       <nuxt-link
         to=""
-        class="bg-secondary text-white max-w-fit flex items-center gap-2 font-medium self-center px-12 py-6 rounded-lg"
+        class="bg-secondary text-white max-w-fit flex items-center gap-2 font-medium self-center px-8 md:px-12 py-5 md:py-6 rounded-lg"
       >
         View All
         <Icon name="mdi:arrow-right" size="24" />

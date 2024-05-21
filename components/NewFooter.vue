@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-black-2 py-[120px] md:px-[101.6px] px-5 text-white">
-    <div class="flex justify-between text-sm flex-wrap">
+    <div class="flex justify-between gap-10 text-sm flex-wrap">
       <div class="">
         <h6 class="font-semibold">Company</h6>
         <ul class="flex flex-col gap-7 mt-8">
@@ -48,17 +48,17 @@
       </div>
       <div class="w-full max-w-[376px]">
         <div class="mb-8">
-          <h4 class="md:text-2xl text-xl md:px-0 px-20 md:mb-0 mb-5">
+          <h4 class="md:text-2xl text-sm md:mb-0 mb-5">
             Subscribe to our Newsletter
           </h4>
-          <p class="mt-4 mb-6b">
+          <p class="text-sm md:text-base mt-4 mb-6">
             The latest news, articles, and resources, sent to your inbox weekly.
             We promise not to spam you.
           </p>
         </div>
 
         <form>
-          <div class="flex items-center gap-4">
+          <div class="flex flex-col md:flex-row w-full items-center gap-4">
             <input
               type="email"
               name="email"
@@ -66,11 +66,11 @@
               value=""
               placeholder="Email Address"
               required
-              class="bg-white border text-black-3 font-medium rounded py-3 px-4 w-[70%] md:text-auto outline-none"
+              class="bg-white border text-black-3 font-medium rounded py-3 px-4 w-full md:w-[70%] md:text-auto outline-none"
             />
             <button
               disabled
-              class="bg-secondary cursor-auto rounded py-3 px-4 border-2 border-secondary md:text-base text-sm"
+              class="bg-secondary cursor-auto rounded py-3 px-4 border-2 border-secondary md:text-base w-full text-sm"
             >
               Subscribe
             </button>
@@ -79,7 +79,7 @@
       </div>
     </div>
     <div
-      class="border-t mt-40 border-grey-5 flex justify-between pt-[33px] text-sm flex-wrap"
+      class="border-t mt-40 border-grey-5 flex flex-col-reverse gap-8 md:flex-row justify-between pt-[33px] text-sm flex-wrap"
     >
       <p class="text-xs font-medium">
         © Copyright 2024, All Rights Reserved by Novus Bank
