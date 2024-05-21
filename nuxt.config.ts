@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "TGPC Health",
+      title: "Novous",
       link: [{ rel: "icon", type: "image/png", href: "/favicon.ico" }],
       meta: [
         { charset: "utf-8" },
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Leading management consulting company specializing in Tender, Grant, and Bid writing and management as well as developing quality assurance frameworks and enabling successful license applications.",
+            "",
         },
       ],
       script: [

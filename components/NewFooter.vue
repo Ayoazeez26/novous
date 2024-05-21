@@ -5,7 +5,7 @@
         <h6 class="font-semibold">Company</h6>
         <ul class="flex flex-col gap-7 mt-8">
           <li>
-            <a href="/">About</a>
+            <a href="/about">About</a>
           </li>
           <li>
             <a href="/">Career</a>

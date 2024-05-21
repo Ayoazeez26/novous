@@ -38,7 +38,7 @@
         >
           <li @click="aboutUsToggled">
             <nuxt-link
-              to="/"
+              to="/about"
               class="hover:text-secondary"
               :class="route.name === 'about' ? 'text-secondary' : ''"
             >
@@ -86,29 +86,29 @@
           <!-- <li @click="open = !open" class="min-w-max"><nuxt-link to="/">Home</nuxt-link></li> -->
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/"
-              class="hover:text-blue-4 cursor-pointer py-4 my-2"
+              to="/about"
+              class="hover:text-secondary cursor-pointer py-4 my-2"
               >About Us</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
               to="/"
-              class="hover:text-blue-4 cursor-pointer py-4 my-2"
+              class="hover:text-secondary cursor-pointer py-4 my-2"
               >Care Services</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
               to="/"
-              class="hover:text-blue-4 cursor-pointer py-4 my-2"
+              class="hover:text-secondary cursor-pointer py-4 my-2"
               >Core Strategy</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
               to="/"
-              class="hover:text-blue-4 cursor-pointer py-4 my-2"
+              class="hover:text-secondary cursor-pointer py-4 my-2"
               >Training & Events
             </nuxt-link>
           </li>

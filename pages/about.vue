@@ -1,12 +1,10 @@
 <template>
-  <AppHeaderLight />
+  <AppHeader />
   <div>
-    <CareServicesDropdown v-if="dataStore.careServices" />
-    <AboutUsDropdown v-if="dataStore.about" />
-    <TrainingDropdown v-if="dataStore.training" />
     <AboutHero />
-    <AboutBecause />
     <AboutMission />
+    <AboutBecause />
+    <AboutObjective />
     <AboutEnroll />
     <AboutTeam />
     <AboutQandA />
