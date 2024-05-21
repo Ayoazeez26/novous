@@ -1,10 +1,10 @@
 <template>
   <div
     class="fixed right-0 left-0 top-0 font-medium text-text text-sm z-10 px-4 md:px-6 xl:px-0"
-    :class="dataStore.scrolled ? 'bg-grey-1 py-0' : 'bg-transparent py-6 mt-11'"
+    :class="dataStore.scrolled ? 'bg-grey-1 py-0' : 'bg-transparent py-6 md:mt-11'"
   >
     <div
-      class="bg-grey-1 flex h-24 md:h-[88px] items-center justify-between px-6 md:px-8 w-full max-w-[1240px] rounded-xl mx-auto"
+      class="bg-grey-1 flex h-[72px] md:h-[88px] items-center justify-between px-4 md:px-8 w-full max-w-[1240px] rounded-xl mx-auto"
     >
       <nuxt-link to="/">
         <img class="w-[50px] md:w-28" src="/img/logo.png" />
@@ -16,7 +16,7 @@
           Create Account
         </button>
         <button ref="hamburger" class="lg:hidden" @click="open = !open">
-          <Icon name="ic:round-menu" size="24px" color="#FFF" />
+          <Icon name="ic:round-menu" size="24px" color="#090909" />
         </button>
       </div>
       <ul

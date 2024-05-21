@@ -15,9 +15,11 @@ const clickedOutside = () => {
       class="bg-white rounded-xl flex flex-col items-start relative md:w-5/6 w-[90%] md:max-w-[1000px] overflow-x-hidden h-auto"
     >
       <div
-        class="border-b border-b-grey-2 flex items-center justify-between py-5 px-10 w-full"
+        class="border-b border-b-grey-2 flex items-center justify-between py-5 px-4 md:px-10 w-full"
       >
-        <h4 class="text-2xl font-bold">Privacy Policy & Protection</h4>
+        <h4 class="text-sm md:text-2xl font-bold">
+          Privacy Policy & Protection
+        </h4>
         <Icon
           @click="dialogStore.showModal = false"
           class=""
@@ -30,8 +32,10 @@ const clickedOutside = () => {
         <div
           class="flex md:flex-row flex-col justify-between items-stretch text-whiter"
         >
-          <div class="flex flex-col justify-start px-10 py-5">
-            <p class="text-lg leading-[36px] border-b border-b-grey-2 pb-5">
+          <div class="flex flex-col justify-start px-4 md:px-10 py-5">
+            <p
+              class="text-xs leading-[20px] md:text-lg md:leading-[36px] border-b border-b-grey-2 pb-5"
+            >
               This Privacy Notice refers to the
               <a href="#" class="text-secondary">Novusmfb.com</a> website and
               its related subdomains. By accessing or using our Service hosted
@@ -60,14 +64,12 @@ const clickedOutside = () => {
                   />
                   <span class="text-sm text-wrap"></span>
                 </label>
-                <p class="text-left mt-0.5">
-                  Don't show again
-                </p>
+                <p class="text-left text-xs md:text-base mt-1.5 md:mt-0.5">Don't show again</p>
               </div>
             </div>
             <button
               @click="dialogStore.showModal = false"
-              class="mt-5 bg-secondary text-white max-w-fit font-medium self-end px-12 py-5 rounded-lg"
+              class="mt-5 bg-secondary text-white max-w-fit text-sm md:text-base font-medium self-center md:self-end px-[28px] md:px-12 py-2 md:py-5 rounded-lg"
             >
               Got it
             </button>
