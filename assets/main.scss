@@ -4,6 +4,7 @@ body {
 }
 * {
   scroll-behavior: smooth;
+  box-sizing: border-box;
 }
 
 h1,
@@ -13,6 +14,7 @@ h4,
 h5,
 h6 {
   font-family: "Geist", sans-serif;
+  color: black;
 }
 
 .sans {

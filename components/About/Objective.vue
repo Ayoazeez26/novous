@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="bg-peach mb-[48px] px-4 py-10 xl:px-0 w-full">
+  <div class="bg-peach mb-28 px-4 py-10 xl:px-0 w-full">
     <div
       class="flex flex-col mx-auto w-full max-w-[1240px]"
     >

@@ -5,12 +5,14 @@
     <AboutMission />
     <AboutBecause />
     <AboutObjective />
+    <AboutValues />
     <AboutEnroll />
     <AboutTeam />
-    <AboutQandA />
-    <HomeEnroll />
+    <HomepageCTA />
+    <!-- <AboutQandA /> -->
+    <!-- <HomeEnroll /> -->
   </div>
-  <AppFooter />
+  <NewFooter />
   <!-- <div class="absolute bg-black/75 w-screen h-screen"></div> -->
 </template>
 

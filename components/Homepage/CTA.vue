@@ -7,7 +7,7 @@
       <div
         class="w-full flex flex-col lg:items-start md:text-center px-4 lg:px-4 xl:px-0 lg:text-left md:max-w-[480px] md:pr-4"
       >
-        <p class="text-secondary font-medium tracking-[1.28px]">
+        <p class="pre-header">
           An Abundance of Opportunities Await
         </p>
         <h2

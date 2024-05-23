@@ -2,7 +2,7 @@
   <footer class="bg-black-2 py-[120px] md:px-[101.6px] px-5 text-white">
     <div class="flex justify-between gap-10 text-sm flex-wrap">
       <div class="">
-        <h6 class="font-semibold">Company</h6>
+        <h6 class="font-semibold text-white">Company</h6>
         <ul class="flex flex-col gap-7 mt-8">
           <li>
             <a href="/about">About</a>
@@ -16,7 +16,7 @@
         </ul>
       </div>
       <div class="">
-        <h6 class="font-semibold">Services</h6>
+        <h6 class="font-semibold text-white">Services</h6>
         <ul class="flex flex-col gap-7 mt-8">
           <li>
             <a href="/">Side Hustle</a>
@@ -33,7 +33,7 @@
         </ul>
       </div>
       <div class="">
-        <h6 class="font-semibold">Help & Support</h6>
+        <h6 class="font-semibold text-white">Help & Support</h6>
         <ul class="flex flex-col gap-7 mt-8">
           <li>
             <a href="/">Customer Support</a>
@@ -48,7 +48,7 @@
       </div>
       <div class="w-full max-w-[376px]">
         <div class="mb-8">
-          <h4 class="md:text-2xl text-sm md:mb-0 mb-5">
+          <h4 class="md:text-2xl text-white text-sm md:mb-0 mb-5">
             Subscribe to our Newsletter
           </h4>
           <p class="text-sm md:text-base mt-4 mb-6">
