@@ -40,5 +40,5 @@
 }
 
 .pre-header {
-  @apply text-secondary font-medium leading-[28px] tracking-[1.28px];
+  @apply text-secondary text-xs md:text-base font-medium leading-[28px] tracking-[1.28px];
 }

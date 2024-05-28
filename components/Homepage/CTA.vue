@@ -11,7 +11,7 @@
           An Abundance of Opportunities Await
         </p>
         <h2
-          class="leading-[48px] lg:leading-[48px] tracking-[-1.5px] text-[32px] lg:text-[32px] w-full max-w-[520px] lg:max-w-[532px]"
+          class="leading-[48px] lg:leading-[48px] tracking-[-1.5px] text-white text-[32px] lg:text-[32px] w-full max-w-[520px] lg:max-w-[532px]"
         >
           Careers at Novous Micro-finance Bank
         </h2>

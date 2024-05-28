@@ -1,15 +1,20 @@
 <template>
+  <AppHeader />
   <div>
-    <AppHeader />
-    <CareServicesDropdown v-if="dataStore.careServices" />
-    <AboutUsDropdown v-if="dataStore.about" />
-    <TrainingDropdown v-if="dataStore.training" />
     <ServicesHero />
-    <ServicesJobs />
-    <AboutQandA />
-    <HomeEnroll />
-    <AppFooter />
+    <ServicesMission />
+    <ServicesRecommendations />
+    <!-- <ServicesBecause /> -->
+    <!-- <ServicesObjective /> -->
+    <!-- <ServicesValues /> -->
+    <!-- <ServicesEnroll /> -->
+    <AboutTeam />
+    <HomepageCTA />
+    <!-- <AboutQandA /> -->
+    <!-- <HomeEnroll /> -->
   </div>
+  <NewFooter />
+  <!-- <div class="absolute bg-black/75 w-screen h-screen"></div> -->
 </template>
 
 <script setup lang="ts">

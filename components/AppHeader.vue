@@ -47,9 +47,9 @@
           </li>
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/"
+              to="/services"
               class="hover:text-secondary"
-              :class="route.name === 'ebooks' ? 'text-secondary' : ''"
+              :class="route.name === 'services' ? 'text-secondary' : ''"
               >Our Services</nuxt-link
             >
           </li>
@@ -93,7 +93,7 @@
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/"
+              to="/services"
               class="hover:text-secondary cursor-pointer py-4 my-2"
               >Care Services</nuxt-link
             >

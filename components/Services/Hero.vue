@@ -1,27 +1,16 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="bg-blue pt-20 md:py-28 px-4 md:px-6 xl:px-0 w-full md:pt-[120px]">
+  <div class="bg-blue py-20 pb-12 md:py-28 w-full">
     <div
-      class="w-full max-w-[1240px] flex justify-between pt-32 md:pt-20 mx-auto h-full"
+      class="w-full max-w-[1240px] flex h-full items-center text-center justify-center pt-[64px] md:pt-[140px] px-4 md:px-6 xl:px-0 mx-auto"
     >
-      <div class="flex flex-col justify-between w-full h-full">
-        <div class="flex justify-center w-full">
-          <div class="text-center w-full">
-            <p class="text-yellow text-lg font-bold uppercase">services</p>
-            <h1
-              class="text-white font-black leading-[42px] md:leading-[54px] mb-10 lg:leading-[78px] tracking-[-1.5px] text-[32px] md:text-[48px] lg:text-[64px]"
-            >
-              Business Guidance To <span class="text-yellow">Excellence</span>
-            </h1>
-          </div>
-        </div>
-        <div class="-mb-20 md:-mb-40 translate-y-10 md:translate-y-20 relative">
-          <img
-            src="https://s3.eu-west-2.amazonaws.com/ocmc-img.com/services-hero.png"
-            alt="placeholder for video"
-          />
-          <div id="licenses" />
-        </div>
+      <div class="">
+        <p class="text-secondary text-sm md:text-2xl font-medium tracking-[0.2px]">Our Services</p>
+        <h1
+          class="font-black mt-3 text-white leading-[42px] md:leading-[54px] lg:leading-[78px] tracking-[-0.96px] text-[36px] md:text-[48px]"
+        >
+          Products & Services
+        </h1>
       </div>
     </div>
   </div>

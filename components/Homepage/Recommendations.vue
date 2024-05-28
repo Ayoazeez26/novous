@@ -145,7 +145,7 @@ const memberInfo = ref([
       </div>
 
       <nuxt-link
-        to=""
+        to="/services#recommendations"
         class="bg-secondary text-white max-w-fit flex items-center gap-2 font-medium self-center px-8 md:px-12 py-5 md:py-6 rounded-lg"
       >
         View All
