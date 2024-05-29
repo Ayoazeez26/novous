@@ -55,9 +55,9 @@
           </li>
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/"
+              to="/career"
               class="hover:text-secondary"
-              :class="route.name === 'ebooks' ? 'text-secondary' : ''"
+              :class="route.name === 'career' ? 'text-secondary' : ''"
               >Career</nuxt-link
             >
           </li>
