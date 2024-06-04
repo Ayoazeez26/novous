@@ -29,14 +29,14 @@
             <img class="w-[50px] md:w-20" src="/img/logo.png" />
           </nuxt-link>
           <button class="" @click="open = !open">
-            <Icon name="ic:round-close" size="24px" color="#FFF" />
+            <Icon name="ic:round-close" size="24px" color="#000" />
           </button>
         </div>
         <ul
           v-if="!open"
           class="flex flex-col lg:flex-row cursor-pointer lg:items-center gap-4 mt-10 lg:mt-0 lg:gap-11"
         >
-          <li @click="aboutUsToggled">
+          <li>
             <nuxt-link
               to="/about"
               class="hover:text-secondary"
@@ -45,7 +45,7 @@
               About Us
             </nuxt-link>
           </li>
-          <li @click="open = !open" class="min-w-max">
+          <li class="min-w-max">
             <nuxt-link
               to="/services"
               class="hover:text-secondary"
@@ -53,7 +53,7 @@
               >Our Services</nuxt-link
             >
           </li>
-          <li @click="open = !open" class="min-w-max">
+          <li class="min-w-max">
             <nuxt-link
               to="/career"
               class="hover:text-secondary"
@@ -61,7 +61,7 @@
               >Career</nuxt-link
             >
           </li>
-          <li @click="open = !open" class="min-w-max">
+          <li class="min-w-max">
             <nuxt-link
               to="/contact"
               class="hover:text-secondary"
@@ -95,37 +95,28 @@
             <nuxt-link
               to="/services"
               class="hover:text-secondary cursor-pointer py-4 my-2"
-              >Care Services</nuxt-link
+              >Our Services</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/"
+              to="/career"
               class="hover:text-secondary cursor-pointer py-4 my-2"
-              >Core Strategy</nuxt-link
+              >Career</nuxt-link
             >
           </li>
           <li class="py-4" @click="open = !open">
             <nuxt-link
-              to="/"
+              to="/contact"
               class="hover:text-secondary cursor-pointer py-4 my-2"
-              >Training & Events
+              >Contact
             </nuxt-link>
-          </li>
-          <li class="py-4" @click="open = !open">
-            <nuxt-link to="/" class="py-4 my-2">Resources</nuxt-link>
-          </li>
-          <!-- <li class="py-4" @click="open = !open">
-            <nuxt-link to="/blog" class="py-4 my-2">News</nuxt-link>
-          </li> -->
-          <li class="py-4" @click="open = !open">
-            <nuxt-link to="/" class="py-4 my-2">Online Store</nuxt-link>
           </li>
           <div
             class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6"
           >
             <button
-              class="bg-secondary border-2 border-white font-medium px-4 py-3 rounded text-white"
+              class="bg-secondary border-2 border-white font-medium px-4 py-4 rounded-lg text-white"
             >
               Create Account
             </button>
@@ -237,7 +228,7 @@ if (typeof window !== "undefined") {
       max-width: calc(100vw - 32px);
       margin-right: 16px;
       margin-top: 16px;
-      background-color: $blue-2;
+      background-color: #F5F5FF;
       z-index: 100;
       &__toggle {
         display: none;
@@ -273,7 +264,7 @@ if (typeof window !== "undefined") {
     border: none;
 
     div {
-      background-color: $black;
+      background-color: #F5F5FF;
       height: 3px;
       border-radius: 2px;
       margin: 4px;
