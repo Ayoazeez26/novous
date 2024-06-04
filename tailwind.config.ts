@@ -8,6 +8,7 @@ export default <Partial<Config>>{
         "grey-1": "#F5F5FF",
         text: "#2B2B2B",
         secondary: "#EA3223",
+        neutral: "#555555",
         "grey-2": "#E6E6E6",
         "grey-3": "#FEF6F6",
         "grey-4": "#E0E0E0",

@@ -36,9 +36,25 @@
 }
 
 .form-input {
-  @apply border border-gray-300 rounded-md w-full p-2
+  @apply border border-[#DBE1E7] bg-[#F7F8F9] rounded w-full p-3 placeholder:text-sm placeholder:text-[#666666] focus:outline-secondary/10
+}
+
+.form-label {
+  @apply block text-gray-700 font-bold mb-2
 }
 
 .pre-header {
   @apply text-secondary text-xs md:text-base font-medium leading-[28px] tracking-[1.28px];
+}
+
+.privacy-nav {
+  @apply hover:bg-[#000066] hover:text-white flex items-center space-x-2 py-4 px-3 rounded transition-all duration-300 bg-[#FAFAFA] cursor-pointer
+}
+
+.privacy-num {
+  @apply h-7 w-7 bg-white rounded-full flex items-center justify-center text-black font-normal
+}
+
+.active {
+  @apply bg-[#000066] text-white
 }
