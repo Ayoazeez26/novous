@@ -63,7 +63,7 @@ const onSubmit = () => {
 
 <template>
   <div class="md:py-20 py-10 w-full">
-    <div class=" mx-auto md:px-0 px-5 max-w-[1240px]">
+    <div class=" mx-auto xl:px-0 px-4 max-w-[1240px]">
       <div class="md:text-left text-center space-y-6 mb-10">
         <h2 class="text-3xl font-bold">About the Bank</h2>
         <p class="text-gray-600">

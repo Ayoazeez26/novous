@@ -90,8 +90,8 @@ const personSpecification = ref({
   <div class="bg-blue-2 md:py-20 py-10 w-full">
     <div
       class="bg-blue-2 flex flex-col lg:flex-row justify-between items-center mx-auto w-full max-w-[1240px] md:px-10 px-5">
-      <div class="flex md:flex-row flex-col md:space-y-0 space-y-5 md:space-x-10">
-        <div class="md:w-[60%] space-y-7">
+      <div class="flex md:flex-row flex-col md:space-y-0 space-y-5 md:space-x-10 w-full">
+        <div class="md:w-[60%] w-full space-y-7">
           <div class="job-objective md:space-y-5 space-y-3">
             <h2 class="md:text-2xl text-xl font-bold">Job Objective</h2>
             <p>{{ jobObjective }}</p>
