@@ -4,7 +4,7 @@
     <div class="flex items-center space-x-2 md:pt-16 pt-6 max-w-[1240px] mx-auto md:pl-0 pl-5">
       <NuxtLink to="/" class="text-white text-sm">Home</NuxtLink>
       <Icon name="material-symbols:chevron-right-rounded" color="#ffffff" />
-      <NuxtLink to="/careers" class="text-white text-sm">Careers</NuxtLink>
+      <NuxtLink to="/career" class="text-white text-sm">Careers</NuxtLink>
       <Icon name="material-symbols:chevron-right-rounded" color="#ffffff" />
       <p class="text-secondary text-sm">Senior Credit Officer</p>
     </div>
@@ -15,9 +15,10 @@
           class="font-bold mt-3 mb-6 text-white leading-[42px] md:leading-[54px] lg:leading-[78px] tracking-[-0.96px] text-[36px] md:text-[48px]">
           Senior Credit Officer
         </h1>
-        <button
+        <nuxt-link
+        to="/career/apply/4"
           class="bg-secondary text-white rounded text-[16px] md:text-[20px] md:py-6 py-4 px-12 hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out">
-          Apply Now</button>
+          Apply Now</nuxt-link>
       </div>
     </div>
   </div>

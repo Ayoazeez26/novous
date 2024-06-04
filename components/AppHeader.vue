@@ -63,7 +63,7 @@
           </li>
           <li @click="open = !open" class="min-w-max">
             <nuxt-link
-              to="/"
+              to="/contact"
               class="hover:text-secondary"
               :class="route.name === 'store' ? 'text-secondary' : ''"
               >Contact Us</nuxt-link

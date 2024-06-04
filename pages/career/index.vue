@@ -3,8 +3,10 @@
   <div>
     <CareerHero />
     <CareerCTA />
-    <CareerMission />
-    <CareerRecommendations />
+    <CareerOpening />
+    <!-- <CareerMission /> -->
+    <!-- <CareerRecommendations /> -->
+    <Testimonials />
     <HomepageCTA />
   </div>
   <NewFooter />
