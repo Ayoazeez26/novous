@@ -70,7 +70,7 @@
             />
             <button
               disabled
-              class="bg-secondary cursor-auto rounded py-3 px-4 border-2 border-secondary md:text-base w-full text-sm"
+              class="bg-secondary cursor-auto rounded py-3 px-4 border-2 border-secondary md:text-base text-sm"
             >
               Subscribe
             </button>

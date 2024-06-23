@@ -1,4 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const openings = ref([
+  {
+    title: 'Senior Credit Officer',
+    bank: 'Novus Microfinance Bank',
+    location: 'Makurdi, Benue State',
+    band: 'MT',
+    ageLimit: 'Thirty(30)',
+    endDate: '30th May, 2024',
+    link: '#',
+    img: 'job-place'
+  }
+])
+</script>
 <template>
   <div>
     <div id="team" class="py-14 lg:py-[100px] w-full">
@@ -17,6 +30,8 @@
         </div>
         <div class="flex flex-col items-center gap-6 mb-16">
           <div
+            v-for="(opening, index) in openings"
+            :key="index"
             class="border border-grey-4 flex items-center justify-between rounded-2xl p-4 w-full"
           >
             <div class="flex items-center w-full gap-4">
@@ -26,26 +41,26 @@
                 alt="job placeholder image"
               />
               <div class="flex flex-col text-grey-10">
-                <p>Novous Microfinance Bank</p>
+                <p class="mb-2">{{ opening.bank }}</p>
                 <h4 class="font-medium text-[24px] text-black">
-                  Senior Credit Officer
+                  {{ opening.title }}
                 </h4>
-                <div class="flex items-center gap-1">
-                  <p>Makurdi, Benue State</p>
+                <div class="flex items-center gap-1 mt-1">
+                  <p>{{ opening.location }}</p>
                   <div class="h-2 w-2 rounded-full bg-grey-11" />
                   <p>
-                    Grade Band: <span class="text-black font-medium">MT</span>
+                    Grade Band: <span class="text-black font-medium">{{ opening.band }}</span>
                   </p>
                   <div class="h-2 w-2 rounded-full bg-grey-11" />
                   <p>
                     Age Limit:
-                    <span class="text-black font-medium">Thirty(30)</span>
+                    <span class="text-black">{{ opening.ageLimit }}</span>
                   </p>
                 </div>
               </div>
             </div>
             <div class="flex flex-col items-end gap-1">
-              <p class="min-w-max">Closing 30th May, 2024</p>
+              <p class="min-w-max mb-2">Closing {{ opening.endDate }}</p>
               <nuxt-link to="/career/4" class="bg-secondary px-8 py-4 rounded-lg text-white">
                 Apply Now
               </nuxt-link>

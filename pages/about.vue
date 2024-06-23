@@ -6,7 +6,7 @@
     <AboutBecause />
     <AboutObjective />
     <AboutValues />
-    <AboutEnroll />
+    <AboutStrategy />
     <AboutTeam />
     <HomepageCTA />
     <!-- <AboutQandA /> -->

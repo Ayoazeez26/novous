@@ -5,6 +5,26 @@ const nextClicked = ref(false);
 
 const services = ref([
   {
+    name: "Dr. Moses Tule",
+    title: "Chairman Board of Directors Novus MFB",
+    image: "moses",
+  },
+  {
+    name: "Mrs. Patricia Goja",
+    title: "Managing Director and Chief Executive Officer Novus MFB",
+    image: "goja",
+  },
+  {
+    name: "Dr. Raymond Terfa Asemakaha CFA",
+    title: "Board Member Novus MFB",
+    image: "terfa",
+  },
+  {
+    name: "Hon. Michael Oglegba",
+    title: "Board Member Novus MFB",
+    image: "michael",
+  },
+  {
     name: "Moses Tule",
     title: "Chairman",
     image: "team-member-1",
@@ -24,25 +44,23 @@ const services = ref([
     title: "Member",
     image: "team-member-4",
   },
+]);
+
+const team = ref([
   {
-    name: "Moses Tule",
-    title: "Chairman",
-    image: "team-member-1",
+    name: "Harriet Hembafan Adzuu",
+    title: "Chief Finance & Administrative Officer",
+    image: "harriet",
   },
   {
-    name: "Pat Goja",
-    title: "CEO & Managing Director",
-    image: "team-member-2",
+    name: "Innocent Ejembi",
+    title: "Chief Compliance & Audit Officer",
+    image: "goja",
   },
   {
-    name: "Raymond Asemakaha",
-    title: "Non-Executive Director",
-    image: "team-member-3",
-  },
-  {
-    name: "Michael Oglegba",
-    title: "Member",
-    image: "team-member-4",
+    name: "Thomas Tavershima Kaneor",
+    title: "Chief Marketing & Business Development Officer.",
+    image: "kane",
   },
 ]);
 
@@ -111,23 +129,23 @@ const services = ref([
       <div class="flex justify-start overflow-x-auto pb-10 w-full xl:w-[1240px] mx-auto">
         <div class="flex flex-col md:flex-row justify-start gap-7">
           <div
-            v-for="(service, idx) in 3"
+            v-for="(service, idx) in team"
             :key="idx"
             class="flex flex-col w-full md:w-[298px]"
           >
             <img
               class="w-full"
-              :src="`/img/${services[idx].image}.webp`"
+              :src="`/img/${service.image}.webp`"
             />
             <div
               class="flex items-center pt-6"
             >
               <div class="flex flex-col w-full">
                 <h3 class="leading-[30px] text-xl">
-                  {{ services[idx].name }}
+                  {{ service.name }}
                 </h3>
                 <p class="text-secondary mt-1">
-                  {{ services[idx].title }}
+                  {{ service.title }}
                 </p>
                 <div class="mt-6 flex gap-5 items-center">
                   <img src="/svg/twitter.svg" alt="twitter icon">

@@ -2,13 +2,13 @@
   <AppHeader />
   <div>
     <ServicesHero />
-    <ServicesMission />
+    <!-- <ServicesMission /> -->
     <ServicesRecommendations />
     <!-- <ServicesBecause /> -->
     <!-- <ServicesObjective /> -->
     <!-- <ServicesValues /> -->
     <!-- <ServicesEnroll /> -->
-    <AboutTeam />
+    <!-- <AboutTeam /> -->
     <HomepageCTA />
     <!-- <AboutQandA /> -->
     <!-- <HomeEnroll /> -->
