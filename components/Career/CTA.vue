@@ -10,7 +10,7 @@
         <h2
           class="leading-[48px] lg:leading-[48px] tracking-[-1.5px] text-[32px] lg:text-[32px] w-full max-w-[520px] lg:max-w-[532px]"
         >
-          Careers at Novous Micro-finance Bank
+          Careers at Novous Microfinance Bank
         </h2>
         <p class="leading-[28px] text-grey-8 text-lg mt-2">
           Whether you are just starting out or looking to take that next step in
