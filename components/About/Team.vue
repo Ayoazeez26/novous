@@ -25,24 +25,9 @@ const services = ref([
     image: "michael",
   },
   {
-    name: "Moses Tule",
-    title: "Chairman",
-    image: "team-member-1",
-  },
-  {
-    name: "Pat Goja",
-    title: "CEO & Managing Director",
-    image: "team-member-2",
-  },
-  {
-    name: "Raymond Asemakaha",
-    title: "Non-Executive Director",
-    image: "team-member-3",
-  },
-  {
-    name: "Michael Oglegba",
-    title: "Member",
-    image: "team-member-4",
+    name: "Mr. Denen Aondoakaa",
+    title: "Board Member, Novus Microfinance Bank Limited",
+    image: "denen",
   },
 ]);
 
@@ -51,11 +36,6 @@ const team = ref([
     name: "Harriet Hembafan Adzuu",
     title: "Chief Finance & Administrative Officer",
     image: "harriet",
-  },
-  {
-    name: "Innocent Ejembi",
-    title: "Chief Compliance & Audit Officer",
-    image: "goja",
   },
   {
     name: "Thomas Tavershima Kaneor",
@@ -81,7 +61,7 @@ const team = ref([
         </div>
       </div>
       <div class="flex justify-center overflow-x-auto pb-10 w-full xl:w-[1456px] mr-auto lg:mr-0 ml-auto">
-        <div class="flex flex-col md:flex-row justify-center gap-7 lg:ml-[1430px] lg:pr-[300px]">
+        <div class="flex flex-col md:flex-row justify-center gap-7 lg:ml-[630px] lg:pr-[300px]">
           <div
             v-for="(service, idx) in services"
             :key="idx"
@@ -126,8 +106,8 @@ const team = ref([
           </h2>
         </div>
       </div>
-      <div class="flex justify-start overflow-x-auto pb-10 w-full xl:w-[1240px] mx-auto">
-        <div class="flex flex-col md:flex-row justify-start gap-7">
+      <div class="flex justify-center overflow-x-auto pb-10 w-full xl:w-[1240px] mx-auto">
+        <div class="flex flex-col md:flex-row justify-center gap-7">
           <div
             v-for="(service, idx) in team"
             :key="idx"

@@ -53,7 +53,7 @@ const clickedOutside = () => {
               outlined in our Privacy Policy, in compliance with the NDPR (2019)
               and the NDPA (2023).
             </p>
-            <div class="type type-subscribe mt-5 self-start">
+            <!-- <div class="type type-subscribe mt-5 self-start">
               <div class="flex items-start relative rounded">
                 <label class="pl-0">
                   <input
@@ -66,7 +66,7 @@ const clickedOutside = () => {
                 </label>
                 <p class="text-left text-xs md:text-base mt-1.5 md:mt-0.5">Don't show again</p>
               </div>
-            </div>
+            </div> -->
             <button
               @click="dialogStore.showModal = false"
               class="mt-5 bg-secondary text-white max-w-fit text-sm md:text-base font-medium self-center md:self-end px-[28px] md:px-12 py-2 md:py-5 rounded-lg"
