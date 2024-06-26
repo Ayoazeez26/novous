@@ -7,16 +7,21 @@
       <div
         class="w-full flex flex-col lg:items-start md:text-center px-4 lg:px-4 xl:px-0 lg:text-left md:max-w-[480px] md:pr-4"
       >
-        <p class="pre-header">An Abundance of Opportunities Await</p>
         <h2
           class="leading-[48px] lg:leading-[48px] tracking-[-1.5px] text-white text-[32px] lg:text-[32px] w-full max-w-[520px] lg:max-w-[532px]"
         >
-          Careers at Novous Microfinance Bank
+          Careers at Novus Microfinance Bank
         </h2>
         <p class="leading-[28px] text-lg mt-2">
-          Whether you are just starting out or looking to take that next step in
-          your career, our prestigious brand offers you many ways to impact
-          lives and achieve your ambitions.
+          Looking for exciting career opportunities? Explore our current job
+          openings below and join our dynamic team of professionals dedicated to
+          making a difference in the financial sector. At Novus MFB, we value
+          talent, creativity, and passion, and we are eager to welcome
+          individuals who share our vision of excellence, positive vibes to work
+          and customer-centric service.
+          <br /><br />
+          Browse through our vacancies and take the next step towards a
+          rewarding career with us.
         </p>
         <div class="flex mt-10">
           <nuxt-link

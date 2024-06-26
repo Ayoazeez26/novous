@@ -28,7 +28,6 @@ const handleSubmit = (event: Event) => {
       class="bg-blue-2 flex flex-col lg:flex-row justify-between items-center md:px-6 xl:px-0 lg:my-[120px] mx-auto w-full max-w-[1240px]">
       <div class="w-full">
         <div class="text-center">
-          <p class="pre-header">Don't be Shy</p>
           <h2 class="leading-[48px] lg:leading-[48px] tracking-[-1.5px] text-2xl lg:text-[32px] w-full">
             Say hello, we want to hear from you
           </h2>

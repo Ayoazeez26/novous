@@ -52,11 +52,11 @@ const team = ref([
     >
       <div class="flex lg:items-center justify-center w-full mb-10 max-w-[1240px] mx-auto">
         <div class="text-center">
-          <p class="pre-header">Our Board of Directors</p>
+          <p class="pre-header">Meet the minds behind Novus Microfinance Bank</p>
           <h2
             class="font-medium leading-[36px] md:leading-[48px] lg:leading-[44px] tracking-[-0.72px] text-2xl md:text-[32px] mt-2 lg:text-[36px]"
           >
-            Meet the minds behind Novus Microfinance Bank
+            Our Board of Directors
           </h2>
         </div>
       </div>
@@ -98,11 +98,11 @@ const team = ref([
     >
       <div class="flex lg:items-center justify-center w-full mb-10 max-w-[1240px] mx-auto">
         <div class="text-center">
-          <p class="pre-header">Our Outstanding Leadership</p>
+          <p class="pre-header">Meet our team</p>
           <h2
             class="font-medium leading-[36px] md:leading-[48px] lg:leading-[44px] tracking-[-0.72px] text-2xl md:text-[32px] mt-2 lg:text-[36px]"
           >
-            Meet our team
+            Our Outstanding Leadership
           </h2>
         </div>
       </div>

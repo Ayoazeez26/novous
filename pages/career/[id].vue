@@ -3,7 +3,7 @@
   <div>
     <CareerSingleHero />
     <CareerDetails />
-    <Testimonials />
+    <!-- <Testimonials /> -->
     <HomepageCTA />
   </div>
   <NewFooter />
