@@ -54,7 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       opt = {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer dfda7eb4f035d6ab674d5554fac85052d174ed336d846819bdcd2519a6e199937ec1d312a490a8cba77f4822bf7800b0a337bdb5e3689cf5494cb08308d4d558f8dd792a7ae2a491d9083e74313acce1b1b9fb7ef80933d43513e939450d365b89d056cf9672515c602775e3401b5e45124d490f9abdcbc692d71a435ef6f194",
+          "Bearer 8a5de7738830070b880ad7684fbb5ccd28ee45fc47a9c3c1a9738789ed461988f38bb303d67602091e43283fc4d4a95d427b09af322a583ee47f0b94f7f086349853846b2d65de77b48796aa1daf70d9ef3cf428fa14ca4924ab03afdee4bcf03dbab965f874de9c74c9eac73415c151cc98a02da41ed40068066585e518ed4f",
       };
       options.headers = opt;
       // } else {
