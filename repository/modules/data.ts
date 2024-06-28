@@ -9,8 +9,8 @@ import type {
 class DataModule extends FetchFactory {
   private RESOURCE = "";
 
-  async getAllProducts(data: string): Promise {
-    return await this.call("GET", `${this.RESOURCE}/product/search${data}`);
+  async getJobOpenings(): Promise {
+    return await this.call("GET", `${this.RESOURCE}/jobs`);
   }
 
   async getAllArticles(): Promise {

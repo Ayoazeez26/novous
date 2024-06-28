@@ -1,136 +1,30 @@
 <script setup lang="ts">
-const openings = ref([
-  {
-    title: 'Senior Credit Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Thirty(30)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Brand/Product Advertising & Media Management Comm Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Twenty-six(26)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Credit Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT2',
-    ageLimit: 'Twenty-five(25)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'credit-place'
-  },
-  {
-    title: 'Head of Operations',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'Off',
-    ageLimit: 'Thirty-five(35)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Teller',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Twenty-four(24)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'teller-place'
-  },
-  {
-    title: 'Administration & Procurement Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Thirty(30)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Zonal Lead',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'Officer',
-    ageLimit: 'Thirty-seven(37)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Corporate Governance, Regulatory & Legal Compliance Officer ',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'Off',
-    ageLimit: 'Thirty-five(35)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Technology Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'Off',
-    ageLimit: 'Thirty-five(35)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Technical Assistant to The Chief Executive officer ',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT-Officer upon confirmation',
-    ageLimit: 'Thirty-Two(32)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'tech-place'
-  },
-  {
-    title: 'Investment Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Twenty-seven(27)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Collection & Recovery Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Thirty-three(33)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'job-place'
-  },
-  {
-    title: 'Customer Service Officer',
-    bank: 'Novus Microfinance Bank',
-    location: 'Makurdi, Benue State',
-    band: 'MT',
-    ageLimit: 'Twenty-seven(27)',
-    endDate: '30th May, 2024',
-    link: '/career/4',
-    img: 'service-place'
-  },
-])
+import { errorToast } from "~/plugins/vue3-toastify";
+import { successToast } from "~/plugins/vue3-toastify";
+import { useDataStore } from "~/stores/data";
+
+const dataStore = useDataStore();
+const id = localStorage.getItem("productId");
+const email = ref("");
+const loading = ref(false);
+const errorMessage = ref("");
+const router = useRouter();
+const jobOpenings = ref([]);
+
+const getAllJobOpenings = async () => {
+  const jobOpening = await dataStore.getJobOpenings();
+  if (jobOpening) {
+    console.log(jobOpening);
+    jobOpenings.value = jobOpening;
+  }
+};
+getAllJobOpenings();
+
+const goToJD = (id) => {
+  const singleJobApplication = jobOpenings.value.find(el => el.id === id);
+  dataStore.singleJob = singleJobApplication;
+  router.push(`/career/${singleJobApplication.id}`);
+}
 </script>
 <template>
   <div>
@@ -148,42 +42,42 @@ const openings = ref([
             </h2>
           </div>
         </div>
-        <div class="flex flex-col items-center gap-6 mb-16">
+        <div v-if="jobOpenings.length" class="flex flex-col items-center gap-6 mb-16">
           <div
-            v-for="(opening, index) in openings"
+            v-for="(opening, index) in jobOpenings"
             :key="index"
             class="border border-grey-4 flex items-center justify-between rounded-2xl p-4 w-full"
           >
             <div class="flex items-center w-full gap-4">
               <img
                 class="w-[160px]"
-                :src="`/img/${opening.img}.webp`"
+                :src="opening.attributes.img"
                 alt="job placeholder image"
               />
               <div class="flex flex-col text-grey-10">
-                <p class="mb-2">{{ opening.bank }}</p>
+                <p class="mb-2">Novus Microfinance Bank</p>
                 <h4 class="font-medium text-[24px] text-black">
-                  {{ opening.title }}
+                  {{ opening.attributes.title }}
                 </h4>
                 <div class="flex items-center gap-1 mt-1">
-                  <p>{{ opening.location }}</p>
+                  <p>Makurdi, Benue State</p>
                   <div class="h-2 w-2 rounded-full bg-grey-11" />
                   <p>
-                    Grade Band: <span class="text-black font-medium">{{ opening.band }}</span>
+                    Grade Band: <span class="text-black font-medium">{{ opening.attributes.band }}</span>
                   </p>
                   <div class="h-2 w-2 rounded-full bg-grey-11" />
                   <p>
                     Age Limit:
-                    <span class="text-black">{{ opening.ageLimit }}</span>
+                    <span class="text-black">{{ opening.attributes.age }}</span>
                   </p>
                 </div>
               </div>
             </div>
             <div class="flex flex-col items-end gap-1">
-              <p class="min-w-max mb-2">Closing {{ opening.endDate }}</p>
-              <nuxt-link :to="opening.link" class="bg-secondary px-8 py-4 rounded-lg text-white">
+              <p class="min-w-max mb-2">Closing {{ opening.attributes.endDate }}</p>
+              <button @click="goToJD(opening.id)" class="bg-secondary px-8 py-4 rounded-lg text-white">
                 Apply Now
-              </nuxt-link>
+              </button>
             </div>
           </div>
         </div>

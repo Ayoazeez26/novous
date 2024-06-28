@@ -1,6 +1,19 @@
+<script>
+import Markdown from 'vue3-markdown-it';
+
+export default {
+  components: {
+    Markdown
+  },
+}
+</script>
 <script setup>
 import { ref } from "vue";
+import { useDataStore } from "~/stores/data";
+const dataStore = useDataStore();
 
+console.log(dataStore.singleJob);
+const jobAd = dataStore.singleJob.attributes;
 const jobObjective = ref(
   "To ensure successful credit analysis is done as requested by the Credit Officers in line with the Bank’s credit policy and within the expected turnaround time, to deliver quality and sustainable risk assets."
 );
@@ -97,7 +110,8 @@ const personSpecification = ref({
         class="flex md:flex-row flex-col md:space-y-0 space-y-5 md:space-x-10 w-full"
       >
         <div class="md:w-[60%] w-full space-y-7">
-          <div class="job-objective md:space-y-5 space-y-3">
+          <Markdown class="markdown leading-[32px]" :source="dataStore.singleJob.attributes.description" />
+          <!-- <div class="job-objective md:space-y-5 space-y-3">
             <h2 class="md:text-2xl text-xl font-bold">Job Objective</h2>
             <p>{{ jobObjective }}</p>
           </div>
@@ -174,49 +188,49 @@ const personSpecification = ref({
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="md:w-[40%]">
           <div class="about-the-job space-y-6 mb-16">
             <h2 class="md:text-2xl text-xl font-bold">About the Job</h2>
-            <div class="md:space-y-6 space-y-4">
+            <div class="md:space-y-6 text-black font-medium space-y-4">
               <p class="">
-                <span class="text-black/30">Educational Requirement:</span>
-                {{ aboutTheJob.educationalRequirement }}
+                <span class="text-neutral font-normal">Educational Requirement:</span>
+                {{ jobAd.qualification }}
               </p>
               <p class="">
-                <span class="text-black/30">Experience:</span>
-                {{ aboutTheJob.experience }}
+                <span class="text-neutral font-normal">Experience:</span>
+                {{ jobAd.experience }}
               </p>
               <p class="">
-                <span class="text-black/30">Job Title:</span>
-                {{ aboutTheJob.jobTitle }}
+                <span class="text-neutral font-normal">Job Title:</span>
+                {{ jobAd.title }}
               </p>
               <p class="">
-                <span class="text-black/30">Grade Band:</span>
-                {{ aboutTheJob.gradeBand }}
+                <span class="text-neutral font-normal">Grade Band:</span>
+                {{ jobAd.band }}
               </p>
               <p class="">
-                <span class="text-black/30">Age Limit:</span>
-                {{ aboutTheJob.ageLimit }}
+                <span class="text-neutral font-normal">Age Limit:</span>
+                {{ jobAd.age }}
               </p>
               <p class="">
-                <span class="text-black/30">Unit:</span> {{ aboutTheJob.unit }}
+                <span class="text-neutral font-normal">Unit:</span> {{ aboutTheJob.unit }}
               </p>
               <p class="">
-                <span class="text-black/30">Department:</span>
-                {{ aboutTheJob.department }}
+                <span class="text-neutral font-normal">Department:</span>
+                {{ jobAd.department }}
               </p>
               <p class="">
-                <span class="text-black/30">Team:</span> {{ aboutTheJob.team }}
+                <span class="text-neutral font-normal">Team:</span> {{ aboutTheJob.team }}
               </p>
               <p class="">
-                <span class="text-black/30">Supervises:</span>
-                {{ aboutTheJob.supervises }}
+                <span class="text-neutral font-normal">Supervises:</span>
+                {{ jobAd.supervises }}
               </p>
               <p class="">
-                <span class="text-black/30">Reports to:</span>
-                {{ aboutTheJob.reportsTo }}
+                <span class="text-neutral font-normal">Reports to:</span>
+                {{ jobAd.reportsTo }}
               </p>
             </div>
           </div>

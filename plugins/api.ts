@@ -1,9 +1,9 @@
-import { ofetch, $fetch, FetchOptions } from 'ofetch';
+import { ofetch, $fetch, FetchOptions } from "ofetch";
 // import AuthModule from '~/repository/modules/auth';
-import DataModule from '~/repository/modules/data';
+import DataModule from "~/repository/modules/data";
 // import { useAuthStore } from '~/stores/auth';
-import { errorToast } from './vue3-toastify';
-import { useDialogStore } from '~/stores/dialog';
+import { errorToast } from "./vue3-toastify";
+import { useDialogStore } from "~/stores/dialog";
 // import type { RefreshTokenInput } from '~/types';
 
 interface IApiInstance {
@@ -18,10 +18,10 @@ export async function refreshToken(config: any, data: RefreshTokenInput) {
     const response = await fetch(
       `${config.public.baseUrl}/account/refresh-token`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: '',
+          "Content-Type": "application/json",
+          Authorization: "",
         },
         body: JSON.stringify(data),
       }
@@ -51,8 +51,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     onRequest({ request, options }) {
       // const authStore = useAuthStore();
       // if (authStore.authenticated && authStore.user.accessToken) {
-      //   opt = { Authorization: `Bearer ${authStore.user.accessToken}` };
-      //   options.headers = opt;
+      opt = {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer dfda7eb4f035d6ab674d5554fac85052d174ed336d846819bdcd2519a6e199937ec1d312a490a8cba77f4822bf7800b0a337bdb5e3689cf5494cb08308d4d558f8dd792a7ae2a491d9083e74313acce1b1b9fb7ef80933d43513e939450d365b89d056cf9672515c602775e3401b5e45124d490f9abdcbc692d71a435ef6f194",
+      };
+      options.headers = opt;
       // } else {
       //   opt = { Authorization: '' };
       // }
@@ -76,7 +80,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       //     expiredToken: authStore.user.accessToken as string,
       //     refreshToken: authStore.user.refreshToken as string,
       //   };
-        
+
       //   refreshToken(config, payload)
       //     .then((data) => {
       //       console.log(data);
@@ -97,11 +101,11 @@ export default defineNuxtPlugin((nuxtApp) => {
       //     authStore.logout();
       //   }, 1000);
       // } else {
-        errorToast(
-          error.response && error.response._data
-            ? error.response._data.message
-            : 'Something went wrong, try again!'
-        );
+      errorToast(
+        error.response && error.response._data
+          ? error.response._data.message
+          : "Something went wrong, try again!"
+      );
       // }
     },
   };
