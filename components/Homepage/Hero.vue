@@ -15,6 +15,12 @@ const bgs = [
   "bg-hero-bg-three",
   "bg-hero-bg-four",
 ];
+const desc = [
+  "Designed to cater to the unique financial needs and aspirations of High-Net-Worth Individuals (HNIs) and sophisticated investors. This product offers a range of tailored financial products and personalized services that aim to preserve and enhance the wealth of our esteemed clients.",
+  "We got you covered with our full range of banking services here on-the-go 24/7. Internet banking, mobile apps, pay your bills conveniently, and make purchases using their mobile phones, POS (Point of Sale), our swift USSD Banking (*614*0806#)",
+  "Being a worker in Benue state is about to get better. The side-hustle loans are deigned to cater to the daring need of Benue state workers. This product offers low-cost interest loans to workers in Benue state.",
+  "Be alert – no sleep, be conscious of scammers. Always know that Novus Microfinance Bank, its staff, or agents cannot ask you for your banking application logins.",
+];
 
 const currentIndex = ref(0);
 
@@ -39,7 +45,9 @@ onUnmounted(() => {
         :class="bgs[currentIndex]"
       ></div>
     </transition>
-    <div class="mx-auto text-center w-full max-w-[905px] mt-20 z-[2] px-5 xl:px-0">
+    <div
+      class="mx-auto text-center w-full max-w-[905px] mt-20 z-[2] px-5 xl:px-0"
+    >
       <transition name="fade" mode="out-in">
         <div class="flex h-24 md:h-[220px] items-center justify-center">
           <h2
@@ -49,12 +57,16 @@ onUnmounted(() => {
           />
         </div>
       </transition>
-      <p class="text-white md:mt-6">
-        Li Europan lingues es membres del sam familie. Lor separat existentie es
-        un myth. Por scientie, musica, sport etc, litot Europa usa li sam
-        vocabular.
-      </p>
-      <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-2 mt-[28px] md:mt-16">
+      <transition name="fade" mode="out-in">
+        <p
+          :key="currentIndex"
+          v-html="desc[currentIndex]"
+          class="text-white md:mt-6"
+        />
+      </transition>
+      <div
+        class="flex flex-col md:flex-row justify-center gap-4 md:gap-2 mt-[28px] md:mt-16"
+      >
         <NuxtLink
           to="/"
           class="text-[#ddd] bg-secondary hover:bg-white hover:text-secondary hover:border-white transition-all duration-300 rounded-xl border border-secondary px-8 md:px-12 py-5 md:py-6 min-w-max md:text-2xl"
