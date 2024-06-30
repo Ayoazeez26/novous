@@ -46,9 +46,9 @@ const goToJD = (id) => {
           <div
             v-for="(opening, index) in jobOpenings"
             :key="index"
-            class="border border-grey-4 flex items-center justify-between rounded-2xl p-4 w-full"
+            class="border border-grey-4 flex flex-col md:flex-row md:items-center justify-between rounded-2xl gap-6 p-4 w-full"
           >
-            <div class="flex items-center w-full gap-4">
+            <div class="flex flex-col md:flex-row md:items-center w-full gap-4">
               <img
                 class="w-[160px]"
                 :src="opening.attributes.img"
@@ -56,10 +56,10 @@ const goToJD = (id) => {
               />
               <div class="flex flex-col text-grey-10">
                 <p class="mb-2">Novus Microfinance Bank</p>
-                <h4 class="font-medium text-[24px] text-black">
+                <h4 class="font-medium text-xl md:text-2xl text-black">
                   {{ opening.attributes.title }}
                 </h4>
-                <div class="flex items-center gap-1 mt-1">
+                <div class="flex flex-col md:flex-row md:items-center gap-1 mt-1">
                   <p>Makurdi, Benue State</p>
                   <div class="h-2 w-2 rounded-full bg-grey-11" />
                   <p>
@@ -73,7 +73,7 @@ const goToJD = (id) => {
                 </div>
               </div>
             </div>
-            <div class="flex flex-col items-end gap-1">
+            <div class="flex flex-col md:items-end gap-1">
               <p class="min-w-max mb-2">Closing {{ opening.attributes.endDate }}</p>
               <button @click="goToJD(opening.id)" class="bg-secondary px-8 py-4 rounded-lg text-white">
                 Apply Now
