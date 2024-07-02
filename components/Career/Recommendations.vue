@@ -16,39 +16,39 @@ const clickedOutside = () => {
 const members = ref([
   {
     name: "Side Hustle",
-    image: "side",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/ll3xntc0uab8oaiqqbkb.webp",
   },
   {
     name: "Personal Banking",
-    image: "personal",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/mgerrvxucdevyd4dtgbj.webp",
   },
   {
     name: "Business Banking",
-    image: "business",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/jdqrltwul1z8yx3tp7ax.webp",
   },
   {
     name: "nMSMSEs",
-    image: "nmsmse",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/cx1y6xoyu6qcdxr5mrz4.webp",
   },
   {
     name: "Cooperatives",
-    image: "cooperatives",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/cx1y6xoyu6qcdxr5mrz4.webp",
   },
   {
     name: "Agro based finance Product",
-    image: "agro",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/gmxuaxrrmaxnxs2jjjqc.webp",
   },
   {
     name: "Premier Wealth Management",
-    image: "side",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944100/novus/krvqyvvot6n5atlqrwqx.jpg",
   },
   {
     name: "Credit Advisory Services.",
-    image: "side",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944101/novus/p6axv2dqwhrt62yd9xv7.jpg",
   },
   {
     name: "Payment Services",
-    image: "side",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944100/novus/krvqyvvot6n5atlqrwqx.jpg",
   },
 ]);
 
@@ -80,7 +80,7 @@ const members = ref([
             <div
               class="flex flex-col items-start p-3 md:p-4 border h-[] bg-white border-grey-4 rounded-2xl"
             >
-              <img class="w-full" :src="`/img/${member.image}.webp`" />
+              <img class="w-full" :src="member.image" />
               <div class="flex flex-col justify-between mt-2 w-full h-full">
                 <div class="flex flex-col">
                   <h3 class="font-medium text-2xl">

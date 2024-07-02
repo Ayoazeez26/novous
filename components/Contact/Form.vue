@@ -21,7 +21,14 @@ const handleSubmit = async (event: Event) => {
     },
   };
 
-  await data.contactUs(formData);
+  const submittedData = await data.contactUs(formData);
+  if (submittedData) {
+    firstName.value = "";
+    lastName.value = "";
+    email.value = "";
+    subject.value = "";
+    message.value = "";
+  }
   console.log("Form Data:", formData);
 };
 </script>

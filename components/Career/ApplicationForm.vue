@@ -414,7 +414,7 @@ const onSubmit = async (e: any) => {
                 placeholder="Email Address" />
             </div>
           </div>
-          <div
+          <!-- <div
             class="border-2 border-dashed flex items-center justify-center md:py-0 py-5 cursor-pointer hover:bg-[#F7F8F9] transition-all duration-300 ease-in-out">
             <div class="flex md:flex-col flex-row items-center md:space-x-0 space-x-3 md:space-y-3">
               <span class="md:text-3xl md:border md:h-10 md:w-10 md:rounded-full md:flex items-center justify-center">
@@ -424,7 +424,7 @@ const onSubmit = async (e: any) => {
                 Add Referee
               </span>
             </div>
-          </div>
+          </div> -->
         </div>
         <h2 class="text-2xl font-bold mb-4">Attachments</h2>
         <div class="grid md:grid-cols-2 gap-6">
