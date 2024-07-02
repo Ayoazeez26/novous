@@ -64,6 +64,16 @@ interface JobApplicationForm {
   resumeCV: File | null;
   professionalCertification: File | null;
   otherRelevantDocuments: File | null;
+  experience: WorkExperience[];
+}
+
+interface WorkExperience {
+  jobTitle: string;
+  name: string;
+  employmentStartDate: string;
+  employmentEndDate: string;
+  responsibilitiesAndAchievements: string;
+  currentlyWorkingHere: boolean;
 }
 
 interface CreateAccountInput {

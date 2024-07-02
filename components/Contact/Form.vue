@@ -49,7 +49,7 @@ const handleSubmit = async (event: Event) => {
         <div class="grid md:grid-cols-2 gap-24 mt-12 md:px-0 px-5">
           <div class="mt-10 lg:mt-0 w-full">
             <img
-              src="/img/contents.webp"
+              src="/img/contact-group.webp"
               alt="picture of people sitting having meeting"
             />
           </div>

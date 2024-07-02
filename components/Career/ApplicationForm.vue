@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useDataStore } from '~/stores/data';
+import { useDataStore } from "~/stores/data";
 
 const dataStore = useDataStore();
 
-const form = ref<any>({
+const form = reactive<any>({
   fullName: "",
   phoneNumber: "",
   gender: "",
@@ -28,14 +28,16 @@ const form = ref<any>({
   employmentDurationEnd: "",
   relevantSkills: "",
   proffessionalCertName: "",
-  experience:{
-    jobTitle:"",
-    name:"",
-    employmentStartDate:"",
-    employmentEndDate: "",
-    responsibilitiesAndAchievements: "",
-    currentlyWorkingHere:false
-  },
+  experience: [
+    {
+      jobTitle: "",
+      name: "",
+      employmentStartDate: "",
+      employmentEndDate: "",
+      responsibilitiesAndAchievements: "",
+      currentlyWorkingHere: false,
+    },
+  ],
   refereeOne: {
     name: "",
     relationship: "",
@@ -59,27 +61,38 @@ const form = ref<any>({
   certificationFile: null,
   relevantDocument: null,
   // @ts-ignore
-  jobId:dataStore.singleJob?.id 
+  jobId: dataStore.singleJob?.id,
 });
 
-
-const handleFileChange = (event:any, field:string) => {
-  console.log(event.target.files, field)
-  form.value[field] = event.target.files[0];
+const addExperience = () => {
+  form.experience.push({
+    jobTitle: "",
+    name: "",
+    employmentStartDate: "",
+    employmentEndDate: "",
+    responsibilitiesAndAchievements: "",
+    currentlyWorkingHere: false,
+  });
 };
 
-const handleFileDrop = (event:any, field:string) => {
+const removeExperience = (index: number) => {
+  form.experience.splice(index, 1);
+}
+
+const handleFileChange = (event: any, field: string) => {
+  console.log(event.target.files, field);
+  form[field] = event.target.files[0];
+};
+
+const handleFileDrop = (event: any, field: string) => {
   event.preventDefault();
 
-  form.value[field] = event.dataTransfer.files[0];
+  form[field] = event.dataTransfer.files[0];
 };
-
-
 
 const isEmptyObject = (obj: any) => {
-  return Object.values(obj).every(value => !value);
+  return Object.values(obj).every((value) => !value);
 };
-
 
 const onSubmit = async (e: any) => {
   e.preventDefault();
@@ -87,27 +100,40 @@ const onSubmit = async (e: any) => {
   const data: any = {};
 
   // Add all fields to formData
-  Object.keys(form.value).forEach(key => {
-    if (key === 'coverLetterFile' || key === 'resumeFile' || key === 'certificationFile' || key === 'relevantDocument') {
+  Object.keys(form).forEach((key) => {
+    if (
+      key === "coverLetterFile" ||
+      key === "resumeFile" ||
+      key === "certificationFile" ||
+      key === "relevantDocument"
+    ) {
       // Append file fields
-      if (form.value[key]) {
-        formData.append(`files.${key}`, form.value[key]);
+      if (form[key]) {
+        formData.append(`files.${key}`, form[key]);
       }
-    } else if (key === 'refereeOne' || key === 'refereeTwo' || key === 'refereeThree') {
+    } else if (
+      key === "refereeOne" ||
+      key === "refereeTwo" ||
+      key === "refereeThree"
+    ) {
       // Skip individual referees for now
     } else {
       // Append non-file fields to the data object
-      data[key] = form.value[key];
+      data[key] = form[key];
     }
   });
 
   // Convert referees into an array and assign to data, excluding empty objects
-  const referees = [form.value.refereeOne, form.value.refereeTwo, form.value.refereeThree].filter(referee => !isEmptyObject(referee));
+  const referees = [
+    form.refereeOne,
+    form.refereeTwo,
+    form.refereeThree,
+  ].filter((referee) => !isEmptyObject(referee));
   if (referees.length > 0) {
     data.referee = referees;
   }
   // Append the data object as a JSON string to formData
-  formData.append('data', JSON.stringify(data));
+  formData.append("data", JSON.stringify(data));
 
   await dataStore.submitJobApplication(formData as any);
 };
@@ -115,14 +141,14 @@ const onSubmit = async (e: any) => {
 
 <template>
   <div class="md:py-20 py-10 w-full">
-    <div class=" mx-auto xl:px-0 px-4 max-w-[1240px]">
+    <div class="mx-auto xl:px-0 px-4 max-w-[1240px]">
       <div class="md:text-left text-center space-y-6 mb-10">
         <h2 class="text-3xl font-bold">About the Bank</h2>
         <p class="text-gray-600">
-          At Novus MFB, we are committed to providing innovative financial solutions
-          tailored to meet the diverse needs of our customers. With a focus on
-          empowering individuals and businesses, we strive to foster financial
-          inclusion and drive economic growth within our communities.
+          At Novus MFB, we are committed to providing innovative financial
+          solutions tailored to meet the diverse needs of our customers. With a
+          focus on empowering individuals and businesses, we strive to foster
+          financial inclusion and drive economic growth within our communities.
         </p>
       </div>
       <form @submit.prevent="onSubmit" class="space-y-10">
@@ -130,35 +156,51 @@ const onSubmit = async (e: any) => {
           <h2 class="text-2xl font-bold mb-4">Personal Information</h2>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="">
-              <label class="form-label" for="full-name">
-                Full Name
-              </label>
-              <input v-model="form.fullName" class="form-input" id="full-name" type="text" placeholder="Full Name" />
+              <label class="form-label" for="full-name"> Full Name </label>
+              <input
+                v-model="form.fullName"
+                class="form-input"
+                id="full-name"
+                type="text"
+                placeholder="Full Name"
+              />
             </div>
             <div class="">
               <label class="form-label" for="email-address">
                 Email Address
               </label>
-              <input v-model="form.email" class="form-input" id="email-address" type="email"
-                placeholder="Email Address" />
+              <input
+                v-model="form.email"
+                class="form-input"
+                id="email-address"
+                type="email"
+                placeholder="Email Address"
+              />
             </div>
             <div class="">
-              <label class="form-label" for="phone-no">
-                Phone No
-              </label>
-              <input v-model="form.phoneNumber" class="form-input" id="phone-no" type="tel" placeholder="Phone No" />
+              <label class="form-label" for="phone-no"> Phone No </label>
+              <input
+                v-model="form.phoneNumber"
+                class="form-input"
+                id="phone-no"
+                type="tel"
+                placeholder="Phone No"
+              />
             </div>
             <div class="">
               <label class="form-label" for="alt-phone-no">
                 Alt Phone No
               </label>
-              <input v-model="form.altPhoneNumber" class="form-input" id="alt-phone-no" type="tel"
-                placeholder="Alt Phone No" />
+              <input
+                v-model="form.altPhoneNumber"
+                class="form-input"
+                id="alt-phone-no"
+                type="tel"
+                placeholder="Alt Phone No"
+              />
             </div>
             <div class="">
-              <label class="form-label" for="gender">
-                Gender
-              </label>
+              <label class="form-label" for="gender"> Gender </label>
               <select v-model="form.gender" class="form-input" id="gender">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -169,7 +211,11 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="marital-status">
                 Marital Status
               </label>
-              <select v-model="form.maritalStatus" class="form-input" id="marital-status">
+              <select
+                v-model="form.maritalStatus"
+                class="form-input"
+                id="marital-status"
+              >
                 <option value="single">Single</option>
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
@@ -180,14 +226,21 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="home-address">
                 Home Address
               </label>
-              <input v-model="form.address" class="form-input" id="home-address" type="text"
-                placeholder="Home Address" />
+              <input
+                v-model="form.address"
+                class="form-input"
+                id="home-address"
+                type="text"
+                placeholder="Home Address"
+              />
             </div>
             <div class="">
-              <label class="form-label" for="nationality">
-                Nationality
-              </label>
-              <select v-model="form.nationality" class="form-input" id="nationality">
+              <label class="form-label" for="nationality"> Nationality </label>
+              <select
+                v-model="form.nationality"
+                class="form-input"
+                id="nationality"
+              >
                 <option value="nigerian">Nigerian</option>
                 <option value="other">Other</option>
               </select>
@@ -196,7 +249,11 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="state-of-residence">
                 State of Residence
               </label>
-              <select v-model="form.stateOfResidence" class="form-input" id="state-of-residence">
+              <select
+                v-model="form.stateOfResidence"
+                class="form-input"
+                id="state-of-residence"
+              >
                 <option value="lagos">Lagos</option>
                 <option value="abuja">Abuja</option>
                 <option value="kano">Kano</option>
@@ -204,9 +261,7 @@ const onSubmit = async (e: any) => {
               </select>
             </div>
             <div class="">
-              <label class="form-label" for="lga">
-                LGA
-              </label>
+              <label class="form-label" for="lga"> LGA </label>
               <select v-model="form.lga" class="form-input" id="lga">
                 <option value="lagos">Lagos</option>
                 <option value="abuja">Abuja</option>
@@ -236,7 +291,11 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="highest-level-of-education">
                 Highest level of Education attained
               </label>
-              <select v-model="form.educationLevel" class="form-input" id="highest-level-of-education">
+              <select
+                v-model="form.educationLevel"
+                class="form-input"
+                id="highest-level-of-education"
+              >
                 <option value="">Highest level of Education attained</option>
                 <option value="secondary">Secondary</option>
                 <option value="diploma">Diploma</option>
@@ -249,14 +308,23 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="name-of-institution">
                 Name of Institution
               </label>
-              <input v-model="form.nameOfInstitution" class="form-input" id="name-of-institution" type="text"
-                placeholder="Name of Institution" />
+              <input
+                v-model="form.nameOfInstitution"
+                class="form-input"
+                id="name-of-institution"
+                type="text"
+                placeholder="Name of Institution"
+              />
             </div>
             <div class="">
               <label class="form-label" for="field-of-study">
                 Field of Study/Major
               </label>
-              <select v-model="form.fieldOfStudy" class="form-input" id="field-of-study">
+              <select
+                v-model="form.fieldOfStudy"
+                class="form-input"
+                id="field-of-study"
+              >
                 <option value="">Field of Study/Major</option>
                 <option value="secondary">Secondary</option>
                 <option value="diploma">Diploma</option>
@@ -269,14 +337,23 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="degree-certificate">
                 Degree/Certificate Obtained
               </label>
-              <input v-model="form.degreeObtained" class="form-input" id="degree-certificate" type="text"
-                placeholder="Degree/Certificate Obtained" />
+              <input
+                v-model="form.degreeObtained"
+                class="form-input"
+                id="degree-certificate"
+                type="text"
+                placeholder="Degree/Certificate Obtained"
+              />
             </div>
             <div class="">
               <label class="form-label" for="year-of-graduation">
                 Year of Graduation
               </label>
-              <select v-model="form.yearOfGraduation" class="form-input" id="year-of-graduation">
+              <select
+                v-model="form.yearOfGraduation"
+                class="form-input"
+                id="year-of-graduation"
+              >
                 <option value="">Year of Graduation</option>
                 <option value="2022">2022</option>
                 <option value="2021">2021</option>
@@ -306,47 +383,87 @@ const onSubmit = async (e: any) => {
           </div>
         </div>
         <div>
-          <h2 class="text-2xl font-bold mb-4">Work Experience</h2>
-          <div class="grid md:grid-cols-2 gap-6">
+          <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold mb-4">Work Experience</h2>
+            <button type="button" @click="addExperience" class="bg-secondary flex items-center gap-3 px-4 py-3 text-white">
+              <Icon name="mdi:plus" />
+              <p>Add Experience</p>
+            </button>
+          </div>
+          <div v-for="(experience, index) in form.experience" :key="index" class="grid md:grid-cols-2 gap-6">
             <div class="">
               <label class="form-label" for="current-previous-employer">
                 Current/Previous Employer
               </label>
-              <input v-model="form.experience.name" class="form-input" id="current-previous-employer"
-                type="text" placeholder="Current/Previous Employer" />
+              <input
+                v-model="experience.name"
+                class="form-input"
+                id="current-previous-employer"
+                type="text"
+                placeholder="Current/Previous Employer"
+              />
             </div>
             <div class="">
-              <label class="form-label" for="job-title">
-                Job Title
-              </label>
-              <input v-model="form.experience.jobTitle" class="form-input" id="job-title" type="text" placeholder="Job Title" />
+              <label class="form-label" for="job-title"> Job Title </label>
+              <input
+                v-model="experience.jobTitle"
+                class="form-input"
+                id="job-title"
+                type="text"
+                placeholder="Job Title"
+              />
             </div>
             <div class="">
               <label class="form-label" for="employment-duration-start">
                 Employment duration (Start Date)
               </label>
-              <input v-model="form.experience.employmentStartDate" class="form-input" id="employment-duration-start"
-                type="date" placeholder="Employment duration (Start Date)" />
+              <input
+                v-model="experience.employmentStartDate"
+                class="form-input"
+                id="employment-duration-start"
+                type="date"
+                placeholder="Employment duration (Start Date)"
+              />
             </div>
             <div class="">
               <label class="form-label" for="employment-duration-end">
                 Employment duration (End Date)
               </label>
-              <input v-model="form.experience.employmentEndDate" class="form-input" id="employment-duration-end" type="date"
-                placeholder="Employment duration (End Date)" />
+              <input
+                v-model="experience.employmentEndDate"
+                class="form-input"
+                id="employment-duration-end"
+                type="date"
+                placeholder="Employment duration (End Date)"
+                :disabled="experience.currentlyWorkingHere"
+              />
             </div>
             <div class="flex items-center space-x-2">
-              <input v-model="form.experience.currentlyWorkingHere" class="" id="currently-working-here" type="checkbox" />
+              <input
+                v-model="experience.currentlyWorkingHere"
+                class=""
+                id="currently-working-here"
+                type="checkbox"
+              />
               <label class="" for="currently-working-here">
                 Currently working here
               </label>
+            </div>
+            <div class="flex justify-end">
+
+              <Icon class="" @click="removeExperience(index)" name="mdi:minus-circle-outline" size="20" />
             </div>
             <div class="md:col-span-2">
               <label class="form-label" for="responsibilities-and-achievements">
                 Responsibilities and Achievements
               </label>
-              <textarea v-model="form.experience.responsibilitiesAndAchievements" rows="5" class="form-input"
-                id="responsibilities-and-achievements" placeholder="Responsibilities and Achievements"></textarea>
+              <textarea
+                v-model="experience.responsibilitiesAndAchievements"
+                rows="5"
+                class="form-input"
+                id="responsibilities-and-achievements"
+                placeholder="Responsibilities and Achievements"
+              ></textarea>
             </div>
           </div>
         </div>
@@ -357,15 +474,25 @@ const onSubmit = async (e: any) => {
               <label class="form-label" for="relevant-skills">
                 Relevant Skills (e.g., Technical, Soft Skills)
               </label>
-              <input v-model="form.relevantSkills" class="form-input" id="relevant-skills" type="text"
-                placeholder="Relevant Skills (e.g., Technical, Soft Skills)" />
+              <input
+                v-model="form.relevantSkills"
+                class="form-input"
+                id="relevant-skills"
+                type="text"
+                placeholder="Relevant Skills (e.g., Technical, Soft Skills)"
+              />
             </div>
             <div class="">
               <label class="form-label" for="professional-certifications">
                 Professional Certifications
               </label>
-              <input v-model="form.proffessionalCertName" class="form-input" id="professional-certifications"
-                type="text" placeholder="Professional Certifications" />
+              <input
+                v-model="form.proffessionalCertName"
+                class="form-input"
+                id="professional-certifications"
+                type="text"
+                placeholder="Professional Certifications"
+              />
             </div>
           </div>
         </div>
@@ -378,40 +505,100 @@ const onSubmit = async (e: any) => {
           <div class="p-5 bg-grey-20 rounded-lg space-y-6">
             <h3 class="text-xl font-bold mb-2">Referee One (1)</h3>
             <div class="space-y-5">
-              <input v-model="form.refereeOne.name" class="form-input" id="referee-one-name" type="text"
-                placeholder="Name of Referee" />
-              <input v-model="form.refereeOne.relationship" class="form-input" id="referee-one-position" type="text"
-                placeholder="Position/Relationship to Applicant" />
-              <input v-model="form.refereeOne.phoneNo" class="form-input" id="referee-one-phone" type="tel"
-                placeholder="Phone No" />
-              <input v-model="form.refereeOne.email" class="form-input" id="referee-one-email" type="email"
-                placeholder="Email Address" />
+              <input
+                v-model="form.refereeOne.name"
+                class="form-input"
+                id="referee-one-name"
+                type="text"
+                placeholder="Name of Referee"
+              />
+              <input
+                v-model="form.refereeOne.relationship"
+                class="form-input"
+                id="referee-one-position"
+                type="text"
+                placeholder="Position/Relationship to Applicant"
+              />
+              <input
+                v-model="form.refereeOne.phoneNo"
+                class="form-input"
+                id="referee-one-phone"
+                type="tel"
+                placeholder="Phone No"
+              />
+              <input
+                v-model="form.refereeOne.email"
+                class="form-input"
+                id="referee-one-email"
+                type="email"
+                placeholder="Email Address"
+              />
             </div>
           </div>
           <div class="p-5 bg-grey-20 rounded-lg space-y-6">
             <h3 class="text-xl font-bold mb-2">Referee Two (2)</h3>
             <div class="space-y-5">
-              <input v-model="form.refereeTwo.name" class="form-input" id="referee-one-name" type="text"
-                placeholder="Name of Referee" />
-              <input v-model="form.refereeTwo.position" class="form-input" id="referee-one-position" type="text"
-                placeholder="Position/Relationship to Applicant" />
-              <input v-model="form.refereeTwo.phone" class="form-input" id="referee-one-phone" type="tel"
-                placeholder="Phone No" />
-              <input v-model="form.refereeTwo.email" class="form-input" id="referee-one-email" type="email"
-                placeholder="Email Address" />
+              <input
+                v-model="form.refereeTwo.name"
+                class="form-input"
+                id="referee-one-name"
+                type="text"
+                placeholder="Name of Referee"
+              />
+              <input
+                v-model="form.refereeTwo.position"
+                class="form-input"
+                id="referee-one-position"
+                type="text"
+                placeholder="Position/Relationship to Applicant"
+              />
+              <input
+                v-model="form.refereeTwo.phone"
+                class="form-input"
+                id="referee-one-phone"
+                type="tel"
+                placeholder="Phone No"
+              />
+              <input
+                v-model="form.refereeTwo.email"
+                class="form-input"
+                id="referee-one-email"
+                type="email"
+                placeholder="Email Address"
+              />
             </div>
           </div>
           <div class="p-5 bg-grey-20 rounded-lg space-y-6">
             <h3 class="text-xl font-bold mb-2">Referee Three (3)</h3>
             <div class="space-y-5">
-              <input v-model="form.refereeThree.name" class="form-input" id="referee-one-name" type="text"
-                placeholder="Name of Referee" />
-              <input v-model="form.refereeThree.position" class="form-input" id="referee-one-position" type="text"
-                placeholder="Position/Relationship to Applicant" />
-              <input v-model="form.refereeThree.phone" class="form-input" id="referee-one-phone" type="tel"
-                placeholder="Phone No" />
-              <input v-model="form.refereeThree.email" class="form-input" id="referee-one-email" type="email"
-                placeholder="Email Address" />
+              <input
+                v-model="form.refereeThree.name"
+                class="form-input"
+                id="referee-one-name"
+                type="text"
+                placeholder="Name of Referee"
+              />
+              <input
+                v-model="form.refereeThree.position"
+                class="form-input"
+                id="referee-one-position"
+                type="text"
+                placeholder="Position/Relationship to Applicant"
+              />
+              <input
+                v-model="form.refereeThree.phone"
+                class="form-input"
+                id="referee-one-phone"
+                type="tel"
+                placeholder="Phone No"
+              />
+              <input
+                v-model="form.refereeThree.email"
+                class="form-input"
+                id="referee-one-email"
+                type="email"
+                placeholder="Email Address"
+              />
             </div>
           </div>
           <!-- <div
@@ -429,94 +616,159 @@ const onSubmit = async (e: any) => {
         <h2 class="text-2xl font-bold mb-4">Attachments</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div class="">
-            <label class="form-label block text-sm font-medium text-gray-700" for="cover-letter">Cover Letter</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'coverLetterFile')"
-              class="mt-1 flex justify-center px-6 border border-gray-300 border-dashed rounded-md cursor-pointer py-20">
+            <label
+              class="form-label block text-sm font-medium text-gray-700"
+              for="cover-letter"
+              >Cover Letter</label
+            >
+            <div
+              @dragover.prevent
+              @dragenter.prevent
+              @drop.prevent="handleFileDrop($event, 'coverLetterFile')"
+              class="mt-1 flex justify-center px-6 border border-gray-300 border-dashed rounded-md cursor-pointer py-20"
+            >
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
-                  <label for="cover-letter-upload"
-                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                  <label
+                    for="cover-letter-upload"
+                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  >
                     <span>Drag and drop or <u>Upload</u></span>
-                    <input id="cover-letter-upload" name="cover-letter-upload" type="file" class="sr-only"
-                      @change="handleFileChange($event, 'coverLetterFile')" />
+                    <input
+                      id="cover-letter-upload"
+                      name="cover-letter-upload"
+                      type="file"
+                      class="sr-only"
+                      @change="handleFileChange($event, 'coverLetterFile')"
+                    />
                   </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="">
-            <label class="form-label block text-sm font-medium text-gray-700" for="resume-cv">Resume/CV</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'resumeFile')"
-              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
+            <label
+              class="form-label block text-sm font-medium text-gray-700"
+              for="resume-cv"
+              >Resume/CV</label
+            >
+            <div
+              @dragover.prevent
+              @dragenter.prevent
+              @drop.prevent="handleFileDrop($event, 'resumeFile')"
+              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20"
+            >
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
-                  <label for="resume-cv-upload"
-                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                  <label
+                    for="resume-cv-upload"
+                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  >
                     <span>Drag and drop or <u>Upload</u></span>
-                    <input id="resume-cv-upload" name="resume-cv-upload" type="file" class="sr-only"
-                      @change="handleFileChange($event, 'resumeFile')" />
+                    <input
+                      id="resume-cv-upload"
+                      name="resume-cv-upload"
+                      type="file"
+                      class="sr-only"
+                      @change="handleFileChange($event, 'resumeFile')"
+                    />
                   </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="">
-            <label class="form-label block text-sm font-medium text-gray-700"
-              for="professional-certification">Professional Certification (if applicable)</label>
-            <div @dragover.prevent @dragenter.prevent
+            <label
+              class="form-label block text-sm font-medium text-gray-700"
+              for="professional-certification"
+              >Professional Certification (if applicable)</label
+            >
+            <div
+              @dragover.prevent
+              @dragenter.prevent
               @drop.prevent="handleFileDrop($event, 'certificationFile')"
-              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
+              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20"
+            >
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
-                  <label for="professional-certification-upload"
-                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                  <label
+                    for="professional-certification-upload"
+                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  >
                     <span>Drag and drop or <u>Upload</u></span>
-                    <input id="professional-certification-upload" name="professional-certification-upload" type="file"
-                      class="sr-only" @change="handleFileChange($event, 'certificationFile')" />
+                    <input
+                      id="professional-certification-upload"
+                      name="professional-certification-upload"
+                      type="file"
+                      class="sr-only"
+                      @change="handleFileChange($event, 'certificationFile')"
+                    />
                   </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="">
-            <label class="form-label block text-sm font-medium text-gray-700" for="other-relevant-documents">Any Other
-              Relevant Documents</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'relevantDocument')"
-              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
+            <label
+              class="form-label block text-sm font-medium text-gray-700"
+              for="other-relevant-documents"
+              >Any Other Relevant Documents</label
+            >
+            <div
+              @dragover.prevent
+              @dragenter.prevent
+              @drop.prevent="handleFileDrop($event, 'relevantDocument')"
+              class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20"
+            >
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
-                  <label for="other-relevant-documents-upload"
-                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                  <label
+                    for="other-relevant-documents-upload"
+                    class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500"
+                  >
                     <span>Drag and drop or <u>Upload</u></span>
-                    <input id="other-relevant-documents-upload" name="other-relevant-documents-upload" type="file"
-                      class="sr-only" @change="handleFileChange($event, 'relevantDocument')" />
+                    <input
+                      id="other-relevant-documents-upload"
+                      name="other-relevant-documents-upload"
+                      type="file"
+                      class="sr-only"
+                      @change="handleFileChange($event, 'relevantDocument')"
+                    />
                   </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="flex md:flex-row flex-col gap-10 md:items-center justify-between bg-[#ECF4F9] md:px-16 px-5 py-6 mt-6">
-          <div class='flex items-center space-x-2'>
-            <img src="/img/applicationFormImg.jpeg"
-              class="md:w-20 md:h-20 border-4 border-white md:rounded-lg w-14 h-14 rounded-full" />
+        <div
+          class="flex md:flex-row flex-col gap-10 md:items-center justify-between bg-[#ECF4F9] md:px-16 px-5 py-6 mt-6"
+        >
+          <div class="flex items-center space-x-2">
+            <img
+              src="/img/applicationFormImg.jpeg"
+              class="md:w-20 md:h-20 border-4 border-white md:rounded-lg w-14 h-14 rounded-full"
+            />
             <div>
               <h3 class="font-bold">Application Form</h3>
-              <div class="flex items-center md:space-x-3 space-x-1 text-sm text-gray-600">
+              <div
+                class="flex items-center md:space-x-3 space-x-1 text-sm text-gray-600"
+              >
                 <p class="">Makurdi Benue State</p>
                 <span class="w-2 h-2 rounded-full bg-gray-200"></span>
                 <p class="">Grade Band: <span class="text-black">MT</span></p>
                 <span class="w-2 h-2 rounded-full bg-gray-200"></span>
-                <p class="">Age Limit: <span class="text-black">Thirty (30)</span></p>
+                <p class="">
+                  Age Limit: <span class="text-black">Thirty (30)</span>
+                </p>
               </div>
-    
             </div>
           </div>
-    
+
           <button
-            class="bg-secondary text-white rounded md:py-6 py-4 px-12 hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap md:w-auto w-full">
-            Apply Now</button>
-    
+            class="bg-secondary text-white rounded md:py-6 py-4 px-12 hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap md:w-auto w-full"
+          >
+            Apply Now
+          </button>
         </div>
       </form>
     </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="h-screen w-full custom_bg flex items-center justify-center">
-    <div
+    <img src="/svg/loader.svg" alt="loader" class="image-spin">
+    <!-- <div
       class="flex items-center justify-center h-64 w-64 rounded-full bg-secondary/80"
     >
       <div class="flex flex-col gap-[20px] items-center">
@@ -13,7 +14,7 @@
           <div class="circle"></div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -28,6 +29,19 @@
   width: 20px;
   background: white;
   border-radius: 100%;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to the image */
+.image-spin {
+  animation: spin 2s linear infinite;
 }
 </style>
 <script>

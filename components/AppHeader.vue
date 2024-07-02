@@ -14,7 +14,7 @@
       <div class="lg:hidden flex gap-x-4">
         <button
           @click="dialog.showAccountModal = true"
-          class="hidden md:block bg-white border-2 border-white font-semibold px-4 py-3 rounded text-blue-2"
+          class="hidden lg:block bg-white border-2 border-white font-semibold px-4 py-3 rounded text-blue-2"
         >
           Create Account
         </button>

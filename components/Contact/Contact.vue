@@ -79,7 +79,7 @@ const handleSubmit = (event: Event) => {
             <p class="font-medium">070066887632 08122220105</p>
           </div>
         </div>
-        <img src="/img/map.png" alt="" class="mt-10" />
+        <img src="/img/map.webp" alt="" class="mt-10" />
       </div>
     </div>
   </div>

@@ -1,9 +1,9 @@
 <template>
   <div class="overflow-x-hidden mx-auto">
     <AppHeader />
+    <HomepageUSSD v-if="dialog.showUSSDModal"/>
     <HomepageHero />
     <HomepageRecommendations />
-    <HomepageUSSD/>
     <HomepageCTA />
     <!-- <HomepageClients /> -->
     <!-- <HomepageEnhancement /> -->
@@ -17,12 +17,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  setup() {
-    return {};
-  },
-};
+<script setup lang="ts">
+import { useDialogStore } from '~/stores/dialog';
+
+const dialog = useDialogStore();
 </script>
 
 <style lang="scss" scoped>

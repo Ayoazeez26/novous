@@ -34,7 +34,7 @@
       </div>
       <div class="mt-10 lg:mt-0 w-full max-w-[588px]">
         <img
-          src="/img/contents.webp"
+          src="/img/contact-group.webp"
           alt="picture of people sitting having meeting"
         />
         <div id="team" />
