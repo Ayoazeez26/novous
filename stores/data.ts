@@ -5,6 +5,8 @@ import type {
   HandoutInput,
   ArticleCreateInput,
   JobApplicationForm,
+  CreateAccountInput,
+  FeedbackInput,
 } from "~/types";
 
 export const useDataStore = defineStore(
@@ -23,6 +25,7 @@ export const useDataStore = defineStore(
         });
       });
     };
+
     const submitJobApplication = (applicationData: JobApplicationForm) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
@@ -40,10 +43,44 @@ export const useDataStore = defineStore(
       });
     };
 
+    const createAccount = (formData: CreateAccountInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.createAccount(formData).then((res: any) => {
+          dialog.isLoading = false;
+          successToast("Account created successfully!");
+          resolve(res.data);
+        })
+        .catch((error: any) => {
+          dialog.isLoading = false;
+          reject(error);
+        })
+      })
+    };
+
+    const contactUs = (formData: FeedbackInput) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data
+          .contactUs(formData)
+          .then((res: any) => {
+            dialog.isLoading = false;
+            successToast("Feedback submitted successfully!");
+            resolve(res.data);
+          })
+          .catch((error: any) => {
+            dialog.isLoading = false;
+            reject(error);
+          });
+      });
+    };
+
     return {
       getJobOpenings,
       submitJobApplication,
       singleJob,
+      createAccount,
+      contactUs
     };
   },
   {

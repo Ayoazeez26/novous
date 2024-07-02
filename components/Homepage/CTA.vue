@@ -25,7 +25,7 @@
         </p>
         <div class="flex mt-10">
           <nuxt-link
-            to=""
+            to="/career"
             class="bg-secondary font-medium text-white flex rounded py-4 w-full justify-center px-8"
           >
             Join Us Today

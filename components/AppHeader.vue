@@ -1,7 +1,9 @@
 <template>
   <div
     class="fixed right-0 left-0 top-0 font-medium text-text text-sm z-10 px-4 md:px-6 xl:px-0"
-    :class="dataStore.scrolled ? 'bg-grey-1 py-0' : 'bg-transparent py-6 md:mt-11'"
+    :class="
+      dataStore.scrolled ? 'bg-grey-1 py-0' : 'bg-transparent py-6 md:mt-11'
+    "
   >
     <div
       class="bg-grey-1 flex h-[72px] md:h-[88px] items-center justify-between px-4 md:px-8 w-full max-w-[1240px] rounded-xl mx-auto"
@@ -11,6 +13,7 @@
       </nuxt-link>
       <div class="lg:hidden flex gap-x-4">
         <button
+          @click="dialog.showAccountModal = true"
           class="hidden md:block bg-white border-2 border-white font-semibold px-4 py-3 rounded text-blue-2"
         >
           Create Account
@@ -73,6 +76,7 @@
             class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6"
           >
             <button
+              @click="dialog.showAccountModal = true"
               class="bg-secondary border-2 border-white font-medium px-4 py-3 rounded text-white"
             >
               Create Account
@@ -116,6 +120,7 @@
             class="lg:hidden flex flex-col lg:flex-row lg:items-center gap-6"
           >
             <button
+              @click="dialog.showAccountModal = true"
               class="bg-secondary border-2 border-white font-medium px-4 py-4 rounded-lg text-white"
             >
               Create Account
@@ -125,6 +130,7 @@
       </ul>
       <div class="hidden lg:flex">
         <button
+          @click="dialog.showAccountModal = true"
           class="bg-secondary border-2 border-secondary font-medium px-[25px] py-[14px] rounded text-white"
         >
           Create Account
@@ -136,7 +142,9 @@
 
 <script setup lang="ts">
 import { useDataStore } from "@/stores/data";
+import { useDialogStore } from "~/stores/dialog";
 const dataStore = useDataStore();
+const dialog = useDialogStore();
 const route = useRoute();
 const open = ref(false);
 const close = (e: HTMLInputElement) => {
@@ -228,7 +236,7 @@ if (typeof window !== "undefined") {
       max-width: calc(100vw - 32px);
       margin-right: 16px;
       margin-top: 16px;
-      background-color: #F5F5FF;
+      background-color: #f5f5ff;
       z-index: 100;
       &__toggle {
         display: none;
@@ -264,7 +272,7 @@ if (typeof window !== "undefined") {
     border: none;
 
     div {
-      background-color: #F5F5FF;
+      background-color: #f5f5ff;
       height: 3px;
       border-radius: 2px;
       margin: 4px;

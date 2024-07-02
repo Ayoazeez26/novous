@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { useDataStore } from '~/stores/data';
 
+const data = useDataStore();
 const firstName = ref("");
 const lastName = ref("");
 const email = ref("");
 const subject = ref("");
 const message = ref("");
 
-const handleSubmit = (event: Event) => {
+const handleSubmit = async (event: Event) => {
   event.preventDefault();
 
   const formData = {
@@ -15,9 +16,9 @@ const handleSubmit = (event: Event) => {
     lastName: lastName.value,
     email: email.value,
     subject: subject.value,
-    message: message.value,
+    content: message.value,
   };
-
+  await data.contactUs(formData);
   console.log("Form Data:", formData);
 };
 </script>

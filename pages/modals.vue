@@ -3,7 +3,7 @@
     <button @click="showModal = true" class="bg-blue-500 py-2 px-4 rounded-md hover:bg-blue-600">
       Open Profile Setup
     </button>
-    <ProfileSetupModal :isVisible="showModal" @update:isVisible="showModal = $event" />
+    <!-- <CreateAccountModal /> -->
   </div>
 </template>
 

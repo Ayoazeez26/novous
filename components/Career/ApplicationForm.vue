@@ -24,6 +24,7 @@ const form = ref<any>({
   currentlyWorkingHere: false,
   responsibilitiesAndAchievements: "",
   jobTitle: "",
+  dob: "",
   employmentDurationEnd: "",
   relevantSkills: "",
   proffessionalCertName: "",
@@ -212,6 +213,19 @@ const onSubmit = async (e: any) => {
                 <option value="kano">Kano</option>
                 <option value="other">Other</option>
               </select>
+            </div>
+            <div>
+              <label for="deadline" class="form-label">Date Of Birth</label>
+              <input
+                v-model="form.dob"
+                type="text"
+                name="deadline"
+                id="deadline"
+                placeholder="Pick a date"
+                onfocus="(this.type='date')"
+                onblur="(this.type='text')"
+                class="form-input"
+              />
             </div>
           </div>
         </div>

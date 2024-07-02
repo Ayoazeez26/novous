@@ -28,6 +28,7 @@ const clickedOutside = () => {
       <CustomCursor />
       <Modal v-if="dialogStore.showModal" class="loader" />
       <Loading v-if="dialogStore.isLoading" class="loader" />
+      <CreateAccountModal v-if="dialogStore.showAccountModal" class="" />
       <NuxtPage />
     </main>
   </div>

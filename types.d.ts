@@ -65,3 +65,23 @@ interface JobApplicationForm {
   professionalCertification: File | null;
   otherRelevantDocuments: File | null;
 }
+
+interface CreateAccountInput {
+  LastName: string;
+  OtherNames: string;
+  PhoneNo: string;
+  Gender: string;
+  PlaceOfBirth: string;
+  DateOfBirth: string;
+  BVN: string;
+  Address: string;
+  Email: string;
+}
+
+interface FeedbackInput {
+  firstName: string;
+  lastName: string;
+  content: string;
+  email: string;
+  subject: string;
+}
