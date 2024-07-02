@@ -16,92 +16,30 @@ const clickedOutside = () => {
 const members = ref([
   {
     name: "Side Hustle",
-    image: "side",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/ll3xntc0uab8oaiqqbkb.webp",
   },
   {
     name: "Personal Banking",
-    image: "personal",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/mgerrvxucdevyd4dtgbj.webp",
   },
   {
     name: "Business Banking",
-    image: "business",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944330/novus/jdqrltwul1z8yx3tp7ax.webp",
   },
   {
     name: "nMSMSEs",
-    image: "nmsmse",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/cx1y6xoyu6qcdxr5mrz4.webp",
   },
   {
     name: "Cooperatives",
-    image: "cooperatives",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/cx1y6xoyu6qcdxr5mrz4.webp",
   },
   {
     name: "Agro based finance Product",
-    image: "agro",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944331/novus/gmxuaxrrmaxnxs2jjjqc.webp",
   },
-  // {
-  //   name: "Arindam Das",
-  //   title: "SENIOR STRATEGY CONSULTANT",
-  //   image: "das",
-  // },
-  // {
-  //   name: "Nick",
-  //   title: "OPERATIONS & BUSINESS DEVELOPMENT LEADER",
-  //   image: "nick",
-  // },
 ]);
 
-const memberInfo = ref([
-  {
-    name: "Edwina",
-    image: "smce",
-    about:
-      "Edwina Nwaogu is a dedicated professional with a passion for safety and quality. She is a certified auditor and holds an MBA and GradIOSH qualification. She is an expert in creating safe and productive work environments.",
-    capabilities: [
-      "Health and Safety Management",
-      "Preventive",
-      "Risk Assessment",
-      "Training and Development",
-      "Efficient",
-      "Strategic",
-      "Dedication",
-      "Excellence",
-      "Inclusive",
-      "Exceptional",
-    ],
-  },
-  {
-    name: "Peju",
-    image: "peju",
-    about:
-      "Peju Akinlude is a mental health and social care legislation consultant with over 20 years of experience. She is an expert in safeguarding and best interests. She uses her expertise to enable vulnerable individuals and organizations have access to excellent services.",
-    capabilities: [
-      "Safeguarding",
-      "Best Interests",
-      "Understanding",
-      "Compliance",
-      "Protection",
-      "Inclusion",
-      "Application",
-      "Representation",
-      "Navigation",
-      "Empowerment",
-    ],
-  },
-  {
-    name: "Dudley",
-    image: "dudley",
-    about:
-      "Dudley Sawyer is a DEI expert who creates inclusive workplaces. He works with organizations within the NHS to create cultures, policies, and practices that welcome and value everyone.",
-    capabilities: [
-      "Cultural competence",
-      "Inclusive leadership",
-      "Equity frameworks",
-      "Awareness",
-      "DEI training",
-      "Policy development",
-    ],
-  },
-]);
 </script>
 <template>
   <div id="team" class="bg-grey-3 py-14 lg:py-[100px] w-full">
@@ -130,7 +68,7 @@ const memberInfo = ref([
             <div
               class="flex flex-col items-start p-3 md:p-4 border h-[] bg-white border-grey-4 rounded-2xl"
             >
-              <img class="w-full" :src="`/img/${member.image}.webp`" />
+              <img class="w-full" :src="member.image" />
               <div class="flex flex-col justify-between mt-2 w-full h-full">
                 <div class="flex flex-col">
                   <h3 class="font-semibold text-2xl">
