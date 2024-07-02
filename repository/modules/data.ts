@@ -1,10 +1,11 @@
-import FetchFactory from '../factory';
+import FetchFactory from "../factory";
 
 import type {
   HandoutInput,
   FileUploadResponse,
   ArticleCreateInput,
-} from '~/types';
+  JobApplicationForm,
+} from "~/types";
 
 class DataModule extends FetchFactory {
   private RESOURCE = "";
@@ -13,12 +14,24 @@ class DataModule extends FetchFactory {
     return await this.call("GET", `${this.RESOURCE}/jobs`);
   }
 
+  async jobApplication(credentials: JobApplicationForm): Promise {
+    return await this.call(
+      "POST",
+      `${this.RESOURCE}/job-applications`,
+      credentials,
+      { "Content-Type": "multipart/form-data" }
+    );
+  }
+
   async getAllArticles(): Promise {
     return await this.call("GET", `${this.RESOURCE}/article/search?limit=100`);
   }
 
   async getSingleArticle(id: string): Promise {
-    return await this.call("GET", `${this.RESOURCE}/article/search?id[0]=${id}`);
+    return await this.call(
+      "GET",
+      `${this.RESOURCE}/article/search?id[0]=${id}`
+    );
   }
 
   async viewSingleProduct(id: string): Promise {

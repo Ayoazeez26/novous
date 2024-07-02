@@ -87,25 +87,29 @@
       <div class="flex items-start justify-between text-white/80">
         <div class="flex space-x-2 items-center">
           <a
-            href="#"
+            href="https://twitter.com/NovusMFB"
             class="social-icon"
           >
             <img src="/svg/x.svg" alt="x logo">
           </a>
           <a
-            href="#"
-            class="social-icon"
+            target="_blank"
+            
+            href="https://www.instagram.com/novusmfb/"
+            class="social-icon p-2"
           >
             <img src="/svg/instagram.svg" alt="instagram logo">
           </a>
           <a
-            href="#"
+            target="_blank"
+            href="https://ng.linkedin.com/in/novus-microfinance-bank-859521307"
             class="social-icon"
           >
-            <img src="/svg/facebook.svg" alt="facebook logo">
+            <img class="w-4 h-4" src="/svg/linkedin.svg" alt="Linkedin logo">
           </a>
           <a
-            href="#"
+            href="https://whatsapp.com/channel/0029VaYoihl77qVZLhr53g1D"
+            target="_blank"
             class="social-icon"
           >
             <img src="/svg/whatsapp.svg" alt="whatsapp logo">

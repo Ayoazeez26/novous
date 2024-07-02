@@ -1,7 +1,11 @@
 import { defineStore } from "pinia";
-import { successToast } from "~/plugins/vue3-toastify";
+import { errorToast, successToast } from "~/plugins/vue3-toastify";
 import { useDialogStore } from "./dialog";
-import type { HandoutInput, ArticleCreateInput } from "~/types";
+import type {
+  HandoutInput,
+  ArticleCreateInput,
+  JobApplicationForm,
+} from "~/types";
 
 export const useDataStore = defineStore(
   "data",
@@ -19,12 +23,27 @@ export const useDataStore = defineStore(
         });
       });
     };
-
-    
+    const submitJobApplication = (applicationData: JobApplicationForm) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data
+          .jobApplication(applicationData)
+          .then((res: any) => {
+            dialog.isLoading = false;
+            successToast("Application submitted successfully");
+            resolve(res.data);
+          })
+          .catch((error: any) => {
+            dialog.isLoading = false;
+            reject(error);
+          });
+      });
+    };
 
     return {
       getJobOpenings,
-      singleJob
+      submitJobApplication,
+      singleJob,
     };
   },
   {
