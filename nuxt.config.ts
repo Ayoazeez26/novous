@@ -64,6 +64,7 @@ export default defineNuxtConfig({
     public: {
       baseUrl: process.env.BASE_URL,
       STRIPE_PK_KEY: process.env.STRIPE_PK_KEY,
+      strapiToken: process.env.STRAPI_TOKEN,
     },
   },
   build: {

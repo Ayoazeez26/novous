@@ -1,21 +1,24 @@
 <script lang="ts" setup>
+import { useDataStore } from '~/stores/data';
 
-const form = ref({
+const dataStore = useDataStore();
+
+const form = ref<any>({
   fullName: "",
-  phoneNo: "",
+  phoneNumber: "",
   gender: "",
-  homeAddress: "",
+  address: "",
   stateOfResidence: "",
-  emailAddress: "",
-  altPhoneNo: "",
+  email: "",
+  altPhoneNumber: "",
   maritalStatus: "",
   nationality: "",
   lga: "",
-  highestLevelOfEducation: "",
+  educationLevel: "",
   fieldOfStudy: "",
   yearOfGraduation: "",
   nameOfInstitution: "",
-  degreeCertificate: "",
+  degreeObtained: "",
   currentPreviousEmployer: "",
   employmentDurationStart: "",
   currentlyWorkingHere: false,
@@ -23,41 +26,89 @@ const form = ref({
   jobTitle: "",
   employmentDurationEnd: "",
   relevantSkills: "",
-  professionalCertifications: "",
+  proffessionalCertName: "",
+  experience:{
+    jobTitle:"",
+    name:"",
+    employmentStartDate:"",
+    employmentEndDate: "",
+    responsibilitiesAndAchievements: "",
+    currentlyWorkingHere:false
+  },
   refereeOne: {
     name: "",
-    position: "",
+    relationship: "",
     phone: "",
     email: "",
   },
   refereeTwo: {
     name: "",
-    position: "",
+    relationship: "",
     phone: "",
     email: "",
   },
   refereeThree: {
     name: "",
-    position: "",
+    relationship: "",
     phone: "",
     email: "",
   },
-  coverLetter: null,
-  resumeCV: null,
-  professionalCertification: null,
-  otherRelevantDocuments: null,
+  coverLetterFile: null,
+  resumeFile: null,
+  certificationFile: null,
+  relevantDocument: null,
+  // @ts-ignore
+  jobId:dataStore.singleJob?.id 
 });
 
-const handleFileChange = (event, field) => {
+
+const handleFileChange = (event:any, field:string) => {
+  console.log(event.target.files, field)
   form.value[field] = event.target.files[0];
 };
 
-const handleFileDrop = (event, field) => {
+const handleFileDrop = (event:any, field:string) => {
+  event.preventDefault();
+
   form.value[field] = event.dataTransfer.files[0];
 };
 
-const onSubmit = () => {
-  console.log(form.value);
+
+
+const isEmptyObject = (obj: any) => {
+  return Object.values(obj).every(value => !value);
+};
+
+
+const onSubmit = async (e: any) => {
+  e.preventDefault();
+  const formData = new FormData();
+  const data: any = {};
+
+  // Add all fields to formData
+  Object.keys(form.value).forEach(key => {
+    if (key === 'coverLetterFile' || key === 'resumeFile' || key === 'certificationFile' || key === 'relevantDocument') {
+      // Append file fields
+      if (form.value[key]) {
+        formData.append(`files.${key}`, form.value[key]);
+      }
+    } else if (key === 'refereeOne' || key === 'refereeTwo' || key === 'refereeThree') {
+      // Skip individual referees for now
+    } else {
+      // Append non-file fields to the data object
+      data[key] = form.value[key];
+    }
+  });
+
+  // Convert referees into an array and assign to data, excluding empty objects
+  const referees = [form.value.refereeOne, form.value.refereeTwo, form.value.refereeThree].filter(referee => !isEmptyObject(referee));
+  if (referees.length > 0) {
+    data.referee = referees;
+  }
+  // Append the data object as a JSON string to formData
+  formData.append('data', JSON.stringify(data));
+
+  await dataStore.submitJobApplication(formData as any);
 };
 </script>
 
@@ -87,20 +138,20 @@ const onSubmit = () => {
               <label class="form-label" for="email-address">
                 Email Address
               </label>
-              <input v-model="form.emailAddress" class="form-input" id="email-address" type="email"
+              <input v-model="form.email" class="form-input" id="email-address" type="email"
                 placeholder="Email Address" />
             </div>
             <div class="">
               <label class="form-label" for="phone-no">
                 Phone No
               </label>
-              <input v-model="form.phoneNo" class="form-input" id="phone-no" type="tel" placeholder="Phone No" />
+              <input v-model="form.phoneNumber" class="form-input" id="phone-no" type="tel" placeholder="Phone No" />
             </div>
             <div class="">
               <label class="form-label" for="alt-phone-no">
                 Alt Phone No
               </label>
-              <input v-model="form.altPhoneNo" class="form-input" id="alt-phone-no" type="tel"
+              <input v-model="form.altPhoneNumber" class="form-input" id="alt-phone-no" type="tel"
                 placeholder="Alt Phone No" />
             </div>
             <div class="">
@@ -128,7 +179,7 @@ const onSubmit = () => {
               <label class="form-label" for="home-address">
                 Home Address
               </label>
-              <input v-model="form.homeAddress" class="form-input" id="home-address" type="text"
+              <input v-model="form.address" class="form-input" id="home-address" type="text"
                 placeholder="Home Address" />
             </div>
             <div class="">
@@ -171,7 +222,7 @@ const onSubmit = () => {
               <label class="form-label" for="highest-level-of-education">
                 Highest level of Education attained
               </label>
-              <select v-model="form.highestLevelOfEducation" class="form-input" id="highest-level-of-education">
+              <select v-model="form.educationLevel" class="form-input" id="highest-level-of-education">
                 <option value="">Highest level of Education attained</option>
                 <option value="secondary">Secondary</option>
                 <option value="diploma">Diploma</option>
@@ -204,7 +255,7 @@ const onSubmit = () => {
               <label class="form-label" for="degree-certificate">
                 Degree/Certificate Obtained
               </label>
-              <input v-model="form.degreeCertificate" class="form-input" id="degree-certificate" type="text"
+              <input v-model="form.degreeObtained" class="form-input" id="degree-certificate" type="text"
                 placeholder="Degree/Certificate Obtained" />
             </div>
             <div class="">
@@ -247,31 +298,31 @@ const onSubmit = () => {
               <label class="form-label" for="current-previous-employer">
                 Current/Previous Employer
               </label>
-              <input v-model="form.currentPreviousEmployer" class="form-input" id="current-previous-employer"
+              <input v-model="form.experience.name" class="form-input" id="current-previous-employer"
                 type="text" placeholder="Current/Previous Employer" />
             </div>
             <div class="">
               <label class="form-label" for="job-title">
                 Job Title
               </label>
-              <input v-model="form.jobTitle" class="form-input" id="job-title" type="text" placeholder="Job Title" />
+              <input v-model="form.experience.jobTitle" class="form-input" id="job-title" type="text" placeholder="Job Title" />
             </div>
             <div class="">
               <label class="form-label" for="employment-duration-start">
                 Employment duration (Start Date)
               </label>
-              <input v-model="form.employmentDurationStart" class="form-input" id="employment-duration-start"
+              <input v-model="form.experience.employmentStartDate" class="form-input" id="employment-duration-start"
                 type="date" placeholder="Employment duration (Start Date)" />
             </div>
             <div class="">
               <label class="form-label" for="employment-duration-end">
                 Employment duration (End Date)
               </label>
-              <input v-model="form.employmentDurationEnd" class="form-input" id="employment-duration-end" type="date"
+              <input v-model="form.experience.employmentEndDate" class="form-input" id="employment-duration-end" type="date"
                 placeholder="Employment duration (End Date)" />
             </div>
             <div class="flex items-center space-x-2">
-              <input v-model="form.currentlyWorkingHere" class="" id="currently-working-here" type="checkbox" />
+              <input v-model="form.experience.currentlyWorkingHere" class="" id="currently-working-here" type="checkbox" />
               <label class="" for="currently-working-here">
                 Currently working here
               </label>
@@ -280,7 +331,7 @@ const onSubmit = () => {
               <label class="form-label" for="responsibilities-and-achievements">
                 Responsibilities and Achievements
               </label>
-              <textarea v-model="form.responsibilitiesAndAchievements" rows="5" class="form-input"
+              <textarea v-model="form.experience.responsibilitiesAndAchievements" rows="5" class="form-input"
                 id="responsibilities-and-achievements" placeholder="Responsibilities and Achievements"></textarea>
             </div>
           </div>
@@ -299,7 +350,7 @@ const onSubmit = () => {
               <label class="form-label" for="professional-certifications">
                 Professional Certifications
               </label>
-              <input v-model="form.professionalCertifications" class="form-input" id="professional-certifications"
+              <input v-model="form.proffessionalCertName" class="form-input" id="professional-certifications"
                 type="text" placeholder="Professional Certifications" />
             </div>
           </div>
@@ -315,9 +366,9 @@ const onSubmit = () => {
             <div class="space-y-5">
               <input v-model="form.refereeOne.name" class="form-input" id="referee-one-name" type="text"
                 placeholder="Name of Referee" />
-              <input v-model="form.refereeOne.position" class="form-input" id="referee-one-position" type="text"
+              <input v-model="form.refereeOne.relationship" class="form-input" id="referee-one-position" type="text"
                 placeholder="Position/Relationship to Applicant" />
-              <input v-model="form.refereeOne.phone" class="form-input" id="referee-one-phone" type="tel"
+              <input v-model="form.refereeOne.phoneNo" class="form-input" id="referee-one-phone" type="tel"
                 placeholder="Phone No" />
               <input v-model="form.refereeOne.email" class="form-input" id="referee-one-email" type="email"
                 placeholder="Email Address" />
@@ -365,7 +416,7 @@ const onSubmit = () => {
         <div class="grid md:grid-cols-2 gap-6">
           <div class="">
             <label class="form-label block text-sm font-medium text-gray-700" for="cover-letter">Cover Letter</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'coverLetter')"
+            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'coverLetterFile')"
               class="mt-1 flex justify-center px-6 border border-gray-300 border-dashed rounded-md cursor-pointer py-20">
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
@@ -373,7 +424,7 @@ const onSubmit = () => {
                     class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                     <span>Drag and drop or <u>Upload</u></span>
                     <input id="cover-letter-upload" name="cover-letter-upload" type="file" class="sr-only"
-                      @change="handleFileChange($event, 'coverLetter')" />
+                      @change="handleFileChange($event, 'coverLetterFile')" />
                   </label>
                 </div>
               </div>
@@ -381,7 +432,7 @@ const onSubmit = () => {
           </div>
           <div class="">
             <label class="form-label block text-sm font-medium text-gray-700" for="resume-cv">Resume/CV</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'resumeCV')"
+            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'resumeFile')"
               class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
@@ -389,7 +440,7 @@ const onSubmit = () => {
                     class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                     <span>Drag and drop or <u>Upload</u></span>
                     <input id="resume-cv-upload" name="resume-cv-upload" type="file" class="sr-only"
-                      @change="handleFileChange($event, 'resumeCV')" />
+                      @change="handleFileChange($event, 'resumeFile')" />
                   </label>
                 </div>
               </div>
@@ -399,7 +450,7 @@ const onSubmit = () => {
             <label class="form-label block text-sm font-medium text-gray-700"
               for="professional-certification">Professional Certification (if applicable)</label>
             <div @dragover.prevent @dragenter.prevent
-              @drop.prevent="handleFileDrop($event, 'professionalCertification')"
+              @drop.prevent="handleFileDrop($event, 'certificationFile')"
               class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
@@ -407,7 +458,7 @@ const onSubmit = () => {
                     class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                     <span>Drag and drop or <u>Upload</u></span>
                     <input id="professional-certification-upload" name="professional-certification-upload" type="file"
-                      class="sr-only" @change="handleFileChange($event, 'professionalCertification')" />
+                      class="sr-only" @change="handleFileChange($event, 'certificationFile')" />
                   </label>
                 </div>
               </div>
@@ -416,7 +467,7 @@ const onSubmit = () => {
           <div class="">
             <label class="form-label block text-sm font-medium text-gray-700" for="other-relevant-documents">Any Other
               Relevant Documents</label>
-            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'otherRelevantDocuments')"
+            <div @dragover.prevent @dragenter.prevent @drop.prevent="handleFileDrop($event, 'relevantDocument')"
               class="mt-1 flex justify-center px-6 border-2 border-gray-300 border-dashed rounded-md cursor-pointer py-20">
               <div class="space-y-1 text-center">
                 <div class="flex text-sm text-gray-600">
@@ -424,36 +475,36 @@ const onSubmit = () => {
                     class="relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
                     <span>Drag and drop or <u>Upload</u></span>
                     <input id="other-relevant-documents-upload" name="other-relevant-documents-upload" type="file"
-                      class="sr-only" @change="handleFileChange($event, 'otherRelevantDocuments')" />
+                      class="sr-only" @change="handleFileChange($event, 'relevantDocument')" />
                   </label>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="flex md:flex-row flex-col gap-10 md:items-center justify-between bg-[#ECF4F9] md:px-16 px-5 py-6 mt-6">
-      <div class='flex items-center space-x-2'>
-        <img src="/img/applicationFormImg.jpeg"
-          class="md:w-20 md:h-20 border-4 border-white md:rounded-lg w-14 h-14 rounded-full" />
-        <div>
-          <h3 class="font-bold">Application Form</h3>
-          <div class="flex items-center md:space-x-3 space-x-1 text-sm text-gray-600">
-            <p class="">Makurdi Benue State</p>
-            <span class="w-2 h-2 rounded-full bg-gray-200"></span>
-            <p class="">Grade Band: <span class="text-black">MT</span></p>
-            <span class="w-2 h-2 rounded-full bg-gray-200"></span>
-            <p class="">Age Limit: <span class="text-black">Thirty (30)</span></p>
+        <div class="flex md:flex-row flex-col gap-10 md:items-center justify-between bg-[#ECF4F9] md:px-16 px-5 py-6 mt-6">
+          <div class='flex items-center space-x-2'>
+            <img src="/img/applicationFormImg.jpeg"
+              class="md:w-20 md:h-20 border-4 border-white md:rounded-lg w-14 h-14 rounded-full" />
+            <div>
+              <h3 class="font-bold">Application Form</h3>
+              <div class="flex items-center md:space-x-3 space-x-1 text-sm text-gray-600">
+                <p class="">Makurdi Benue State</p>
+                <span class="w-2 h-2 rounded-full bg-gray-200"></span>
+                <p class="">Grade Band: <span class="text-black">MT</span></p>
+                <span class="w-2 h-2 rounded-full bg-gray-200"></span>
+                <p class="">Age Limit: <span class="text-black">Thirty (30)</span></p>
+              </div>
+    
+            </div>
           </div>
-
+    
+          <button
+            class="bg-secondary text-white rounded md:py-6 py-4 px-12 hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap md:w-auto w-full">
+            Apply Now</button>
+    
         </div>
-      </div>
-
-      <button
-        class="bg-secondary text-white rounded md:py-6 py-4 px-12 hover:bg-white hover:text-secondary transition-all duration-300 ease-in-out whitespace-nowrap md:w-auto w-full">
-        Apply Now</button>
-
+      </form>
     </div>
   </div>
 </template>

@@ -25,3 +25,43 @@ export interface ArticleCreateInput {
   name: string;
   body: string;
 }
+
+interface RefereeInfo {
+  name: string;
+  position: string;
+  phone: string;
+  email: string;
+}
+
+interface JobApplicationForm {
+  fullName: string;
+  phoneNo: string;
+  gender: string;
+  homeAddress: string;
+  stateOfResidence: string;
+  emailAddress: string;
+  altPhoneNo: string;
+  maritalStatus: string;
+  nationality: string;
+  lga: string;
+  highestLevelOfEducation: string;
+  fieldOfStudy: string;
+  yearOfGraduation: string;
+  nameOfInstitution: string;
+  degreeCertificate: string;
+  currentPreviousEmployer: string;
+  employmentDurationStart: string;
+  currentlyWorkingHere: boolean;
+  responsibilitiesAndAchievements: string;
+  jobTitle: string;
+  employmentDurationEnd: string;
+  relevantSkills: string;
+  professionalCertifications: string;
+  refereeOne: RefereeInfo;
+  refereeTwo: RefereeInfo;
+  refereeThree: RefereeInfo;
+  coverLetter: File | null;
+  resumeCV: File | null;
+  professionalCertification: File | null;
+  otherRelevantDocuments: File | null;
+}

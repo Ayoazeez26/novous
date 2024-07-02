@@ -49,12 +49,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     retryDelay: 1000, // ms
     baseURL: config.public.baseUrl,
     onRequest({ request, options }) {
+      const baseToken = config.public.strapiToken;
       // const authStore = useAuthStore();
       // if (authStore.authenticated && authStore.user.accessToken) {
+
       opt = {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer 8a5de7738830070b880ad7684fbb5ccd28ee45fc47a9c3c1a9738789ed461988f38bb303d67602091e43283fc4d4a95d427b09af322a583ee47f0b94f7f086349853846b2d65de77b48796aa1daf70d9ef3cf428fa14ca4924ab03afdee4bcf03dbab965f874de9c74c9eac73415c151cc98a02da41ed40068066585e518ed4f",
+        // "Content-Type": header || "application/json",
+        Authorization: `Bearer ${baseToken}`,
       };
       options.headers = opt;
       // } else {
@@ -103,7 +104,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       // } else {
       errorToast(
         error.response && error.response._data
-          ? error.response._data.message
+          ? error.response._data.error.message
           : "Something went wrong, try again!"
       );
       // }
