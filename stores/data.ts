@@ -7,6 +7,7 @@ import type {
   JobApplicationForm,
   CreateAccountInput,
   FeedbackInput,
+  FeedbackData,
 } from "~/types";
 
 export const useDataStore = defineStore(
@@ -58,7 +59,7 @@ export const useDataStore = defineStore(
       })
     };
 
-    const contactUs = (formData: FeedbackInput) => {
+    const contactUs = (formData: FeedbackData) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
         $api.data

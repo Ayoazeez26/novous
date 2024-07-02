@@ -78,6 +78,10 @@ interface CreateAccountInput {
   Email: string;
 }
 
+interface FeedbackData {
+  data: FeedbackInput
+}
+
 interface FeedbackInput {
   firstName: string;
   lastName: string;

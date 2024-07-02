@@ -1,6 +1,6 @@
 import FetchFactory from "../factory";
 
-import type { CreateAccountInput, FeedbackInput, JobApplicationForm } from "~/types";
+import type { CreateAccountInput, FeedbackData, FeedbackInput, JobApplicationForm } from "~/types";
 
 class DataModule extends FetchFactory {
   private RESOURCE = "";
@@ -22,7 +22,7 @@ class DataModule extends FetchFactory {
     return await this.call("POST", `${this.RESOURCE}/accounts`, credentials);
   }
 
-  async contactUs(credentials: FeedbackInput): Promise {
+  async contactUs(credentials: FeedbackData): Promise {
     return await this.call("POST", `${this.RESOURCE}/feedbacks`, credentials);
   }
 }

@@ -8,7 +8,7 @@ const email = ref("");
 const subject = ref("");
 const message = ref("");
 
-const handleSubmit = async (event: Event) => {
+const handleSubmit = (event: Event) => {
   event.preventDefault();
 
   const formData = {
@@ -18,7 +18,6 @@ const handleSubmit = async (event: Event) => {
     subject: subject.value,
     content: message.value,
   };
-  await data.contactUs(formData);
   console.log("Form Data:", formData);
 };
 </script>
