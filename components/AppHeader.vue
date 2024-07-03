@@ -68,7 +68,7 @@
             <nuxt-link
               to="/contact"
               class="hover:text-secondary"
-              :class="route.name === 'store' ? 'text-secondary' : ''"
+              :class="route.name === 'contact' ? 'text-secondary' : ''"
               >Contact Us</nuxt-link
             >
           </li>
