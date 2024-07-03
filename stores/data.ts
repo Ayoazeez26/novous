@@ -27,6 +27,16 @@ export const useDataStore = defineStore(
       });
     };
 
+    const getSingleJob = (id: string) => {
+      dialog.isLoading = true;
+      return new Promise((resolve, reject) => {
+        $api.data.getSingleJob(id).then((res) => {
+          dialog.isLoading = false;
+          resolve(res.data);
+        });
+      });
+    };
+
     const submitJobApplication = (applicationData: JobApplicationForm) => {
       dialog.isLoading = true;
       return new Promise((resolve, reject) => {
@@ -81,7 +91,8 @@ export const useDataStore = defineStore(
       submitJobApplication,
       singleJob,
       createAccount,
-      contactUs
+      contactUs,
+      getSingleJob
     };
   },
   {

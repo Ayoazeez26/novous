@@ -1,11 +1,12 @@
 <template>
   <div class="parent flex justify-center items-center">
-    <div class="lds-ring">
+    <!-- <div class="lds-ring">
       <div></div>
       <div></div>
       <div></div>
       <div></div>
-    </div>
+    </div> -->
+    <img src="/svg/loader.svg" alt="loader" class="image-spin">
   </div>
 </template>
 
@@ -52,5 +53,18 @@ export default {};
   100% {
     transform: rotate(360deg);
   }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply the animation to the image */
+.image-spin {
+  animation: spin 2s linear infinite;
 }
 </style>

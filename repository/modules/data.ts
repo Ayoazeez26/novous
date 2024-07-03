@@ -9,6 +9,10 @@ class DataModule extends FetchFactory {
     return await this.call("GET", `${this.RESOURCE}/jobs`);
   }
 
+  async getSingleJob(id: string): Promise {
+    return await this.call("GET", `${this.RESOURCE}/jobs/${id}`);
+  }
+
   async jobApplication(credentials: JobApplicationForm): Promise {
     return await this.call(
       "POST",
