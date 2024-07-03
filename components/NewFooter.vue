@@ -62,7 +62,7 @@
             <input
               type="email"
               name="email"
-              id="email"
+              id="bemail"
               value=""
               placeholder="Email Address"
               required

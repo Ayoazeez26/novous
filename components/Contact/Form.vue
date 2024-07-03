@@ -71,7 +71,7 @@ const handleSubmit = async (event: Event) => {
               />
               <input
                 type="email"
-                id="email"
+                id="hemail"
                 class="form-input md:col-span-2"
                 placeholder="Email Address"
                 v-model="email"

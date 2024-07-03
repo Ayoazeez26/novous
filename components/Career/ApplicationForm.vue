@@ -1541,28 +1541,28 @@ const getLastSegment = async (url: string) => {
               <input
                 v-model="form.refereeTwo.name"
                 class="form-input"
-                id="referee-one-name"
+                id="referee-two-name"
                 type="text"
                 placeholder="Name of Referee"
               />
               <input
                 v-model="form.refereeTwo.position"
                 class="form-input"
-                id="referee-one-position"
+                id="referee-two-position"
                 type="text"
                 placeholder="Position/Relationship to Applicant"
               />
               <input
                 v-model="form.refereeTwo.phone"
                 class="form-input"
-                id="referee-one-phone"
+                id="referee-two-phone"
                 type="tel"
                 placeholder="Phone No"
               />
               <input
                 v-model="form.refereeTwo.email"
                 class="form-input"
-                id="referee-one-email"
+                id="referee-two-email"
                 type="email"
                 placeholder="Email Address"
               />
@@ -1574,28 +1574,28 @@ const getLastSegment = async (url: string) => {
               <input
                 v-model="form.refereeThree.name"
                 class="form-input"
-                id="referee-one-name"
+                id="referee-three-name"
                 type="text"
                 placeholder="Name of Referee"
               />
               <input
                 v-model="form.refereeThree.position"
                 class="form-input"
-                id="referee-one-position"
+                id="referee-three-position"
                 type="text"
                 placeholder="Position/Relationship to Applicant"
               />
               <input
                 v-model="form.refereeThree.phone"
                 class="form-input"
-                id="referee-one-phone"
+                id="referee-three-phone"
                 type="tel"
                 placeholder="Phone No"
               />
               <input
                 v-model="form.refereeThree.email"
                 class="form-input"
-                id="referee-one-email"
+                id="referee-three-email"
                 type="email"
                 placeholder="Email Address"
               />

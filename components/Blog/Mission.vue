@@ -80,11 +80,11 @@ watch(message, (value) => {
           </div>
           <div class="flex w-full mt-3">
             <div class="flex flex-col w-full">
-              <label for="email" class="mb-2"
+              <label for="gemail" class="mb-2"
                 >Email Address</label
               >
               <input
-                id="email"
+                id="gemail"
                 v-model="email"
                 type="email"
                 name="email"

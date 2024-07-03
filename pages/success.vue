@@ -24,7 +24,7 @@
             <input
               type="email"
               name="email"
-              id="email"
+              id="bemail"
               class="w-full outline-none"
               placeholder="Email Address"
               v-model="email"

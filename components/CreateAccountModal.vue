@@ -164,12 +164,12 @@ const createAccount = async () => {
           />
         </div>
         <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-gray-700"
+          <label for="aemail" class="block text-sm font-medium text-gray-700"
             >Email</label
           >
           <input
             type="email"
-            id="email"
+            id="aemail"
             v-model="form.Email"
             placeholder="Email"
             class="form-input"
