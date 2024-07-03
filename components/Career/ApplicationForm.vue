@@ -1116,7 +1116,6 @@ const getLastSegment = async (url: string) => {
   const segments = url.split("/");
   const id = segments[segments.length - 1];
   const singleJob = await dataStore.getSingleJob(id);
-  console.log(singleJob);
 };
 </script>
 

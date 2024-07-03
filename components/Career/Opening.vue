@@ -14,7 +14,6 @@ const jobOpenings = ref([]);
 const getAllJobOpenings = async () => {
   const jobOpening = await dataStore.getJobOpenings();
   if (jobOpening) {
-    console.log(jobOpening);
     jobOpenings.value = jobOpening;
   }
 };
@@ -75,9 +74,9 @@ const goToJD = (id) => {
             </div>
             <div class="flex flex-col md:items-end gap-1">
               <p class="min-w-max mb-2">Closing {{ opening.attributes.endDate }}</p>
-              <button @click="goToJD(opening.id)" class="bg-secondary px-8 py-4 rounded-lg text-white">
+              <nuxt-link :to="`/career/${opening.id}`" class="bg-secondary px-8 py-4 rounded-lg text-white">
                 Apply Now
-              </button>
+              </nuxt-link>
             </div>
           </div>
         </div>
