@@ -40,15 +40,15 @@ const members = ref([
   },
   {
     name: "Premier Wealth Management",
-    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944100/novus/krvqyvvot6n5atlqrwqx.jpg",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719957570/novus/c89wro9kv3urk8ilivsr.png",
   },
   {
     name: "Credit Advisory Services.",
-    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944101/novus/p6axv2dqwhrt62yd9xv7.jpg",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719957570/novus/umxcuwtuc4v51v6p6ttj.png",
   },
   {
     name: "Payment Services",
-    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719944100/novus/krvqyvvot6n5atlqrwqx.jpg",
+    image: "https://res.cloudinary.com/detusbs5y/image/upload/v1719957570/novus/vzj9e7rgzkkqwoapyi16.png",
   },
 ]);
 

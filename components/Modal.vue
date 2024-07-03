@@ -3,9 +3,15 @@ import { useDialogStore } from "~/stores/dialog";
 import { useDataStore } from "~/stores/data";
 
 const dialogStore = useDialogStore();
+const router = useRouter();
 const clickedOutside = () => {
   dialogStore.showModal = false;
 };
+
+const goToPrivacy = () => {
+  clickedOutside();
+  router.push("/privacy-policy");
+}
 </script>
 
 <template>
@@ -41,8 +47,8 @@ const clickedOutside = () => {
               its related subdomains. By accessing or using our Service hosted
               on this domain, you indicate that you have read, understood, and
               agreed to our data collecting policies as outlined in our
-              <nuxt-link to="#" class="text-secondary"
-                >Privacy Policy</nuxt-link
+              <button @click="goToPrivacy" class="text-secondary"
+                >Privacy Policy</button
               >
                to be used for website operation, quality of service maintenance,
               and general website statistics.<br />
